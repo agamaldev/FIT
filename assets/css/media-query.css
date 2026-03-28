@@ -1,0 +1,2983 @@
+@media (min-width: 991px) and (max-width: 1900px) {
+    /* Meet-Team */
+    .meet_team_v2>.container-fluid {
+        padding-left: 15px;
+    }
+}
+@media (max-width: 1900px) {
+    .container {
+        padding: 0 15px;
+    }
+    .banner_titles_area_v3 h1 {
+        font-size: 70px;
+    }
+    .smarter_exercise_detail p {
+        width: 100%;
+    }
+    ul.home_banner_tabs li span.tab_home_big_title {
+        font-size: 220px;
+    }
+    .home_banner_tabs_title_area h2 {
+        font-size: 52px;
+    }
+    .yoga_training_content {
+        grid-template-columns: auto auto;
+    }
+    .yoga_training_content_image_info {
+        padding: 40px;
+        gap: 40px;
+    }
+    /* Calculater-BMI */
+    .BMI_calculater_form_area {
+        padding-left: 0;
+    }
+    .BMI_calculater_table {
+        padding-left: 60px;
+    }
+    .footer_logo_area p {
+        width: 100%;
+    }
+    /* Counter */
+    div#counter_sec_home3 .counter_strok_text.counter>span {
+        font-size: 90px;
+    }
+    div#counter_sec_home3 .counter {
+        height: 52px;
+    }
+    div#counter_sec_home3 .counter,
+    div#counter_sec_home3 .counter_area .counter>span {
+        font-size: 52px;
+        line-height: 52px;
+    }
+    /* Client-Say Slider */
+    #client_say_slider_sec_home3 .container {
+        padding: 0 30px 0 0;
+        max-width: 100%;
+    }
+    .client_say_slider_sec>.sec_resize_area,
+    .client_say_v3 {
+        width: 100%;
+    }
+    .client_say_slider_v3_box,
+    div#client_say_slider_sec_ourteampage .client_say_slider_v3_box {
+        grid-template-columns: 1fr 1fr 80px;
+    }
+    .client_say_slider_v3_img,
+    .client_say_slider_v3_img img {
+        height: 100%;
+    }
+    .client_say_slider_v3_info {
+        padding: 0;
+    }
+    .client_say_slider_list_v3 .slick-custom-arrow.slick-custom-arrow-right.slick-arrow {
+        bottom: 33%;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_v3_info_inner {
+        padding-top: 60px;
+        padding-bottom: 0;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_title_outside.client_say_slider_title {
+        display: none;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_v3_info>.common_title_area.client_say_slider_title {
+        display: block;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_list_v3 .slick-custom-arrow.slick-custom-arrow-right.slick-arrow {
+        bottom: 25%;
+    }
+    /* Gallery-slider */
+    .gallery_slider_list .slick-custom-arrow.slick-arrow {
+        top: 45%;
+    }
+    /* Our-Progress */
+    .our_progress_box_v2 .progress_img::before {
+        width: auto;
+        height: auto;
+    }
+    .progress_img::after {
+        z-index: -2;
+    }
+    /* About-Page */
+    section.counter_about_page>.counter_sec {
+        left: 0;
+        right: 0;
+    }
+    section#gallery_slider_sec_Pricingplanpage .gallery_slider_area>.container-fluid {
+        /* margin: 0 0 0 100px;
+        width: 94%; */
+        margin: 0 0 0 auto;
+        width: 80%;
+    }
+    /* section#gallery_slider_sec_Pricingplanpage .gallery_slider_img,
+    section#gallery_slider_sec_Pricingplanpage .gallery_slider_img img {
+        width: 100%;
+    }
+    section#gallery_slider_sec_Pricingplanpage .gallery_slider_list .slick-track {
+        margin: 0 30px;
+    } */
+    /* Error Page */
+    .error_img {
+        top: 60%;
+    }
+    /* Our-Project Page */
+    section#our_project_6 .project_info_box h5 {
+        font-size: 18px;
+        padding: 10px;
+    }
+    section#our_project_6 .project_info_box {
+        right: 20px;
+    }
+    section#our_project_6 .project_info_box h6 {
+        font-size: 16px;
+    }
+}
+@media (max-width: 1650px) {
+    .header_3_fixhead {
+        padding: 40px;
+        max-width: 300px;
+    }
+    .header_3_allarea_content {
+        width: calc(100% - 300px);
+    }
+    .smarter_exercise_img,
+    .smarter_exercise_img img {
+        width: 100%;
+        height: 100%;
+    }
+}
+@media (max-width: 1500px) {
+    .banner_titles_area_v3 h1 {
+        font-size: 65px;
+    }
+    .gallery_slider_list .slick-custom-arrow.slick-custom-arrow-left.slick-arrow {
+        right: 12%;
+    }
+}
+@media (max-width: 1450px) {
+    .mega_dropdown.custome_dropdown_1 {
+        max-width: 80vw;
+    }
+    div#header_theme_2 .mega_dropdown.custome_dropdown_1,
+    div#header_theme_4 .mega_dropdown.custome_dropdown_1 {
+        left: -250%;
+    }
+    div#footer_area_home3 .footer_address {
+        padding: 0;
+    }
+    /* Home-Banner */
+    .banner_slider_content {
+        left: 15px;
+        right: 15px;
+        max-width: 1290px;
+        margin: 0 auto;
+    }
+    .home_banner_slider .slick-custom-arrow.slick-custom-arrow-left {
+        right: 160px;
+    }
+    .home_banner_slider .slick-custom-arrow {
+        right: 80px;
+    }
+    .client_say_v3 {
+        max-width: 100%;
+    }
+    .client_say_slider_v3_info {
+        padding: 40px 0;
+    }
+    /* Our-Program */
+    .program_v1_box h4 {
+        font-size: 24px;
+    }
+    .program_v1_detailcard {
+        padding: 40px;
+    }
+    .program_v1_detailcard>h4 {
+        line-height: 40px;
+    }
+    /* Meet-Team */
+    .meet_team_v2 .common_title_area.meet_team_title {
+        width: 130%;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_v3,
+    div#meet_team_v2_meetteampagev2 .common_title_area.meet_team_title {
+        width: 100%;
+    }
+    /* Our-Trainings */
+    .yoga_training_content {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        justify-content: center;
+    }
+    .yoga_training_content_image {
+        position: absolute;
+        top: -100px;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+    .yoga_training_content_image img {
+        width: 100%;
+        opacity: 0.2;
+    }
+    /* Gallery Slider */
+    .gallery_slider_list .slick-custom-arrow.slick-arrow {
+        top: 40%;
+    }
+    .gallery_slider_list .slick-custom-arrow.slick-custom-arrow-left.slick-arrow {
+        right: 13%;
+    }
+    /* Class-Timetable Page */
+    .timetable-area tbody tr td.body_detail {
+        padding: 26px 15px;
+    }
+    .timetable-area thead tr th {
+        font-size: 20px;
+        text-align: center;
+    }
+    .timetable-area tbody tr td.body_detail .tabel_content h6 {
+        font-size: 16px;
+    }
+    /* Coming-soon Page */
+    .coming_soon_title_area {
+        padding: 75px 0;
+    }
+    .coming_soon_tool.coming_soon_tool_1,
+    .coming_soon_tool.coming_soon_tool_2 {
+        top: 20px;
+    }
+    .coming_soon_tool.coming_soon_tool_3 {
+        left: 20px;
+    }
+    .coming_soon_tool.coming_soon_tool_4 {
+        right: 30px;
+        bottom: 85px;
+    }
+}
+@media (max-width: 1399px) {
+    /* Header */
+    .header_theme_1 ul.dasktop_navlist>li.nav-items>a {
+        padding: 20px;
+        font-size: 18px;
+    }
+    .banner_titles_area_v3 h1 {
+        font-size: 62px;
+    }
+    .banner_v3_image_area {
+        opacity: 1;
+    }
+    .banner_v3_area_content .row>div:last-child {
+        position: relative;
+    }
+    .mega_dropdown.custome_dropdown_1 ul li.nav-items:last-child {
+        height: 30.33%;
+    }
+    #header_theme_4 .mega_dropdown.custome_dropdown_1 ul li.nav-items:last-child {
+        width: 27.33%;
+    }
+    div#header_theme_1 .header_sec.sticky .header_area div.custome_dropdown,
+    div#header_theme_1 .header_sec.sticky .header_area ul.custome_dropdown {
+        top: 127%;
+    }
+    /* Header-V3 */
+    .header_3_fixhead {
+        width: 80px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        max-width: 100%;
+        top: 50%;
+        border-radius: 30px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        transition: all 0.75s linear;
+    }
+    .header_3_fixhead.sticky::before {
+        height: 0;
+    }
+    .header_3_fixhead.sticky {
+        border: 1px solid #fff;
+        border-left: 0;
+    }
+    .header_3_allarea_content {
+        width: 100%;
+    }
+    .banner_titles_area_v3 h1 {
+        font-size: 70px;
+    }
+    .gallery_slider_list .slick-custom-arrow.slick-custom-arrow-left.slick-arrow {
+        right: 10%;
+    }
+    .header_v3_area button.navbar-toggler {
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        border: 0;
+        border-radius: 50%;
+    }
+    .header_v3_area button.navbar-toggler span.navbar-toggler-icon.sidebar_open_icon {
+        width: auto;
+        height: auto;
+        background: none;
+    }
+    .header_v3_area button.navbar-toggler span.navbar-toggler-icon.sidebar_open_icon svg {
+        border: 2px solid #fff;
+        border-radius: 50%;
+    }
+    .header_v3_area button.navbar-toggler span.navbar-toggler-icon.sidebar_open_icon svg circle {
+        fill: #ff640d;
+    }
+    .banner_v3_area,
+    .sec_resize_area,
+    .client_say_slider_sec>.sec_resize_area {
+        width: 100%;
+        max-width: 100%;
+    }
+    .modal-backdrop {
+        display: none;
+        z-index: 0;
+    }
+    .offcanvas-backdrop {
+        display: none;
+        z-index: 0;
+    }
+    .header_content_area::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100%;
+        z-index: -1;
+        background: #000;
+        opacity: .5;
+    }
+    .header_content_area {
+        background: #000;
+    }
+    .header_content_area .offcanvas-body {
+        width: 100%;
+        padding: 60px;
+        scrollbar-width: none;
+    }
+    .offcanvas-header.toogle_header_v3>button.btn-close {
+        opacity: 1;
+        background: #fff;
+        font-size: 24px;
+        border-radius: 0;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 0%;
+        right: -20px;
+    }
+    .offcanvas-header.toogle_header_v3 {
+        position: absolute;
+        right: 0;
+        top: 45%;
+    }
+    ul.navbar_v3 {
+        padding: 40px 0;
+    }
+    ul.navbar_v3 ul.drop_down_menu {
+        margin-bottom: 20px;
+    }
+    .scrolltop_area {
+        right: 30px;
+    }
+    /* Home-Banner */
+    .yoga_slider_content {
+        max-width: 1070px;
+        margin: 0 auto;
+    }
+    /* Our-Program */
+    .program_v1_box h4 {
+        font-size: 30px;
+    }
+    /* Client-Say Slider */
+    .client_say_slider_list.client_say_slider_v1 {
+        margin: 0 auto;
+    }
+    .client_say_slider_v2_list .slick-custom-arrow.slick-custom-arrow-right.orangeglow.slick-arrow {
+        right: -90px;
+    }
+    .client_say_slider_v2_list .slick-custom-arrow.slick-arrow {
+        left: -90px;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_v3_box {
+        grid-template-columns: 1fr 1fr 80px;
+    }
+    .client_say_slider_v3_img,
+    .client_say_slider_v3_img img {
+        height: auto;
+    }
+    .client_say_slider_v3_info {
+        padding: 0;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_v3_info>.common_title_area.client_say_slider_title {
+        display: none;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_title_outside.client_say_slider_title {
+        display: block;
+        padding-bottom: 60px;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_v3_info_inner {
+        padding-top: 40px;
+        margin: 0;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_list_v3 .slick-custom-arrow.slick-arrow {
+        top: 30%;
+        right: 0;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_list_v3 .slick-custom-arrow.slick-custom-arrow-right.slick-arrow {
+        top: auto;
+        bottom: 30%;
+        left: auto;
+    }
+    /* Coming-soon Page */
+    .coming_soon_bg {
+        padding: 73px 15px 0;
+    }
+    .coming_soon_title_area {
+        padding: 64px 0;
+    }
+    .coming_soon_mail_area {
+        padding: 60px 0;
+    }
+    .counter-dots {
+        width: 20px;
+        margin: 0px 0px 0 40px;
+    }
+    .counter-div .counter-element .number-div {
+        width: auto;
+    }
+    .counter-div .counter-element .number-div>div::before {
+        left: -15px;
+    }
+    @keyframes tool4 {
+        0% {
+            transform: scale(.5) rotate(25deg);
+        }
+        100% {
+            transform: scale(.7);
+        }
+    }
+    /* Error Page */
+    .error_img {
+        top: 65%;
+    }
+    .error_img.error_img_2 {
+        right: -110px;
+    }
+}
+@media (max-width: 1290px) {
+    .container-fluid {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    ul.custome_inner_dropdown {
+        left: auto;
+        right: 100%;
+    }
+    .quick_contact a {
+        top: 46%;
+        right: -65px;
+    }
+    /* Homr_3 */
+    .smarter_exercise_title h3 {
+        font-size: 40px;
+    }
+    .gallery_slider_list .slick-custom-arrow.slick-custom-arrow-left.slick-arrow {
+        right: 13%;
+    }
+    /* Client-slider */
+    .client_say_slider_v3_box {
+        grid-template-columns: 1fr 1fr;
+    }
+    #client_say_slider_sec_home3 .container {
+        padding: 0;
+    }
+    .client_say_slider_list_v3 .slick-custom-arrow.slick-arrow {
+        top: 0;
+    }
+    .client_say_slider_list_v3 .slick-custom-arrow.slick-custom-arrow-right.slick-arrow {
+        bottom: 0;
+    }
+    .client_say_slider_v3_info_inner {
+        padding: 60px 80px 0 0;
+    }
+    /* About-Us */
+    .common_title_area.about_us_title h3 {
+        font-size: 45px;
+    }
+    .pricing_plan_v2_button .purches_btn span.orenge_text,
+    .pricing_plan_v2_button .purches_btn span.orenge_text::before {
+        padding: 17px 25px;
+    }
+    /* Error Page */
+    .error_heading,
+    .error_heading::before,
+    .error_heading::after {
+        font-size: 300px;
+        line-height: 300px;
+    }
+    .error_heading::before,
+    .error_heading::after {
+        left: 0;
+        right: 0;
+    }
+    /* Coming-soon Page */
+    .coming_soon_bg {
+        padding: 42px 15px 0;
+    }
+    .coming_soon_title_area {
+        padding: 40px 0;
+    }
+    .coming_soon_mail_area {
+        padding: 40px 0;
+    }
+    .coming_soon_tool.coming_soon_tool_3 {
+        bottom: 30px;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    /* About-Us */
+    .common_title_area.about_us_title h3 {
+        font-size: 30px;
+    }
+    section.counter_about_page .counter_strok_text.counter>span {
+        font-size: 80px;
+    }
+    div#traning_video_aboutpage span.video_text_area {
+        top: 55%;
+    }
+    /* Client-Say Slider */
+    .client_say_slider_v2_box {
+        align-items: center;
+    }
+    .client_say_slider_v2_list .slick-custom-arrow.slick-arrow {
+        top: auto;
+        bottom: 0;
+        left: auto;
+        right: 80px;
+    }
+    .client_say_slider_v2_list .slick-custom-arrow.slick-custom-arrow-right.orangeglow.slick-arrow,
+    .program_animi {
+        right: 0;
+    }
+    /* Our-Program */
+    .our_program_v3_upper {
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+    .our_program_v3_img_shap.reveal img {
+        width: 350px;
+        height: 350px;
+    }
+    /* Why-Choose */
+    .why_choose_box_title h2 {
+        font-size: 52px;
+    }
+    .why_choose_img.our_program_v3_img_shap.reveal img {
+        width: auto;
+        height: auto;
+    }
+    /* Our-Progress */
+    .our_progress_box_v2 .progress_step_info h5 {
+        font-size: 20px;
+    }
+    /* Single-Project */
+    .individualtraning_single_project_sort_titole_box {
+        flex-direction: column;
+        gap: 0;
+    }
+    .individualtraning_single_project_detail_area_smallimg .individualtraning_single_project_sort_titole_box,
+    .big_images_bottom_area .individualtraning_single_project_sort_titole_box {
+        flex-direction: row;
+        gap: 15px;
+    }
+    #Masonry_gallery_v1 .grid_project_list .our_project_item .project_info_box h5 {
+        padding: 10px;
+        font-size: 18px;
+        line-height: normal;
+        display: block;
+    }
+    #Masonry_gallery_v2 .grid_project_list.grid_project_list_tab1 .project_info_box h5,
+    div#Masonry_gallery_v3 .grid_project_list.grid_project_list_tab1 .project_info_box h5,
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab1 .project_info_box h5 {
+        font-size: 20px;
+        padding: 10px;
+    }
+    /* Blog Page */
+    #our_blogs_sidebar h4.our_blog_big_heading {
+        font-size: 28px;
+        line-height: 48px;
+    }
+    /* Single Blog Page */
+    div#our_single_blogs .single_project_tags a.single_project_tag {
+        padding: 8px 10px;
+        font-size: 16px;
+    }
+    .row.single_blog_comment>div:last-child .comment_box {
+        width: 90%;
+    }
+    .comment_box h6 {
+        font-size: 16px;
+    }
+    /* Contact Page */
+    .contactus_page_social_area>.row {
+        gap: 30px 0;
+    }
+}
+@media (max-width: 1199px) {
+    h1 {
+        font-size: 64px;
+    }
+    .gym_insta_feed_area>.row {
+        gap: 30px 0;
+    }
+    .footer_address,
+    .meet_team_v2_slider_area_meetteampage {
+        padding: 0;
+    }
+    .our_trining_img,
+    .our_trining_img img {
+        width: 100%;
+    }
+    .our_training>.row,
+    .meet_team_slider>.row {
+        gap: 60px;
+    }
+    .we_offer_area>.row,
+    .pricing_plans_area>.row {
+        gap: 40px 0;
+    }
+    .sec_padding {
+        padding: 80px 0px;
+    }
+    .sec_padding_top {
+        padding-top: 80px;
+    }
+    .sec_padding_bottom {
+        padding-bottom: 80px;
+    }
+    .pricing_plans_area>.row {
+        justify-content: center;
+    }
+    .client_say_slider_v2_list {
+        max-width: 100%;
+    }
+    .pricing_plan_v2_bottom>.row {
+        gap: 30px;
+    }
+    .pricing_plans_area_v2>.row {
+        gap: 0;
+    }
+    /* Header */
+    /* Header_2 */
+    .header_theme_2 .desktop_navbar ul.dasktop_navlist,
+    .header_theme_4 .desktop_navbar ul.dasktop_navlist {
+        gap: 30px;
+    }
+    .header_theme_2 ul.dasktop_navlist>li.nav-items>a {
+        font-size: 18px;
+    }
+    /* Header-V3 */
+    /* Home-Banner V3 */
+    .banner_titles_area_v3 h1 {
+        font-size: 60px;
+    }
+    .banner_v3_area_bg,
+    .banner_v3_area {
+        height: 100%;
+    }
+    /* Home-Banner V5 */
+    ul.home_banner_tabs li span.tab_home_big_title {
+        font-size: 180px;
+    }
+    .home_banner_tabs_title_area h2 {
+        font-size: 40px;
+    }
+    /* Home-Banner */
+    .shine_1::before {
+        left: -100%;
+        width: 300px;
+    }
+    .yoga_slider_content {
+        max-width: 900px;
+    }
+    /* Our-Program */
+    .program_v1_detailcard {
+        padding: 40px 15px;
+    }
+    .program_v1_box h4 {
+        font-size: 24px;
+    }
+    .program_v1_detailcard .program_v1_detailcard_info {
+        padding: 20px 0px 30px;
+    }
+    /* Why-Choose */
+    .why_choose_box_title {
+        padding: 0 0 30px;
+        margin: 0 0 30px;
+    }
+    /* Traning-Video */
+    .traning_videoplayer span.video_text_area {
+        width: 150px;
+        height: 150px;
+        padding: 13px;
+    }
+    /* Gym-Counter */
+    .counter_strok_text.counter,
+    .counter_strok_text.counter>span {
+        font-size: 90px;
+    }
+    /* Meet-Team Slider */
+    .triners_img:hover::before,
+    .traning_slider_item.slick-current.slick-active .triners_img::before {
+        bottom: -1px;
+        transform: perspective(800px) rotateX(0deg);
+    }
+    .meet_team_v2 .common_title_area.meet_team_title {
+        width: 100%;
+    }
+    .meet_team_v2>.container-fluid {
+        padding: 0;
+    }
+    .meet_team_v2_slider_area {
+        transform: translateX(0);
+    }
+    .meet_team_v2_slider_area .slick-track {
+        margin: 0;
+    }
+    .meet_team_v2_slider_area .slick-custom-arrow.slick-custom-arrow-left.slick-arrow {
+        right: 0;
+    }
+    .meet_team_v2_btn {
+        margin-top: 30px;
+    }
+    /* Calculater-BMI */
+    .BMI_calculater_table {
+        padding-left: 0;
+    }
+    /* Client-Say Slider */
+    .client_say_slider_area {
+        padding: 100px 0 0px;
+    }
+    .client_say_slider_v1_bg {
+        background-position: 50%;
+    }
+    .client_say_slider_title_outside.client_say_slider_title {
+        display: block;
+        padding: 80px 0 60px;
+    }
+    .client_say_slider_v3_info>.client_say_slider_title {
+        display: none;
+    }
+    .client_say_slider_list_v3 .slick-custom-arrow.slick-arrow {
+        right: 9%;
+        transform: rotate(0deg);
+    }
+    .client_say_slider_list_v3 .slick-custom-arrow.slick-custom-arrow-right.slick-arrow {
+        top: 0;
+        right: 0;
+    }
+    .client_say_slider_v3_img,
+    .client_say_slider_v3_img img {
+        height: 100%;
+    }
+    .client_say_slider_v3_info_inner {
+        margin: 100px 0 20px;
+        padding: 0 15px 0 0;
+    }
+    /* Pricing-Plans */
+    ul.pricing_plan_v2_points {
+        gap: 20px 0;
+    }
+    .pricing_plan_v2_head {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .pricing_plan_v2_button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .pricing_plan_v2_button h2 {
+        margin: 0;
+    }
+    .pricing_plan_v2_head,
+    .pricing_plan_v2_bottom {
+        padding: 30px;
+    }
+    /* Our-Trainings */
+    .yoga_training_title h4 {
+        width: 100%;
+        position: relative;
+        bottom: 4%;
+    }
+    .yoga_training_title {
+        width: 200px;
+        padding: 30px 0px;
+    }
+    .yoga_training_content_image_info {
+        padding: 40px;
+        gap: 40px;
+    }
+    .yoga_training_content_image img {
+        height: 100%;
+    }
+    .yoga_training_content_image {
+        top: 0;
+        height: 100%;
+    }
+    /* Home-Blogs */
+    .home_blog_detail h4 {
+        line-height: 45px;
+    }
+    .blog_home_v1 .home_blog_info {
+        gap: 40px;
+    }
+    .home_blog_upper_btn a.orange_btn span.orenge_text,
+    .home_blog_upper_btn a.orange_btn span.orenge_text::before {
+        padding: 17px 25px;
+    }
+    /* Our-Team-Page */
+    div#client_say_slider_sec_ourteampage .client_say_slider_list_v3 .slick-custom-arrow.slick-custom-arrow-right.slick-arrow {
+        bottom: 28%;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_list_v3 .slick-custom-arrow.slick-arrow {
+        top: 28%;
+        transform: rotate(90deg);
+    }
+    .meet_team_v2_slider_area_meetteampage .slick-custom-arrow.slick-custom-arrow-left.slick-arrow {
+        right: -15px;
+    }
+    
+    /* Pricing-Plan Page */
+    section#gallery_slider_sec_Pricingplanpage .gallery_slider_area>.container-fluid {
+        margin: 0 0 0 140px;
+        width: 95%;
+    }
+    section#gallery_slider_sec_Pricingplanpage .gallery_slider_list .slick-custom-arrow.slick-custom-arrow-left.slick-arrow {
+        right: 9%;
+    }
+    /* Class-Timetable Page */
+    .timetable-area tbody tr td.body_detail {
+        padding: 26px 15px;
+    }
+    .timetable-area thead tr th {
+        padding: 20px 25px;
+    }
+    .timetable-area tbody tr td.body_detail .tabel_content h6 {
+        font-size: 16px;
+    }
+    ul.row.weight_left_points li {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    ul.row.weight_left_points li img {
+        padding: 0;
+    }
+    /* Coming-soon Pgae */
+    .coming_soon_bg {
+        padding: 89px 15px 0;
+    }
+    .coming_soon_title_area h2 {
+        font-size: 52px;
+    }
+    .counter-div .counter-element .number-div>div {
+        font-size: 48px;
+    }
+    .counter-div .counter-element .number-div>div,
+    div#our_single_blogs .single_blog_details h4.our_blog_big_heading {
+        line-height: normal;
+    }
+    .counter-div .counter-element .number-div>div::before {
+        font-size: 64px;
+    }
+    .coming_soon_tool {
+        width: 150px;
+        height: 150px;
+    }
+    .coming_soon_tool.coming_soon_tool_2 {
+        right: 60px;
+    }
+    .coming_soon_tool.coming_soon_tool_3 {
+        bottom: 90px;
+    }
+    @keyframes tool4 {
+        0% {
+            transform: scale(.7) rotate(25deg);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    /* Error Page */
+    .error_img {
+        width: 350px;
+        height: auto;
+    }
+    .error_img.error_img_1 {
+        left: -115px;
+    }
+    .error_img.error_img_2 {
+        right: -140px;
+    }
+    /* Our-Project Page */
+    section#our_project_6 .our_project_content_tabs>.row>div {
+        width: 33.33333333%;
+    }
+    section#our_project_6 .project_info_box h5 {
+        font-size: 24px;
+        padding: 16px 20px;
+    }
+    section#our_project_6 .project_info_box {
+        right: auto;
+    }
+    section#our_project_6 .project_info_box h6 {
+        font-size: 20px;
+    }
+    #Masonry_gallery_v4 .grid_project_list.grid_project_list_tab2,
+    #Masonry_gallery_v4 .grid_project_list.grid_project_list_tab3,
+    #Masonry_gallery_v4 .grid_project_list.grid_project_list_tab6 {
+        grid-template-columns: repeat(2, auto);
+    }
+    #Masonry_gallery_v4 .grid_project_list.grid_project_list_tab3 .our_project_item.project_item_10 {
+        grid-row: 1/1;
+        grid-column: 2/3;
+    }
+    /* Single Blog Page */
+    .leavecheck_box .form-check-input {
+        margin: 4px 0 0;
+    }
+    #blogs_standard .youtubevideo-player.youtube_blogs_video {
+        height: 675px;
+    }
+    div#single_blogs_standard .youtubevideo-player.youtube_blogs_video,
+    #our_blogs_sidebar .youtubevideo-player.youtube_blogs_video {
+        height: 315px;
+    }
+}
+@media (max-width: 1150px) {
+    .smarter_exercise_title h3 {
+        font-size: 30px;
+    }
+    .smarter_exercise_detail p:nth-child(1) {
+        padding: 30px 0 15px;
+    }
+    .banner_titles_area_v3 h1 {
+        font-size: 55px;
+    }
+    .tab_program_title_info h4 {
+        font-size: 28px;
+    }
+}
+@media (max-width: 991px) {
+    .megic-cursor-item,
+    .megic-cursor-item.custom_cursor_blackborder {
+        border: 0;
+    }
+    .megic-cursor-item:after,
+    .megic-cursor-item.custom_cursor_blackborder::after,
+    .megic-cursor-item.custom_cursor_blackborder.orangeglow_btn::after,
+    .megic-cursor-item.custom_cursor_blackborder.whiteglow_btn::after {
+        border: 0;
+        background: transparent;
+    }
+    .megic-cursor-item.custom_cursor_orangeglow,
+    .megic-cursor-item.custom_cursor_whiteglow,
+    .megic-cursor-item.custom_cursor_whiteborder,
+    .megic-cursor-item.triners_name,
+    .megic-cursor-item.triners_icons,
+    .megic-cursor-item.our_traning_btn_box,
+    .megic-cursor-item.orangeglow,
+    .megic-cursor-item.whiteglow,
+    .megic-cursor-item.orangeglow_btn,
+    .megic-cursor-item.whiteglow_btn,
+    .megic-cursor-item.custom_cursor_orangeglow::after,
+    .megic-cursor-item.orangeglow::after,
+    .megic-cursor-item.orangeglow_btn::after,
+    .megic-cursor-item.custom_cursor_whiteglow::after,
+    .megic-cursor-item.whiteglow::after,
+    .megic-cursor-item.whiteglow_btn::after,
+    .megic-cursor-item.triners_icons::after,
+    .megic-cursor-item.tabimg_glow::after {
+        mix-blend-mode: normal;
+        background: transparent;
+    }
+    .megic-cursor-item.contact_hover_btn {
+        width: 100px;
+        height: 100px;
+    }
+    .megic-cursor-item.contact_hover_btn::before {
+        top: 15px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+    .megic-cursor-item.contact_hover_btn::after {
+        font-size: 14px;
+        top: auto;
+        left: 0;
+        bottom: 40px;
+        margin: 0;
+    }
+    .megic-cursor-item.triners_name,
+    .megic-cursor-item.custom_cursor_whiteborder,
+    .megic-cursor-item.triners_name::after,
+    .megic-cursor-item.custom_cursor_whiteborder::after {
+        border: 0;
+        background-color: transparent;
+    }
+    h2,
+    .counter,
+    .counter>span {
+        font-size: 52px;
+        line-height: 52px;
+    }
+    h3,
+    .common_title_area.about_us_title h3,
+    .single_blog_comment_area h3,
+    .blog_leave_form h3 {
+        font-size: 36px;
+    }
+    h4,
+    .our_program_v3_upper h4,
+    .why_choose_box_title h4 {
+        font-size: 28px;
+    }
+    .sec_padding {
+        padding: 50px 0px;
+    }
+    .sec_padding_top {
+        padding-top: 50px;
+    }
+    .sec_padding_bottom {
+        padding-bottom: 50px;
+    }
+    .footer_address {
+        padding-bottom: 30px;
+    }
+    section.counter_about_page {
+        padding-top: 0;
+    }
+    .common_banner_content h2 {
+        padding-top: 10px;
+    }
+    .our_training>.row,
+    .meet_team_slider>.row,
+    .our_program_V3>.row,
+    .smarter_exercise>.container>.row,
+    .youtube_trends_area>.row,
+    .get_touch_area>.row,
+    div#BMI_calculater_page>.container>.row,
+    div#our_training_Programpage>.row,
+    .single_img_project_individualtraning>.row,
+    .individualtraning_single_project_images_area>.row,
+    .single_small_img_project_individualtraning>.row,
+    .single_slider_project_individualtraning>.row,
+    .single_small_slider_project_individualtraning>.row,
+    .our_blogs_sec_area>.row,
+    .our_blog_siderbar_content_area>.row,
+    .our_blogs_sidebar_sec_area>.row,
+    div#single_blogs_standard>.row,
+    .contactus_page_area>.row {
+        gap: 40px;
+    }
+    .pricing_plans_area_v2>.row,
+    .traning_slider_area_meet_team_page>.row,
+    .contactus_page_social_area>.row {
+        gap: 40px 0;
+    }
+    .client_say_slider_v2_box,
+    .pricing_plan_v2_box,
+    .blog_home_v1 {
+        grid-template-columns: 100%;
+    }
+    .row.why_choose_box_right {
+        flex-direction: column-reverse;
+    }
+    /* Header */
+    .offcanvas-body.custome_sidebar>.container>.row,
+    .individualtraning_single_project_big_img_detail_area>.row {
+        flex-direction: column-reverse;
+        gap: 30px;
+    }
+    a.nav-link-mobile span {
+        width: 30px;
+        height: 30px;
+    }
+    ul.mobile_navlist>li>a.nav-link-mobile {
+        font-size: 24px;
+        padding: 15px 20px 15px 30px;
+    }
+    .header_single_get_touch_box,
+    .pricing_plan_v2_button {
+        gap: 15px;
+        flex-direction: column;
+    }
+    .pricing_plan_v2_button {
+        align-items: flex-start;
+    }
+    .header_single_get_touch_box,
+    .header_get_touch_sociallink .row>div,
+    .client_say_slider_v2_box,
+    .our_program_v3_image,
+    .smarter_exercise_img {
+        text-align: center;
+    }
+    .why_choose_box_right {
+        text-align: end;
+    }
+    .header_get_touch_sociallink .row>div {
+        width: 25%;
+    }
+    .header_get_touch_contact {
+        margin: 30px 0px;
+    }
+    /* Header_2 */
+    .header_theme_2 .header_toggle_menu_area {
+        justify-content: flex-end;
+    }
+    /* Home-Banner */
+    .yoga_slider_content {
+        max-width: 710px;
+    }
+    /* Home_3 */
+    .banner_titles_area_v3 h1 {
+        font-size: 52px;
+    }
+    .youtubevideo-player {
+        height: 600px;
+    }
+    /* Banner_5 */
+    .home_banner_tabs_title_area h2 {
+        padding-bottom: 10px;
+    }
+    ul.home_banner_tabs {
+        flex-direction: column;
+        padding: 100px 0 0 0;
+    }
+    ul.home_banner_tabs li:nth-child(2) {
+        border: 0;
+        border-top: 3px solid rgb(255 255 255 / 30%);
+        border-bottom: 3px solid rgb(255 255 255 / 30%);
+    }
+    ul.home_banner_tabs li {
+        width: 100%;
+    }
+    ul.home_banner_tabs li span.tab_home_big_title {
+        left: 0;
+        bottom: 0;
+    }
+    .home_banner_tabs_title_area {
+        max-width: 470px;
+        padding: 0px 0px 20px 15px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    /* About-Us */
+    .about_us>.row,
+    .client_say_slider_v2_area>.row,
+    div#home_blogs_v2>.row {
+        gap: 40px 0;
+    }
+    /* Our-Program */
+    a.program_v1_btn {
+        padding: 15px;
+    }
+    .program_v1_box h4 {
+        font-size: 22px;
+    }
+    .our_program_v3_upper,
+    .single_small_img_project_individualtraning .small_img_upper_info,
+    .single_small_slider_project_individualtraning .small_img_upper_info {
+        padding: 30px 0px;
+    }
+    .our_program_v3_upper {
+        margin-bottom: 30px;
+    }
+    .program_animi {
+        right: 15px;
+    }
+    .program_animi.program_animi_01 {
+        right: auto;
+        left: 15px;
+    }
+    .my_program_tabs_area .my_program_tabs_area_title {
+        width: auto;
+    }
+    .my_program_tabs_content_part>.row {
+        flex-direction: column-reverse;
+        gap: 40px;
+    }
+    ul.program_tabs li a .tab_program_title span {
+        line-height: normal;
+        font-size: 80px;
+    }
+    /* Our-Progress */
+    .our_progress_area>.row {
+        gap: 60px;
+    }
+    .our_progress_box {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 30px;
+        align-items: center;
+    }
+    .progress_img::after {
+        width: 30%;
+        top: auto;
+        bottom: -15%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        transform: rotate(90deg);
+        z-index: -2;
+    }
+    .progress_step_info p,
+    ul.pricing_plan_v2_points li {
+        max-width: 100%;
+    }
+    /* Gym-Counter */
+    .counter {
+        height: 52px;
+    }
+    section.counter_about_page>.counter_sec {
+        position: unset;
+    }
+    /* Youtube Trands */
+    .youtube_trends_title p {
+        padding: 20px 0 30px;
+    }
+    /* Client-Say Slider */
+    .client_say_slider_list.client_say_slider_v1 {
+        margin: 0 15px;
+    }
+    .client_say_slider_v2_box {
+        justify-items: center;
+    }
+    .client_say_slider_v2_list .slick-custom-arrow.slick-arrow {
+        left: 0;
+        top: 30%;
+    }
+    .client_say_slider_v2_list .slick-custom-arrow.slick-custom-arrow-right.orangeglow.slick-arrow {
+        right: 0;
+    }
+    /* .client_say_slider_v3_info, */
+    section.counter_about_page>.counter_sec .counter_area {
+        padding: 0;
+    }
+    /* .client_say_slider_v3_info_inner, */
+    .about_us_page .about_detail_area {
+        padding-top: 40px;
+    }
+    .client_say_slider_v3_box {
+        padding: 0px 15px 120px;
+        grid-template-columns: 100%;
+    }
+    .client_say_slider_title_outside.client_say_slider_title {
+        padding: 0 0 40px;
+    }
+    .client_say_slider_v3_info_inner {
+        margin: 0;
+        padding: 30px 0px 0;
+        text-align: center;
+    }
+    div#client_say_slider_sec_home3 {
+        padding: 50px 0;
+    }
+    .client_say_slider_v3_img,
+    .client_say_slider_v3_img img {
+        width: 100%;
+    }
+    .client_say_slider_list_v3 .slick-custom-arrow.slick-custom-arrow-right.slick-arrow {
+        top: auto;
+        right: 40%;
+        left: auto;
+    }
+    .client_say_slider_list_v3 .slick-custom-arrow.slick-arrow {
+        top: auto;
+        right: 0;
+        left: 40%;
+        bottom: 0;
+    }
+    /* Pricing-Plans */
+    .pricing_head_area {
+        padding: 15px;
+    }
+    ul.pricing_plan_v2_points {
+        flex-direction: column;
+    }
+    .pricing_plan_v2_bottom {
+        border: 2px inset rgb(255 255 255 / 10%);
+        border-top: 0;
+    }
+    .pricing_plan_v2_box.active .pricing_plan_v2_bottom::before,
+    .pricing_plan_v2_bottom:hover::before {
+        left: -2px;
+    }
+    .pricing_plan_v2_box.active .pricing_plan_v2_bottom::before,
+    .pricing_plan_v2_bottom:hover::before {
+        width: 0;
+        height: 100.8%;
+    }
+    .pricing_plan_v2_box.active .pricing_plan_v2_bottom::after,
+    .pricing_plan_v2_bottom:hover::after {
+        bottom: -2px;
+        right: -2px;
+    }
+    .pricing_plan_v2_box.active .pricing_plan_v2_bottom::after,
+    .pricing_plan_v2_bottom:hover::after {
+        width: calc(100.8% / 1);
+        height: 101%;
+    }
+    section#gallery_slider_sec_Pricingplanpage .gallery_slider_area>.container-fluid {
+        margin: 0 0 0 70px;
+        width: 100%;
+    }
+    /* Calculater-BMI */
+    .BMI_calculater_table .table {
+        max-width: unset;
+    }
+    .BMI_calculater_table p {
+        padding-top: 20px;
+    }
+    /* Class-Timetable Page */
+    .timetable-area thead tr th {
+        padding: 20px 34px;
+    }
+    .timetable-area tbody tr td.body_detail .tabel_content {
+        width: 130px;
+        margin: 0 auto;
+    }
+    /* Our-Trainings */
+    li.yoga_training_item.active .yoga_training_content,
+    section#our_project_3 .our_project_item_img img {
+        width: 100%;
+    }
+    li.yoga_training_item.active .yoga_training_title {
+        box-shadow: inset 0px 100px 0 #FF640D;
+    }
+    ul.yoga_training_content_area {
+        height: 100%;
+        flex-direction: column;
+    }
+    li.yoga_training_item {
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        border-right: 0;
+        border-bottom: 2px solid #fff !important;
+    }
+    .yoga_training_title {
+        width: 100%;
+        padding: 30px 40px;
+        height: 100%;
+        white-space: normal;
+        flex-direction: row;
+    }
+    .yoga_training_title h4 {
+        transform: rotate(0deg);
+        bottom: 0;
+    }
+    .yoga_training_content_image {
+        position: unset;
+    }
+    .yoga_training_content_image img {
+        height: auto;
+        width: 100%;
+        opacity: 1;
+    }
+    /* Gallery Slider */
+    .gallery_slider_area>.container-fluid {
+        margin: 0 0 0 70px;
+    }
+    .gallery_slider_list .slick-custom-arrow.slick-custom-arrow-left.slick-arrow {
+        right: 7%;
+    }
+    /* Home-Blogs */
+    .home_blog_upper_btn {
+        margin-top: 30px;
+    }
+    /* About-Page */
+    .common_banner_bg {
+        padding: 150px 0 50px;
+    }
+    .about_page_img_area {
+        width: 80%;
+        margin: 0 auto;
+    }
+    div#traning_video_aboutpage .traning_videoplayer span.video_text_area {
+        width: 140px;
+        height: 140px;
+    }
+    /* Our-Team-Page */
+    div#client_say_slider_sec_ourteampage .client_say_slider_title_outside.client_say_slider_title {
+        padding-bottom: 0;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_v3 {
+        padding-top: 40px;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_v3_box {
+        grid-template-columns: 100%;
+        padding: 0;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_list_v3 .slick-custom-arrow.slick-custom-arrow-right.slick-arrow {
+        top: 30%;
+        right: 0;
+        bottom: auto;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_list_v3 .slick-custom-arrow.slick-arrow {
+        transform: rotate(0deg);
+        top: 30%;
+        left: 0;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_v3_info_inner {
+        padding: 25px 15px 0;
+    }
+    .client_say_slider_v3_info .client_review {
+        padding: 15px 0;
+    }
+    /* FAQs Page */
+    .row.faq_tabs_area>div:nth-child(5) hr.faq_custome_hr {
+        border-bottom: 2px solid #F5F6F7;
+        padding: 0 0 20px;
+        margin: 0 0 20px;
+    }
+    /* Coming-soon Page */
+    .coming_soon_bg {
+        padding: 40px 15px 0;
+        height: -webkit-fill-available;
+        max-height: -webkit-fill-available;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+    .coming_soon_content_area .row {
+        height: 100%;
+    }
+    .coming_soon_title_area h2 {
+        font-size: 42px;
+    }
+    .counter-div {
+        flex-wrap: wrap;
+        gap: 30px 0;
+    }
+    .counter-div .counter-element {
+        width: 48%;
+    }
+    .counter-dots {
+        margin: 0;
+    }
+    .coming_soon_content_area .row>div:nth-child(3) .counter-div .counter-dots:nth-child(4) {
+        display: none;
+    }
+    .coming_soon_footer>.row {
+        text-align: center;
+        gap: 20px;
+    }
+    .coming_soon_footer ul.footer_social_icon {
+        justify-content: center;
+    }
+    /* Error Page */
+    .error_img {
+        display: none;
+    }
+    .error_heading {
+        margin-top: 20px;
+    }
+    .error_heading,
+    .error_heading::before,
+    .error_heading::after {
+        font-size: 230px;
+        line-height: 230px;
+    }
+    .error_heading::before,
+    .error_heading::after {
+        width: 100%;
+        height: 100%;
+        left: 10px;
+        top: 10px;
+    }
+    /* Our-Project Page */
+    section#our_project_6 .our_project_content_tabs>.row>div {
+        width: 50%;
+    }
+    .individualtraning_single_project_title_area>.row {
+        gap: 15px 0;
+    }
+    #Masonry_gallery_v1 .grid_project_list_tab1 .project_item_02 {
+        grid-row: 3/3;
+        grid-column: 1/3;
+    }
+    #Masonry_gallery_v1 .grid_project_list_tab1 .project_item_03 {
+        grid-row: 4/4;
+        grid-column: 1/3;
+    }
+    #Masonry_gallery_v1 .grid_project_list_tab1 .project_item_04 {
+        grid-row: 4 / 4;
+        grid-column: 3 / 5;
+    }
+    #Masonry_gallery_v1 .grid_project_list_tab1 .project_item_05 {
+        grid-row: 5/5;
+        grid-column: 3/5;
+    }
+    #Masonry_gallery_v1 .grid_project_list_tab1 .project_item_06 {
+        grid-row: 5/5;
+        grid-column: 1/3;
+    }
+    #Masonry_gallery_v1 .grid_project_list_tab1 .project_item_07 {
+        grid-row: 3/3;
+        grid-column: 3/5;
+    }
+    #Masonry_gallery_v1 .grid_project_list_tab1 .project_item_08 {
+        grid-row: 1/3;
+        grid-column: 3/5;
+    }
+    div#Masonry_gallery_v2 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_02 {
+        grid-row: 3 / 4;
+        grid-column: 3 / 5;
+    }
+    div#Masonry_gallery_v2 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_03 {
+        grid-row: 6 / 8;
+        grid-column: 1 / 3;
+    }
+    div#Masonry_gallery_v2 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_04 {
+        grid-row: 6 / 8;
+        grid-column: 3 / 5;
+    }
+    div#Masonry_gallery_v2 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_06 {
+        grid-row: 4 / 6;
+        grid-column: 1 / 3;
+    }
+    div#Masonry_gallery_v2 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_07 {
+        grid-row: 4 / 6;
+        grid-column: 3 / 5;
+    }
+    div#Masonry_gallery_v2 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_08 {
+        grid-row: 1 / 3;
+        grid-column: 3 / 5;
+    }
+    #Masonry_gallery_v1 .our_project_item .our_project_item_img img,
+    div#Masonry_gallery_v2 .grid_project_list.grid_project_list_tab1 .our_project_item img,
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab1 .our_project_item img,
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab3 .our_project_item img,
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab4 .our_project_item img,
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab5 .our_project_item img,
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab6 .our_project_item img {
+        width: 100%;
+    }
+    #Masonry_gallery_v1 .grid_project_list.grid_project_list_tab2,
+    #Masonry_gallery_v2 .grid_project_list.grid_project_list_tab2,
+    #Masonry_gallery_v3 .grid_project_list.grid_project_list_tab2,
+    #Masonry_gallery_v1 .grid_project_list.grid_project_list_tab4,
+    #Masonry_gallery_v2 .grid_project_list.grid_project_list_tab4,
+    #Masonry_gallery_v3 .grid_project_list.grid_project_list_tab5,
+    #Masonry_gallery_v1 .grid_project_list.grid_project_list_tab6,
+    #Masonry_gallery_v2 .grid_project_list.grid_project_list_tab6,
+    #Masonry_gallery_v4 .grid_project_list.grid_project_list_tab4,
+    #Masonry_gallery_v4 .grid_project_list.grid_project_list_tab5 {
+        grid-template-columns: repeat(2, auto);
+    }
+    div#Masonry_gallery_v3 .grid_project_list.grid_project_list_tab1 {
+        grid-template-columns: repeat(4, max-content);
+        justify-content: center;
+    }
+    div#Masonry_gallery_v3 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_01 {
+        grid-row: 1/3;
+        grid-column: 1/5;
+    }
+    div#Masonry_gallery_v3 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_02 {
+        grid-row: 3/5;
+        grid-column: 1/3;
+    }
+    div#Masonry_gallery_v3 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_03 {
+        grid-row: 3/5;
+        grid-column: 3/5;
+    }
+    div#Masonry_gallery_v3 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_04 {
+        grid-row: 5/7;
+        grid-column: 1/3;
+    }
+    div#Masonry_gallery_v3 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_05 {
+        grid-row: 5/7;
+        grid-column: 3/5;
+    }
+    div#Masonry_gallery_v3 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_06 {
+        grid-row: 7/9;
+        grid-column: 1/3;
+    }
+    div#Masonry_gallery_v3 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_07 {
+        grid-row: 7/9;
+        grid-column: 3/5;
+    }
+    div#Masonry_gallery_v3 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_08 {
+        grid-row: 9/11;
+        grid-column: 1/3;
+    }
+    div#Masonry_gallery_v3 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_09 {
+        grid-row: 9/11;
+        grid-column: 3/5;
+    }
+    div#Masonry_gallery_v3 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_10 {
+        grid-row: 11/13;
+        grid-column: 1/5;
+    }
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_01 {
+        grid-row: 1/2;
+        grid-column: 1/5;
+    }
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_02 {
+        grid-row: 2/4;
+        grid-column: 1/3;
+    }
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_03 {
+        grid-row: 2/4;
+        grid-column: 3/5;
+    }
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_04 {
+        grid-row: 5/7;
+        grid-column: 1/3;
+    }
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_06 {
+        grid-row: 4 / 5;
+        grid-column: 1 / 5;
+    }
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_05 {
+        grid-row: 5/7;
+        grid-column: 3/5;
+    }
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_07 {
+        grid-row: 7/8;
+        grid-column: 1/5;
+    }
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_08 {
+        grid-row: 8/10;
+        grid-column: 1/3;
+    }
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_09 {
+        grid-row: 8/10;
+        grid-column: 3/5;
+    }
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_10 {
+        grid-row: 11/13;
+        grid-column: 1/3;
+    }
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_11 {
+        grid-row: 11/13;
+        grid-column: 3/5;
+    }
+    div#Masonry_gallery_v4 .grid_project_list.grid_project_list_tab1 .our_project_item.project_item_12 {
+        grid-row: 10/11;
+        grid-column: 1/5;
+    }
+    #Masonry_gallery_v4 .grid_project_list.grid_project_list_tab3 .our_project_item.project_item_10,
+    #Masonry_gallery_v4 .grid_project_list.grid_project_list_tab6 .our_project_item.project_item_07 {
+        grid-row: 2 / 3;
+        grid-column: 1 / 3;
+    }
+    /* Blogs Page */
+    .our_blog_box_detail_area p.our_blog_info {
+        padding: 10px 0px 20px;
+    }
+    .blogs_sidebar_card {
+        max-width: 410px;
+    }
+    #blogs_standard .youtubevideo-player.youtube_blogs_video,
+    div#single_blogs_standard .youtubevideo-player.youtube_blogs_video,
+    #our_blogs_sidebar .youtubevideo-player.youtube_blogs_video {
+        height: 545px;
+    }
+}
+@media (max-width: 860px) {
+    h1 {
+        font-size: 52px;
+    }
+    .pricing_mid_area::before {
+        font-size: 90px;
+    }
+    .pt-60 {
+        padding-top: 40px;
+    }
+    .mt-60 {
+        margin-top: 40px;
+    }
+    .mb-60 {
+        margin-bottom: 40px;
+    }
+    .ms-60 {
+        margin-left: 40px;
+    }
+    .me-60 {
+        margin-right: 40px;
+    }
+    .pb-60 {
+        padding-bottom: 40px;
+    }
+    .ps-60 {
+        padding-left: 40px;
+    }
+    .pe-60 {
+        padding-right: 40px;
+    }
+    .client_say_slider_list_v3 .slick-custom-arrow.slick-arrow {
+        left: 38%;
+    }
+    .client_say_slider_list_v3 .slick-custom-arrow.slick-custom-arrow-right.slick-arrow {
+        right: 38%;
+    }
+    .meet_team_v2_slider_area_meetteampage {
+        padding: 0;
+    }
+    .common_title_area.our_training_title h3 {
+        padding-bottom: 30px;
+    }
+    /* Home-Banner V3 */
+    .banner_titles_area_v3 h1 {
+        font-size: 40px;
+    }
+    .banner_v3_image_text {
+        width: 100px;
+        height: 100px;
+        font-size: 100px;
+    }
+    /* Gallery Slider */
+    .gallery_slider_list .slick-custom-arrow.slick-custom-arrow-left.slick-arrow {
+        right: 8%;
+    }
+    /* Blogs Page */
+    .youtubevideo-player {
+        height: 450px;
+    }
+    .our_blogs_pera_box,
+    .our_blogs_musicplayer_box {
+        padding: 30px;
+    }
+    #blogs_standard .youtubevideo-player.youtube_blogs_video {
+        height: 470px;
+    }
+    div#single_blogs_standard .youtubevideo-player.youtube_blogs_video,
+    #our_blogs_sidebar .youtubevideo-player.youtube_blogs_video {
+        height: 420px;
+    }
+    .youtubevideo-player.youtube_nosidebar_blogs_video {
+        height: 495px;
+    }
+}
+@media (max-width: 767px) {
+    h1 {
+        font-size: 36px;
+    }
+    h3,
+    .common_title_area.about_us_title h3,
+    .smarter_exercise_title h3,
+    .single_blog_comment_area h3,
+    .blog_leave_form h3 {
+        font-size: 30px;
+    }
+    /* Header */
+    .header_get_touch_sociallink .row>div {
+        width: 50%;
+    }
+    .blog_home_v2 {
+        grid-template-columns: 100%;
+    }
+    /* Home-Banner V3 */
+    .banner_v3_area_content {
+        height: 100vh;
+        align-items: center;
+        text-align: center;
+    }
+    .banner_v3_area_content .row>div,
+    .coming_soon_mail_area,
+    .error_info {
+        width: 100%;
+    }
+    .banner_v3_image_area,
+    .banner_v3_area_content .row>div:last-child {
+        position: absolute;
+        z-index: -1;
+    }
+    .banner_v3_image_area {
+        opacity: .5;
+        filter: opacity(.99);
+        bottom: 0;
+        text-align: right;
+        right: 0;
+    }
+    .banner_v3_area_content .row>div:last-child,
+    .banner_v3_image_area,
+    .banner_v3_image_area img {
+        height: 100%;
+    }
+    .banner_v3_image_text {
+        width: 140px;
+        height: 140px;
+        font-size: 140px;
+    }
+    /* We-Offer */
+    .we_offer_area>.row>div {
+        width: 50%;
+    }
+    /* Our-Program */
+    .our_progeam_area>.row>div:nth-child(1) {
+        order: 1;
+    }
+    .our_progeam_area>.row>div:nth-child(3) {
+        order: 2;
+    }
+    .our_progeam_area>.row>div:nth-child(2) {
+        order: 3;
+    }
+    /* Our-Progress */
+    .our_progress_box {
+        grid-template-columns: 220px 1fr;
+        gap: 15px;
+    }
+    .progress_img::before {
+        width: auto;
+        height: auto;
+    }
+    /* Meet-Team Slider */
+    .triners_img img {
+        width: 100%;
+    }
+    /* Client-Say Slider */
+    .client_say_slider_list_v3 .slick-custom-arrow.slick-arrow {
+        left: 32%;
+    }
+    .client_say_slider_list_v3 .slick-custom-arrow.slick-custom-arrow-right.slick-arrow {
+        right: 35%;
+    }
+    /* Class-Timetable Page */
+    .timetable-area tbody tr td.body_detail .tabel_content {
+        width: 120px;
+        margin: 0 auto;
+    }
+    .timetable-area thead tr th {
+        padding: 15px;
+    }
+    .timetable-area tbody tr td.body_detail {
+        padding: 20px 15px;
+    }
+    /* Single-Project */
+    .row.individualtraning_single_project_points_inner {
+        gap: 15px;
+    }
+    /* Blogs Page */
+    .our_blog_box_detail_area h4.our_blog_big_heading {
+        line-height: normal;
+    }
+    .our_blogs_pera_box .our_blogs_pera_headings h4,
+    #our_blogs_sidebar h4.our_blog_big_heading {
+        font-size: 28px;
+        line-height: normal;
+    }
+    .Our_blog_box_slider_area .slick-custom-arrow.slick-arrow {
+        width: 70px;
+        height: 70px;
+    }
+    .youtubevideo-player.youtube_nosidebar_blogs_video,
+    div#single_blogs_standard .youtubevideo-player.youtube_blogs_video,
+    #our_blogs_sidebar .youtubevideo-player.youtube_blogs_video {
+        height: 350px;
+    }
+}
+@media (max-width: 680px) {
+    .error_heading,
+    .error_heading::before,
+    .error_heading::after {
+        font-size: 180px;
+        line-height: normal;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_list_v3 .slick-custom-arrow.slick-custom-arrow-right.slick-arrow,
+    div#client_say_slider_sec_ourteampage .client_say_slider_list_v3 .slick-custom-arrow.slick-arrow {
+        top: 20%;
+    }
+}
+@media (max-width: 575px) {
+    h1 {
+        font-size: 30px;
+    }
+    h2 {
+        font-size: 36px;
+    }
+    h4,
+    .blog_home_v2 .home_blog_info_v2>h4,
+    .tab_program_title_info h4,
+    h4.single_blog_middle_heading,
+    h4.single_blog_bottom_heading {
+        font-size: 28px;
+    }
+    h5,
+    .our_training_image_box h5,
+    .our_progress_box_v2 .progress_step_info h5,
+    section#our_project_6 .project_info_box h5 {
+        font-size: 20px;
+    }
+    h6,
+    section#our_project_6 .project_info_box h6 {
+        font-size: 18px;
+    }
+    .pricing_mid_area h2 {
+        font-size: 64px;
+    }
+    .sec_padding {
+        padding: 30px 0px;
+    }
+    .sec_padding_top,
+    .about_us_page .about_detail_area,
+    .single_blog_bottom_social_area,
+    .row.single_blog_comment {
+        padding-top: 30px;
+    }
+    .sec_padding_bottom,
+    .common_title_area.our_training_title h3,
+    section.counter_about_page {
+        padding-bottom: 30px;
+    }
+    .scrolltop_area {
+        right: 15px;
+    }
+    .footer_address {
+        padding: 0px;
+    }
+    .meet_team_v2_box .meet_team_img img {
+        width: 100%;
+    }
+    .footer_bottom_area>.row {
+        gap: 15px;
+    }
+    .footer_bottom_area>.row,
+    .footer_mid_area,
+    .our_training_image_box h5,
+    .triners_info,
+    .meet_team_info.triners_info,
+    .contactus_page_social_area {
+        text-align: center;
+    }
+    .our_program_v3_image {
+        text-align: left;
+    }
+    .triners_info,
+    .triners_info ul,
+    ul.footer_social_icon,
+    .contactus_page_social_area .single_project_social_icon_area {
+        justify-content: center;
+    }
+    .our_progress_area>.row,
+    .our_training_image_list,
+    .individualtraning_single_project_detail_bottom ul.individualtraning_single_project_points,
+    .single_small_img_project_individualtraning>.row,
+    .single_small_slider_project_individualtraning>.row,
+    .row.single_blog_content_area,
+    .single_blog_bottom_img_area>.row,
+    .row.single_blog_comment,
+    .contactus_page_social_area>.row,
+    .contactus_page_area>.row {
+        gap: 30px;
+    }
+    .yoga_training_content_image_info {
+        padding: 30px 15px;
+        gap: 30px;
+    }
+    .yoga_training_title {
+        padding: 20px;
+    }
+    .offcanvas.offcanvas-start.header_content_area {
+        width: 100%;
+    }
+    .offcanvas-header.toogle_header_v3 {
+        position: relative;
+        top: 0;
+        right: 0;
+        width: auto;
+        height: auto;
+        border-bottom: 2px solid #ffffff40;
+    }
+    .offcanvas-header.toogle_header_v3>button.btn-close {
+        position: relative;
+        right: 0;
+        margin: 0;
+    }
+    .header_content_area .offcanvas-body {
+        padding: 40px 15px;
+    }
+    ul.navbar_v3 li.nav-items>a {
+        justify-content: space-between;
+        padding: 15px;
+    }
+    ul.navbar_v3>li.nav-items>a {
+        border-bottom: 2px solid #ffffff40;
+    }
+    ul.navbar_v3 {
+        border: 2px solid #ffffff40;
+        border-bottom: 0;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+    ul.navbar_v3>li.nav-items>a span {
+        border: 1px solid #fff;
+        background: #fff;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+    }
+    ul.navbar_v3>li.nav-items>a span svg g path {
+        stroke: #000;
+    }
+    ul.navbar_v3 ul.drop_down_menu {
+        margin-bottom: 0;
+    }
+    /* Home-Banner */
+    .home_banner_slider .slick-custom-arrow.slick-custom-arrow-left {
+        right: 50%;
+        left: auto;
+    }
+    .home_banner_slider .slick-custom-arrow {
+        right: auto;
+        left: 50%;
+    }
+    .banner_slider_content h1 {
+        padding: 20px 15px 40px 0px;
+    }
+    .yoga_slider_list .slick-custom-arrow.slick-custom-arrow-right.slick-arrow {
+        right: 0;
+    }
+    .program_animi {
+        display: none;
+    }
+    .yoga_slider_list .slick-custom-arrow.slick-arrow {
+        top: auto;
+        left: 0;
+        bottom: 0;
+    }
+    .yoga_slider_content {
+        max-width: 100%;
+    }
+    .home_banner_tabs_title_area {
+        padding: 0 0 20px;
+        width: 100%;
+    }
+    .home_banner_tabs_title_area h2 {
+        padding-bottom: 20px;
+        font-size: 36px;
+    }
+    /* About-Us */
+    .about_img_detail_area {
+        margin-top: 20px;
+    }
+    /* Our-Program */
+    .our_program_v3_upper {
+        padding: 20px 0px;
+        margin-bottom: 20px;
+    }
+    ul.program_tabs li a .tab_program_title {
+        width: 130px;
+        margin: auto 0;
+    }
+    ul.program_tabs li a .tab_program_title span {
+        font-size: 60px;
+    }
+    /* Our-Progress */
+    .our_training_image_area>.row>div:nth-child(2) .our_training_image_list {
+        margin-top: 30px;
+    }
+    .our_progress_box_v2 {
+        grid-template-columns: 100%;
+        gap: 0;
+    }
+    .our_progress_box_v2 .progress_img img,
+    .sidebar_search_area input {
+        padding: 20px;
+    }
+    .our_progress_box_v2 .progress_img::before {
+        width: 300px;
+    }
+    .our_progress_box_v2 .progress_img::after {
+        width: 0;
+    }
+    /* Traning-Video */
+    .traning_videoplayer span.video_text_area,
+    div#traning_video_aboutpage .traning_videoplayer span.video_text_area {
+        width: 120px;
+        height: 120px;
+        padding: 10px;
+    }
+    .traning_videoplayer span.video_text_area svg:nth-child(2) {
+        width: 30px;
+        height: 30px;
+    }
+    /* Meet-Team Slider */
+    .triners_info p {
+        padding: 10px 0px;
+    }
+    .traning_slider_area .slick-list {
+        padding: 30px 0px !important;
+    }
+    /* Client-Say Slider */
+    .client_say_slider_area {
+        padding: 50px 0 0px;
+    }
+    .client_say_slider_list.client_say_slider_v1 {
+        padding: 30px 15px 100px;
+    }
+    .client_say_slider_area .slick-custom-arrow.slick-custom-arrow-left.slick-arrow {
+        top: auto;
+        left: 40%;
+    }
+    .client_say_slider_area .slick-custom-arrow.slick-arrow {
+        top: auto;
+        right: 35%;
+        bottom: 0;
+        width: 70px;
+        height: 70px;
+    }
+    .client_say_slider_item h5 {
+        font-size: 18px;
+    }
+    .client_say_slider_v2_list .slick-custom-arrow.slick-arrow {
+        top: 20%;
+        width: 60px;
+        height: 60px;
+        padding: 5px;
+    }
+    .client_say_slider_v4_box {
+        grid-template-columns: 100%;
+        text-align: center;
+        justify-items: center;
+    }
+    /* Gallery Slider */
+    .gallery_slider_list .slick-track {
+        margin: 0 -15px;
+    }
+    .gallery_slider_list .gallery_slider_item {
+        margin: 0 7.5px;
+    }
+    .gallery_slider_list .slick-custom-arrow.slick-arrow svg {
+        width: 50px;
+        height: 50px;
+    }
+    .gallery_slider_list .slick-custom-arrow.slick-custom-arrow-left.slick-arrow {
+        right: 13%;
+        margin-right: 15px;
+    }
+    /* Get-Touch */
+    .get_touch_form>.row>div:nth-child(1),
+    .get_touch_form>.row>div:nth-child(2) {
+        width: 50%;
+    }
+    /* Gym-Marqueer-Text */
+    .gym_marqueer_text_slider_list {
+        padding: 20px 0px;
+    }
+    ul.list-inline li a {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    /* Footer */
+    .footer_mid_area {
+        padding-bottom: 20px;
+        text-align: center;
+    }
+    /* About-Page */
+    .about_page_img_area,
+    section#our_project_6 .our_project_content_tabs>.row>div,
+    section#our_project_6 .our_project_item_img img,
+    .single_blog_bottom_img img {
+        width: 100%;
+    }
+    section#gallery_slider_sec_Pricingplanpage .gallery_slider_list .slick-track,
+    .about_page_img_area>.about_big_img {
+        margin: 0;
+    }
+    .about_page_img_area>.about_img_inner {
+        display: none;
+    }
+    /* Pricing-Plan Page */
+    section#gallery_slider_sec_Pricingplanpage .gallery_slider_area>.container-fluid {
+        margin: 0 0 0 30px;
+    }
+    section#gallery_slider_sec_Pricingplanpage .gallery_slider_list .slick-custom-arrow.slick-arrow {
+        left: -15px;
+    }
+    /* Coming-soon Page */
+    .counter-div .counter-element {
+        width: 47%;
+    }
+    /* Error Page */
+    .error_heading,
+    .error_heading::before,
+    .error_heading::after {
+        font-size: 120px;
+    }
+    .error_heading::before,
+    .error_heading::after {
+        left: 3px;
+        top: 5px;
+        font-size: inherit;
+        line-height: normal;
+    }
+    /* Our-Projects Page */
+    ul.our_project_tabs {
+        gap: 20px;
+        padding: 30px 0px;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+    ul.our_project_tabs li {
+        width: 25%;
+    }
+    .individualtraning_single_project_tags_social_area {
+        flex-direction: column;
+        gap: 20px;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+    }
+    .individualtraning_single_project_slider_area .slick-custom-arrow.slick-arrow {
+        width: 65px;
+        height: 65px;
+        padding: 5px;
+    }
+    #Masonry_gallery_v1 .grid_project_list,
+    #Masonry_gallery_v4 .grid_project_list.grid_project_list_tab2 {
+        grid-template-columns: 100% !important;
+    }
+    #Masonry_gallery_v1 .grid_project_list>.our_project_item {
+        grid-row: unset !important;
+        grid-column: unset !important;
+    }
+    div#Masonry_gallery_v3 .grid_project_list.grid_project_list_tab1 {
+        grid-template-columns: repeat(4, 1fr);
+        justify-content: normal;
+    }
+    #Masonry_gallery_v3 .grid_project_list.grid_project_list_tab3,
+    #Masonry_gallery_v3 .grid_project_list.grid_project_list_tab4,
+    #Masonry_gallery_v3 .grid_project_list.grid_project_list_tab6 {
+        grid-template-columns: repeat(2, auto);
+    }
+    /* Blogs Page */
+    .our_blog_box_detail_area p.our_blog_small_heading {
+        padding-top: 20px;
+    }
+    .Our_blog_box_videoplayer span.blog_video_icon {
+        width: 80px;
+        height: 80px;
+    }
+    .blogs_sidebar_card {
+        margin: 0 auto;
+    }
+    h4.single_blog_bottom_heading,
+    .blog_leave_form h6 {
+        padding: 20px 0;
+    }
+    .single_blog_bottom_detail .our_blogs_pera_box {
+        margin: 20px 0px;
+    }
+    .comment_heading {
+        flex-direction: column;
+    }
+    .youtubevideo-player,
+    .youtubevideo-player.youtube_nosidebar_blogs_video,
+    div#single_blogs_standard .youtubevideo-player.youtube_blogs_video,
+    #our_blogs_sidebar .youtubevideo-player.youtube_blogs_video {
+        height: 310px;
+    }
+    /* contact Page */
+    .common_title_area.contactus_page_title>p,
+    .common_title_area.contactus_page_form_title>p {
+        padding: 10px 0px 20px;
+    }
+}
+@media (max-width: 430px) {
+    h1 {
+        font-size: 28px;
+    }
+    h3,
+    .common_title_area.about_us_title h3,
+    .smarter_exercise_title h3,
+    .single_blog_comment_area h3,
+    .blog_leave_form h3 {
+        font-size: 24px;
+    }
+    h4,
+    .blog_home_v2 .home_blog_info_v2>h4,
+    .our_program_v3_upper h4,
+    .why_choose_box_title h4,
+    .our_blogs_pera_box .our_blogs_pera_headings h4,
+    #our_blogs_sidebar h4.our_blog_big_heading,
+    .blog_sidebar_heading,
+    h4.single_blog_middle_heading,
+    h4.single_blog_bottom_heading {
+        font-size: 24px;
+    }
+    .tab_program_title_info h4 {
+        font-size: 23px;
+    }
+    ul.list-inline li a,
+    ul.mobile_navlist>li>a.nav-link-mobile,
+    .yoga_training_title h4 {
+        font-size: 20px;
+    }
+    a.orange_btn,
+    ul.drop_down_menu li a,
+    ul.row.weight_left_points li {
+        font-size: 18px;
+    }
+    .blog_home_v2 .home_blog_info_v2>h4,
+    h4.single_blog_middle_heading,
+    h4.single_blog_bottom_heading {
+        line-height: normal;
+    }
+    .pt-60,
+    div#client_say_slider_sec_ourteampage .client_say_v3,
+    .weight_lifting_area {
+        padding-top: 30px;
+    }
+    .client_say_slider_title_outside.client_say_slider_title,
+    .weight_lifting_area p:nth-child(4),
+    .big_images_upper_area .single_project_social_icon_area {
+        padding-bottom: 30px;
+    }
+    .weight_lifting_area>img,
+    .big_images_upper_area .individualtraning_result_area,
+    .blogs_sidebar_card h5 {
+        padding: 30px 0;
+    }
+    .mt-60 {
+        margin-top: 30px;
+    }
+    .mb-60 {
+        margin-bottom: 30px;
+    }
+    .meet_team_v2_slider_area_meetteampage {
+        padding: 0;
+    }
+    .why_choose_box_title {
+        padding: 0 0 15px;
+        margin: 0 0 15px;
+    }
+    /* Header */
+    .offcanvas-body.custome_sidebar {
+        padding: 20px 0;
+    }
+    ul.drop_down_menu li a {
+        padding: 15px 20px 15px 30px;
+    }
+    .header_get_touch_contact>.row,
+    .our_blogs_pera_box>.our_blogs_pera_img_text,
+    .comment_box {
+        gap: 15px;
+    }
+    .comment_box {
+        flex-direction: column;
+    }
+    .header_single_get_touch_box {
+        flex-direction: row;
+        text-align: left;
+    }
+    .row.single_blog_comment>div:last-child .comment_box,
+    .row.single_blog_comment>div:last-child .comment_box .comment_heading {
+        align-items: flex-end;
+    }
+    .row.single_blog_comment>div:last-child .comment_box .comment_info {
+        text-align: right;
+    }
+    .individualtraning_post_button_area .our_project_post_btn span.orenge_icon {
+        padding: 13px;
+    }
+    /* Home-Banner */
+    .banner_v3_area_content {
+        height: 600px;
+    }
+    .banner_titles_area_v3 h1 {
+        font-size: 40px;
+    }
+    .banner_v3_image_text {
+        width: 100px;
+        height: 100px;
+        font-size: 100px;
+    }
+    .banner_slider_content h1,
+    .yoga_slider_content h1 {
+        padding: 20px 0px;
+    }
+    .shine_1::before {
+        display: none;
+    }
+    .shine_1::after {
+        left: -80%;
+    }
+    .home_banner_slider {
+        height: 72vh;
+    }
+    .banner_slider_img.slide {
+        height: 70vh;
+    }
+    .quick_contact a {
+        top: unset;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        justify-content: center;
+        bottom: 20%;
+    }
+    .quick_contact a,
+    .quick_contact a span {
+        transform: rotate(0deg);
+    }
+    .home_banner_slider .slick-custom-arrow,
+    .yoga_slider_list .slick-custom-arrow.slick-arrow {
+        width: 60px;
+        height: 60px;
+        padding: 5px;
+    }
+    .yoga_slider_img.slide {
+        height: 100%;
+        padding: 100px 0 150px;
+        z-index: 0;
+        background-position: 40% 100%;
+    }
+    .home_banner_tab_img.home_banner_tab_img_01 {
+        background-position: 44% center;
+    }
+    .home_banner_tab_img.home_banner_tab_img_02 {
+        background-position: 40% center;
+    }
+    .home_banner_tab_img.home_banner_tab_img_03 {
+        background-position: 70% center;
+    }
+    /* We-Offer */
+    .we_offer_area>.row>div,
+    .get_touch_form>.row>div:nth-child(1),
+    .get_touch_form>.row>div:nth-child(2) {
+        width: 100%;
+    }
+    .we_offer_info h5,
+    .comment_info>p {
+        padding: 10px 0px;
+    }
+    .we_offer_info h5 {
+        line-height: normal;
+    }
+    .we_offer_box::before {
+        width: 220px;
+        height: 220px;
+    }
+    /* About-Us */
+    .about_us>.row {
+        gap: 30px 0;
+    }
+    /* Calculater-BMI */
+    .BMI_calculater_table .table {
+        width: 500px;
+    }
+    /* Our-Program */
+    .program_v1_box h4 {
+        font-size: 20px;
+    }
+    .program_v1_detailcard>h4 {
+        line-height: 30px;
+    }
+    .program_v1_detailcard {
+        padding: 30px 15px;
+    }
+    ul.program_tabs li a .tab_program_title {
+        width: 30%;
+    }
+    .tab_program_title_info {
+        width: max-content;
+    }
+    ul.program_tabs li a .tab_program_title_info p {
+        font-size: 16px;
+    }
+    /* Our-Progress */
+    .our_progress_area>.row {
+        gap: 30px;
+    }
+    .our_progress_box {
+        grid-template-columns: 100%;
+        gap: 0;
+    }
+    .progress_img::before {
+        width: 300px;
+        height: 300px;
+    }
+    .progress_img img {
+        padding: 20px;
+    }
+    .progress_img::after {
+        width: 0;
+    }
+    .our_progress_area_v2>.row,
+    .smarter_exercise>.container>.row,
+    .we_offer_area>.row,
+    .pricing_plans_area>.row,
+    .youtube_trends_area>.row,
+    .get_touch_area>.row,
+    .my_program_tabs_content_part>.row,
+    .our_training>.row,
+    .meet_team_slider>.row,
+    .client_say_slider_v2_area>.row,
+    div#home_blogs_v2>.row,
+    div#client_say_slider_sec_ourteampage .client_say_slider_v3_box,
+    div#BMI_calculater_page>.container>.row,
+    div#our_training_Programpage>.row,
+    .our_training_image_area_programpage>.row,
+    .single_img_project_individualtraning>.row,
+    .individualtraning_single_project_images_area>.row,
+    .single_slider_project_individualtraning>.row,
+    .our_blog_siderbar_content_area>.row,
+    .our_blogs_sidebar_sec_area>.row,
+    .our_blogs_sidebar>.row,
+    div#single_blogs_standard>.row {
+        gap: 30px;
+    }
+    /* Traning-Video */
+    div#single_blogs_standard .youtubevideo-player.youtube_blogs_video,
+    #our_blogs_sidebar .youtubevideo-player.youtube_blogs_video {
+        height: 200px;
+    }
+    .traning_videoplayer,
+    #blogs_standard .youtubevideo-player.youtube_blogs_video,
+    div#single_blogs_standard .single_blog_upper .our_blog_musicplayer iframe {
+        height: 250px;
+    }
+    /* Client-Say Slider */
+    .client_say_slider_v3_box {
+        padding-bottom: 80px;
+    }
+    div#client_say_slider_sec_home3 {
+        padding: 30px 0;
+    }
+    .client_say_slider_area .slick-custom-arrow.slick-custom-arrow-left.slick-arrow {
+        top: auto;
+        left: 32%;
+    }
+    .client_say_slider_v2_list .slick-custom-arrow.slick-arrow {
+        top: 18%;
+    }
+    .client_say_slider_list_v3 .slick-custom-arrow.slick-arrow,
+    div#client_say_slider_sec_ourteampage .client_say_slider_list_v3 .slick-custom-arrow.slick-arrow {
+        padding: 5px;
+        width: 60px;
+        height: 60px;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_list_v3 .slick-custom-arrow.slick-custom-arrow-right.slick-arrow,
+    div#client_say_slider_sec_ourteampage .client_say_slider_list_v3 .slick-custom-arrow.slick-arrow {
+        top: 15%;
+    }
+    /* Pricing-Plans */
+    .pricing_mid_area::before {
+        font-size: 80px;
+    }
+    .pricing_plan_v2_head,
+    .pricing_plan_v2_bottom {
+        padding: 15px;
+    }
+    .pricing_plan_v2_head h4 {
+        padding-bottom: 10px;
+    }
+    /* Gallery Slider */
+    .gallery_slider_area>.container-fluid {
+        margin: 0 0 0 50px;
+    }
+    /* Home-Blogs */
+    .blog_home_v1 .home_blog_info {
+        gap: 15px;
+        grid-template-columns: 100%;
+    }
+    .home_blog_detail h4 {
+        line-height: 30px;
+    }
+    .home_blog_detail h4,
+    .smarter_exercise_detail p:nth-child(1),
+    .get_touch_info_bottom>p {
+        padding: 15px 0;
+    }
+    .blog_home_v1,
+    .blog_home_v2 {
+        padding: 30px 0px;
+        gap: 15px;
+    }
+    .home_blog_info_upper_v2 {
+        margin-bottom: 10px;
+    }
+    .blog_home_v2 .home_blog_info_v2>h4,
+    .home_blog_detail h4 {
+        font-size: 20px;
+    }
+    /* Background-Image */
+    .background_image_bg {
+        height: 600px;
+    }
+    /* FAQs Page */
+    .faq_title h6 {
+        width: 90%;
+    }
+    /* Coming-soon Page */
+    .coming_soon_tool {
+        display: none;
+    }
+    .coming_soon_title_area {
+        padding: 20px 0px;
+    }
+    .coming_soon_title_area h2 {
+        font-size: 32px;
+        padding: 10px 0px;
+    }
+    .coming_soon_title_area h5 {
+        font-size: 18px;
+    }
+    .counter-div .counter-element {
+        width: 40%;
+    }
+    .counter-div .counter-element .number-div>div::before {
+        font-size: 48px;
+        left: 0;
+    }
+    .coming_soon_mail_area form input {
+        font-size: 18px;
+    }
+    button.comingsoon_subscribe_btn {
+        font-size: 18px;
+        padding: 18px;
+    }
+    .counter-div {
+        gap: 20px 0;
+    }
+    .coming_soon_mail_area {
+        padding: 30px 0;
+    }
+    /* Our-Project */
+    #Masonry_gallery_v2 .grid_project_list,
+    #Masonry_gallery_v3 .grid_project_list,
+    #Masonry_gallery_v4 .grid_project_list {
+        grid-template-columns: 100% !important;
+    }
+    #Masonry_gallery_v2 .grid_project_list>.our_project_item,
+    #Masonry_gallery_v3 .grid_project_list>.our_project_item,
+    #Masonry_gallery_v4 .grid_project_list>.our_project_item {
+        grid-row: unset !important;
+        grid-column: unset !important;
+    }
+    .our_project_item .our_project_item_img img {
+        width: 100%;
+    }
+    /* Single-Project */
+    .individualtraning_post_button_area .our_project_post_btn span.orenge_text,
+    .individualtraning_post_button_area .our_project_post_btn span.orenge_text::before {
+        font-size: 16px;
+        padding: 17px;
+    }
+    .individualtraning_single_project_slider_area .slick-custom-arrow.slick-arrow {
+        top: 35%;
+        width: 60px;
+        height: 60px;
+    }
+    #our_project_single_video_area span.video_text_area {
+        width: 110px;
+        height: 110px;
+    }
+    /* Blogs Page */
+    .our_blogs_pera_box,
+    .our_blogs_musicplayer_box {
+        padding: 20px;
+    }
+    .sidebar_search_area img {
+        top: 20px;
+        right: 20px;
+    }
+    .Our_blog_box_videoplayer span.blog_video_icon {
+        width: 70px;
+        height: 70px;
+    }
+    .Our_blog_box_slider_area .slick-custom-arrow.slick-arrow {
+        top: 37%;
+        width: 60px;
+        height: 60px;
+    }
+    .our_blogs_pera_box>.our_blogs_pera_img_text .our_blogs_img img {
+        max-width: 50px;
+    }
+    .blogs_youtube_video img.thumb.youtube_video_icon {
+        width: 56px;
+        height: auto;
+    }
+    ul.blog_hastags_list li {
+        width: 47%;
+    }
+    ul.blog_hastags_list a {
+        width: 100%;
+        justify-content: center;
+    }
+    .blogs_sidebar_card {
+        max-width: 100%;
+        padding: 30px;
+        text-align: center;
+    }
+    .blog_card_bg {
+        opacity: 0.5;
+    }
+    li.blogs_pagenation_item a {
+        font-size: 18px;
+        width: 48px;
+        height: 48px;
+    }
+    ul.blogs_pagenation_list {
+        gap: 10px;
+    }
+    .Our_blog_img_shap::before {
+        left: -60%;
+    }
+}
+@media (max-width: 400px) {
+    h3,
+    .common_title_area.about_us_title h3,
+    .smarter_exercise_title h3,
+    .our_program_v3_upper h4 {
+        font-size: 20px;
+    }
+    ul.pricing_bottom_item_list,
+    .why_choose_box_title h4 {
+        font-size: 18px;
+    }
+    /* Home-Banner */
+    ul.home_banner_tabs li span.tab_home_big_title {
+        font-size: 150px;
+        justify-content: center;
+    }
+    .coming_soon_title_area h2,
+    .home_banner_tabs_title_area h2 {
+        font-size: 24px;
+        padding-bottom: 10px;
+    }
+    /* Our-Progress */
+    .progress_img::before,
+    .our_progress_box_v2 .progress_img::before {
+        height: 290px;
+        width: 290px;
+    }
+    ul.program_tabs li a,
+    .individualtraning_post_button_area {
+        gap: 0;
+        flex-direction: column;
+    }
+    /* Meet-Team Slider */
+    .triners_img::before {
+        width: auto;
+        left: 40px;
+        right: 40px;
+    }
+    /* Client-Say Slider */
+    .client_say_img_info,
+    .individualtraning_post_button_area {
+        gap: 15px;
+    }
+    .client_say_img {
+        width: 25%;
+    }
+    .client_say_img_detail h5 {
+        font-size: 16px;
+    }
+    .client_say_slider_area .slick-custom-arrow.slick-custom-arrow-left.slick-arrow {
+        left: 32%;
+    }
+    .client_say_slider_area .slick-custom-arrow.slick-arrow,
+    .client_say_slider_list_v3 .slick-custom-arrow.slick-custom-arrow-right.slick-arrow {
+        right: 32%;
+    }
+    .client_say_slider_v2_list .slick-custom-arrow.slick-arrow {
+        top: 14%;
+    }
+    /* Pricing-Plans */
+    .purches_btn a.orange_btn span.orenge_text,
+    .purches_btn a.orange_btn span.orenge_text::before {
+        padding: 15px;
+    }
+    /* Coming-soon Page */
+    .coming_soon_title_area h2 {
+        font-size: 28px;
+    }
+    .coming_soon_mail_area form input {
+        padding: 14px 10px;
+    }
+    button.comingsoon_subscribe_btn {
+        position: unset;
+        margin-bottom: 20px;
+    }
+    /* Error Page */
+    .error_heading,
+    .error_heading::before,
+    .error_heading::after {
+        font-size: 100px;
+    }
+    /* Single-Project */
+    .single_project_tags a.single_project_tag,
+    .individualtraning_post_button_area {
+        text-align: center;
+    }
+    .single_project_tags {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .single_project_tags a.single_project_tag {
+        padding: 10px;
+        width: 47%;
+        justify-content: center;
+    }
+    .individualtraning_single_project_slider_area .slick-custom-arrow.slick-arrow {
+        width: 50px;
+        height: 50px;
+    }
+    .sidebar_post_box a {
+        line-height: normal;
+        font-size: 16px;
+    }
+    .youtubevideo-player.youtube_nosidebar_blogs_video {
+        height: 250px;
+    }
+    .youtubevideo-player img.play-button {
+        width: 66px;
+        height: auto;
+    }
+}
+@media (max-width: 350px) {
+    .yoga_slider_content h1 {
+        font-size: 20px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+    h5 {
+        font-size: 18px;
+    }
+    .common_banner_content h2 {
+        font-size: 28px;
+    }
+    .banner_titles_area_v3 h1 {
+        font-size: 30px;
+    }
+    .banner_v3_area_content {
+        height: 550px;
+    }
+    ul.home_banner_tabs li {
+        justify-content: center;
+    }
+    ul.home_banner_tabs li span.tab_home_big_title {
+        bottom: 30px;
+    }
+    /* About-Us */
+    .common_banner_bg {
+        padding: 130px 0 50px;
+    }
+    .common_title_area.about_us_title h3,
+    .our_program_v3_upper h4 {
+        font-size: 18px;
+    }
+    .header_get_touch_sociallink .row>div {
+        width: 100%;
+        text-align: left;
+    }
+    button.btn.sidebar_btn,
+    button.btn.sidebar_btn svg {
+        width: 35px;
+        height: 35px;
+    }
+    .header_logo img {
+        max-width: 120%;
+    }
+    /* Our-Progress */
+    .progress_img::before {
+        margin: 0;
+    }
+    .progress_img::before,
+    .our_progress_box_v2 .progress_img::before {
+        height: auto;
+        width: auto;
+    }
+    a.program_v1_btn>h4 {
+        font-size: 16px;
+    }
+    /* Client-Say Slider */
+    .client_say_slider_area .slick-custom-arrow.slick-custom-arrow-left.slick-arrow,
+    .client_say_slider_list_v3 .slick-custom-arrow.slick-arrow {
+        left: 28%;
+    }
+    .client_say_slider_area .slick-custom-arrow.slick-arrow,
+    .client_say_slider_list_v3 .slick-custom-arrow.slick-custom-arrow-right.slick-arrow {
+        right: 28%;
+    }
+    .client_say_slider_v2_list .slick-custom-arrow.slick-arrow {
+        top: 10%;
+    }
+    div#client_say_slider_sec_ourteampage .client_say_slider_list_v3 .slick-custom-arrow.slick-custom-arrow-right.slick-arrow,
+    div#client_say_slider_sec_ourteampage .client_say_slider_list_v3 .slick-custom-arrow.slick-arrow {
+        top: 13%;
+    }
+    /* Gallery Slider */
+    .gallery_slider_list .slick-custom-arrow.slick-custom-arrow-left.slick-arrow {
+        right: 14%;
+    }
+    /* Coming-soon Page */
+    .counter-div .counter-element .number-div>div {
+        font-size: 40px;
+    }
+    .counter-div .counter-element .number-div>div::before {
+        font-size: 36px;
+        line-height: 80px;
+    }
+    .coming_soon_title_area h2 {
+        font-size: 24px;
+    }
+    /* Error Page */
+    .error_heading,
+    .error_heading::before,
+    .error_heading::after {
+        font-size: 90px;
+    }
+    /* Blogs Page */
+    .our_blog_box_detail_area h4.our_blog_big_heading,
+    .our_blogs_pera_box .our_blogs_pera_headings h4,
+    #our_blogs_sidebar h4.our_blog_big_heading,
+    div#our_single_blogs .single_blog_details h4.our_blog_big_heading,
+    h4.single_blog_middle_heading,
+    h4.single_blog_bottom_heading {
+        font-size: 20px;
+    }
+    .our_blogssidebar_common_btn a span.orenge_text {
+        padding: 20px;
+    }
+    .our_blogssidebar_common_btn a span.orenge_text::before {
+        padding: 20px;
+    }
+    .our_blogssidebar_common_btnspan.orenge_icon::before {
+        padding: 16px;
+        background-position: center;
+    }
+    ul.blog_hastags_list a {
+        padding: 10px;
+    }
+    .youtubevideo-player.youtube_nosidebar_blogs_video,
+    .youtubevideo-player {
+        height: 200px;
+    }
+}
+@media (max-width: 325px) {
+    ul.drop_down_menu li a {
+        font-size: 17px;
+    }
+    .home_blog_info_upper_v2 {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+}

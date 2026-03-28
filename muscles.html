@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAKE ME FIT - تشريح العضلات</title>
+    <!-- CSS Here -->
+    <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/animate_plugin.min.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/aos.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/media-query.css">
+
+    <style>
+        /* ============================================
+           RTL & Arabic Base Styling
+        ============================================ */
+        body, h1, h2, h3, h4, h5, h6, p, a, span, li, td, th, label, input, button, div {
+            font-family: 'Tajawal', sans-serif !important;
+        }
+        body {
+            direction: rtl;
+            background: #0d0d0d;
+        }
+        .zen-dots-font {
+            font-family: 'Zen Dots', cursive !important;
+        }
+        .tajawal-font {
+            font-family: 'Tajawal', sans-serif !important;
+        }
+        .text-start { text-align: right !important; }
+
+        /* Fix header nav direction */
+        #header_sec {
+            direction: rtl;
+        }
+        .sticky {
+            position: fixed !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            direction: rtl !important;
+        }
+        .header_area {
+            direction: rtl;
+        }
+        .desktop_navbar nav ul,
+        .dasktop_navlist {
+            direction: rtl;
+            display: flex;
+            justify-content: center;
+            padding-right: 0;
+        }
+        .makemefit-nav .nav-links {
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0;
+        }
+
+        /* ============================================
+           Hero Banner Section
+        ============================================ */
+        .muscles-hero {
+            position: relative;
+            min-height: 65vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)),
+                        url('assets/images/heading-bg/team_bg.png') center/cover no-repeat;
+            padding: 140px 0 80px;
+            overflow: hidden;
+            text-align: center;
+        }
+        .muscles-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 50% 80%, rgba(255,87,34,0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .muscles-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, transparent, #ff5722, #ff9800, #ff5722, transparent);
+        }
+        .muscles-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        .muscles-hero h1 span {
+            color: #ff5722;
+        }
+        .muscles-hero .hero-subtitle {
+            font-size: 1.15rem;
+            color: #aaa;
+            max-width: 700px;
+            margin: 0 auto 25px;
+            line-height: 1.9;
+        }
+        .muscles-hero .breadcrumb-nav {
+            font-weight: 500;
+            font-size: 16px;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        .muscles-hero .breadcrumb-nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .muscles-hero .breadcrumb-nav a:hover {
+            color: #ff5722;
+        }
+        .muscles-hero .breadcrumb-nav .active-crumb {
+            color: #ff5722;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+        .hero-stat-item {
+            text-align: center;
+        }
+        .hero-stat-item .stat-number {
+            font-family: 'Zen Dots', cursive !important;
+            font-size: 2.5rem;
+            color: #ff5722;
+            display: block;
+            line-height: 1;
+        }
+        .hero-stat-item .stat-label {
+            font-size: 0.95rem;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* ============================================
+           Quick Navigation Cards
+        ============================================ */
+        .quick-nav-section {
+            padding: 80px 0 40px;
+            background: #0a0a0a;
+            position: relative;
+        }
+        .quick-nav-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,87,34,0.3), transparent);
+        }
+        .section-title-ar {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title-ar h5 {
+            font-family: 'Zen Dots', cursive !important;
+            font-weight: 400;
+            color: #ff5722;
+            font-size: 16px;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .section-title-ar h2 {
+            font-weight: 900;
+            color: #fff;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            line-height: 1.3;
+        }
+        .section-title-ar p {
+            color: #888;
+            font-size: 1.05rem;
+            margin-top: 12px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .quick-nav-card {
+            background: linear-gradient(145deg, #1a1a1a 0%, #111 100%);
+            border: 1px solid rgba(255,87,34,0.1);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .quick-nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff5722, transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .quick-nav-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255,87,34,0.4);
+            box-shadow: 0 20px 50px rgba(255,87,34,0.12);
+        }
+        .quick-nav-card:hover::before {
+            opacity: 1;
+        }
+        .quick-nav-card .card-img {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .quick-nav-card .card-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(255,87,34,0.3));
+        }
+        .quick-nav-card .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,87,34,0.2) 0%, rgba(255,87,34,0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+            color: #ff5722;
+            transition: all 0.4s ease;
+        }
+        .quick-nav-card:hover .card-icon {
+            background: linear-gradient(135deg, #ff5722, #ff7043);
+            color: #fff;
+            transform: scale(1.1);
+        }
+        .quick-nav-card .card-name-en {
+            font-family: 'Zen Dots', cursive !important;
+            font-size: 12px;
+            color: #ff5722;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .quick-nav-card .card-name-ar {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* ============================================
+           Detailed Muscle Anatomy Sections
+        ============================================ */
+        .muscle-anatomy-section {
+            padding: 80px 0;
+            position: relative;
+        }
+        .muscle-anatomy-section:nth-child(even) {
+            background: #0a0a0a;
+        }
+        .muscle-anatomy-section:nth-child(odd) {
+            background: #0d0d0d;
+        }
+
+        /* Muscle Section Header */
+        .muscle-section-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        .muscle-section-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff5722, #e64a19);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Zen Dots', cursive !important;
+            font-size: 1.4rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .muscle-section-titles h2 {
+            font-weight: 900;
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            color: #fff;
+            margin-bottom: 2px;
+        }
+        .muscle-section-titles .en-name {
+            font-family: 'Zen Dots', cursive !important;
+            font-size: 14px;
+            color: #ff5722;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Muscle description */
+        .muscle-description {
+            font-size: 1.08rem;
+            color: #999;
+            line-height: 2;
+            margin-bottom: 30px;
+            padding-right: 70px;
+        }
+
+        /* Anatomy image container */
+        .anatomy-img-wrapper {
+            position: relative;
+            background: linear-gradient(145deg, #1a1a1a 0%, #111 100%);
+            border: 1px solid rgba(255,87,34,0.15);
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        .anatomy-img-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(255,87,34,0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .anatomy-img-wrapper:hover {
+            border-color: rgba(255,87,34,0.35);
+            box-shadow: 0 20px 60px rgba(255,87,34,0.1);
+            transform: translateY(-5px);
+        }
+        .anatomy-img-wrapper img {
+            max-width: 100%;
+            height: auto;
+            max-height: 420px;
+            object-fit: contain;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 5px 20px rgba(0,0,0,0.5));
+            transition: transform 0.4s ease;
+        }
+        .anatomy-img-wrapper:hover img {
+            transform: scale(1.03);
+        }
+        .anatomy-img-label {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,87,34,0.9);
+            color: #fff;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            z-index: 2;
+            white-space: nowrap;
+        }
+
+        /* Two anatomy images side by side */
+        .anatomy-dual-wrapper {
+            display: flex;
+            gap: 20px;
+        }
+        .anatomy-dual-wrapper .anatomy-img-wrapper {
+            flex: 1;
+            padding: 20px;
+        }
+        .anatomy-dual-wrapper .anatomy-img-wrapper img {
+            max-height: 350px;
+        }
+
+        /* Subdivisions Grid */
+        .subdivisions-grid {
+            margin-top: 35px;
+        }
+        .subdivision-card {
+            background: linear-gradient(160deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 25px 22px;
+            margin-bottom: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .subdivision-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff5722, #ff7043);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            transform-origin: right;
+        }
+        .subdivision-card:hover {
+            border-color: rgba(255,87,34,0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+        .subdivision-card:hover::after {
+            transform: scaleX(1);
+        }
+        .subdivision-card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 14px;
+        }
+        .subdivision-num {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(255,87,34,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Zen Dots', cursive !important;
+            font-size: 14px;
+            color: #ff5722;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        .subdivision-card:hover .subdivision-num {
+            background: #ff5722;
+            color: #fff;
+        }
+        .subdivision-card-header .sub-titles h4 {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+        .subdivision-card-header .sub-titles span {
+            font-family: 'Zen Dots', cursive !important;
+            font-size: 11px;
+            color: #ff5722;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .subdivision-card p {
+            font-size: 0.95rem;
+            color: #888;
+            line-height: 1.85;
+            margin: 0;
+        }
+        .subdivision-card .color-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 8px;
+            vertical-align: middle;
+            box-shadow: 0 0 6px currentColor;
+        }
+
+        /* View exercises button */
+        .btn-exercises {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 35px;
+            background: linear-gradient(135deg, #ff5722, #e64a19);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+        }
+        .btn-exercises:hover {
+            background: linear-gradient(135deg, #ff7043, #ff5722);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,87,34,0.3);
+            color: #fff;
+        }
+        .btn-exercises i {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+        .btn-exercises:hover i {
+            transform: translateX(-5px);
+        }
+
+        .btn-outline-exercises {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: transparent;
+            color: #ff5722;
+            border: 2px solid #ff5722;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+        }
+        .btn-outline-exercises:hover {
+            background: #ff5722;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,87,34,0.2);
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,87,34,0.25), transparent);
+            margin: 0;
+            border: none;
+        }
+
+        /* ============================================
+           Fun Facts / Info Bar
+        ============================================ */
+        .info-bar {
+            background: linear-gradient(135deg, #1a0a00 0%, #0d0d0d 50%, #1a0a00 100%);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .info-bar::before {
+            content: '';
+            position: absolute;
+            top: -30%; right: -10%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(255,87,34,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .info-bar-item {
+            text-align: center;
+            padding: 20px;
+        }
+        .info-bar-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(255,87,34,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 28px;
+            color: #ff5722;
+        }
+        .info-bar-item h4 {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .info-bar-item p {
+            font-size: 0.9rem;
+            color: #888;
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           CTA Section
+        ============================================ */
+        .muscles-cta {
+            background: linear-gradient(160deg, #0d0d0d 0%, #1a0800 50%, #0d0d0d 100%);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .muscles-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -20%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(255,87,34,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .muscles-cta h3 {
+            font-size: clamp(1.6rem, 3vw, 2.5rem);
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .muscles-cta p {
+            font-size: 1.1rem;
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.9;
+            position: relative;
+        }
+        .muscles-cta .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        /* ============================================
+           Footer RTL
+        ============================================ */
+        .makemefit-footer {
+            direction: rtl;
+            text-align: right;
+        }
+        .makemefit-footer .footer_social_icon {
+            justify-content: flex-start;
+        }
+
+        /* Mobile Nav RTL */
+        .mobile_navlist {
+            text-align: right;
+        }
+
+        /* ============================================
+           Scrollbar
+        ============================================ */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #ff5722; border-radius: 4px; }
+
+        /* ============================================
+           Responsive
+        ============================================ */
+        @media (max-width: 991px) {
+            .muscles-hero { min-height: 55vh; padding: 120px 0 60px; }
+            .muscles-hero h1 { font-size: 2.2rem; }
+            .muscle-description { padding-right: 0; }
+            .muscle-section-header { flex-wrap: wrap; }
+            .hero-stats { gap: 25px; }
+            .anatomy-dual-wrapper { flex-direction: column; }
+        }
+        @media (max-width: 767px) {
+            .muscles-hero { min-height: 50vh; padding: 110px 0 50px; }
+            .muscles-hero h1 { font-size: 1.8rem; }
+            .hero-stats { gap: 20px; }
+            .hero-stat-item .stat-number { font-size: 2rem; }
+            .anatomy-img-wrapper { padding: 20px; }
+            .anatomy-img-wrapper img { max-height: 280px; }
+        }
+        @media (max-width: 575px) {
+            .muscles-hero { padding: 100px 0 40px; }
+            .muscles-hero h1 { font-size: 1.5rem; }
+            .subdivision-card { padding: 18px 16px; }
+            .muscle-anatomy-section { padding: 50px 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader Start -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="preloader_img_circle"></div>
+            <div class="preloader_img">
+                <img src="assets/images/preloader/fitness_preimg.gif" alt="fitness_preimg">
+            </div>
+        </div>
+    </div>
+    <!-- Preloader end -->
+
+    <div class="site_content">
+        <!-- Header Start -->
+        <header>
+            <nav style="background:#111;padding:15px 0;position:fixed;top:0;left:0;right:0;z-index:9999;border-bottom:1px solid #ff572233;direction:rtl;">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center" style="direction:rtl;gap:40px;">
+                        <a href="index.html" style="text-decoration:none;font-family:'Zen Dots',cursive;font-size:1.6rem;white-space:nowrap;">
+                            <span style="color:#ff5722;">MAKE ME</span> <span style="color:#fff;">FIT</span>
+                        </a>
+                        <div class="d-none d-lg-flex gap-3 align-items-center">
+                            <a href="index.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الرئيسية</a>
+                            <a href="muscles.html" class="nav-link-item" style="color:#ff5722;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">العضلات</a>
+                            <a href="equipment.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الأجهزة</a>
+                            <a href="exercises.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">التمارين</a>
+                            <a href="nutrition.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">التغذية</a>
+                            <a href="calculator.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">حاسبة السعرات</a>
+                            <a href="contact.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">تواصل معنا</a>
+                        </div>
+                        <button class="d-lg-none" style="background:none;border:1px solid #444;color:#fff;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:1.2rem;" onclick="document.getElementById('mobileNav').classList.toggle('show')">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                    <div id="mobileNav" class="d-lg-none" style="display:none;padding-top:15px;border-top:1px solid #333;margin-top:15px;">
+                        <a href="index.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">الرئيسية</a>
+                        <a href="muscles.html" style="display:block;color:#ff5722;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">العضلات</a>
+                        <a href="equipment.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">الأجهزة</a>
+                        <a href="exercises.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">التمارين</a>
+                        <a href="nutrition.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">التغذية</a>
+                        <a href="calculator.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">حاسبة السعرات</a>
+                        <a href="contact.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">تواصل معنا</a>
+                    </div>
+                </div>
+            </nav>
+            <div style="height:70px;"></div>
+        </header>
+        <!-- Header End -->
+        <style>
+            .nav-link-item:hover { color: #ff5722 !important; }
+            #mobileNav.show { display: block !important; }
+        </style>
+        <script>
+            document.getElementById('mobileNav')?.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') this.classList.remove('show');
+            });
+        </script>
+
+        <!-- ============================================
+             Hero Banner
+        ============================================ -->
+        <section class="muscles-hero">
+            <div class="container position-relative" style="z-index:2;">
+                <p class="breadcrumb-nav" data-aos="fade-down" data-aos-duration="600">
+                    <a href="index.html">الرئيسية</a> / <span class="active-crumb">تشريح العضلات</span>
+                </p>
+                <h1 data-aos="fade-up" data-aos-duration="800">
+                    دليلك الشامل لتشريح <span>العضلات</span>
+                </h1>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-duration="1000">
+                    تعرف على كل مجموعة عضلية في جسمك بالتفصيل: تقسيماتها الداخلية، وظائفها، والتمارين الأمثل لاستهداف كل جزء منها.
+                    فهم التشريح العضلي هو الخطوة الأولى نحو تدريب ذكي وفعال.
+                </p>
+                <div class="hero-stats" data-aos="fade-up" data-aos-duration="1200">
+                    <div class="hero-stat-item">
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">مجموعات عضلية</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <span class="stat-number">16</span>
+                        <span class="stat-label">تقسيم فرعي</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <span class="stat-number">640+</span>
+                        <span class="stat-label">عضلة في الجسم</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Quick Navigation - Muscle Groups Overview
+        ============================================ -->
+        <section class="quick-nav-section">
+            <div class="container">
+                <div class="section-title-ar" data-aos="fade-down">
+                    <h5>Muscle Groups</h5>
+                    <h2>المجموعات العضلية الرئيسية</h2>
+                    <p>اضغط على أي مجموعة عضلية للانتقال إلى تفاصيلها التشريحية الكاملة</p>
+                </div>
+                <div class="row">
+                    <!-- Chest -->
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <a href="#chest-section" style="text-decoration:none;">
+                            <div class="quick-nav-card" data-aos="fade-up" data-aos-delay="100">
+                                <div class="card-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                                <div class="card-name-en">Chest</div>
+                                <div class="card-name-ar">عضلة الصدر</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Back -->
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <a href="#back-section" style="text-decoration:none;">
+                            <div class="quick-nav-card" data-aos="fade-up" data-aos-delay="150">
+                                <div class="card-icon"><i class="fa-solid fa-arrows-up-down"></i></div>
+                                <div class="card-name-en">Back</div>
+                                <div class="card-name-ar">عضلة الظهر</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Shoulders -->
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <a href="#shoulder-section" style="text-decoration:none;">
+                            <div class="quick-nav-card" data-aos="fade-up" data-aos-delay="200">
+                                <div class="card-icon"><i class="fa-solid fa-weight-hanging"></i></div>
+                                <div class="card-name-en">Shoulders</div>
+                                <div class="card-name-ar">عضلة الأكتاف</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Arms -->
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <a href="#arms-section" style="text-decoration:none;">
+                            <div class="quick-nav-card" data-aos="fade-up" data-aos-delay="250">
+                                <div class="card-icon"><i class="fa-solid fa-hand-back-fist"></i></div>
+                                <div class="card-name-en">Arms</div>
+                                <div class="card-name-ar">عضلات الذراع</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Thighs -->
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <a href="#thighs-section" style="text-decoration:none;">
+                            <div class="quick-nav-card" data-aos="fade-up" data-aos-delay="300">
+                                <div class="card-icon"><i class="fa-solid fa-person-walking"></i></div>
+                                <div class="card-name-en">Thighs</div>
+                                <div class="card-name-ar">عضلة الأفخاذ</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Calves -->
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <a href="#calves-section" style="text-decoration:none;">
+                            <div class="quick-nav-card" data-aos="fade-up" data-aos-delay="350">
+                                <div class="card-icon"><i class="fa-solid fa-shoe-prints"></i></div>
+                                <div class="card-name-en">Calves</div>
+                                <div class="card-name-ar">عضلة البطات</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- ============================================
+             SECTION 1: CHEST MUSCLE - عضلة الصدر
+        ============================================ -->
+        <section class="muscle-anatomy-section" id="chest-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Text Content -->
+                    <div class="col-lg-6 order-lg-1 order-2">
+                        <div class="muscle-section-header" data-aos="fade-left" data-aos-duration="600">
+                            <div class="muscle-section-number">01</div>
+                            <div class="muscle-section-titles">
+                                <h2>عضلة الصدر</h2>
+                                <span class="en-name">Chest Muscle - Pectoralis Major</span>
+                            </div>
+                        </div>
+                        <p class="muscle-description" data-aos="fade-left" data-aos-duration="800">
+                            تُعد عضلة الصدر (Pectoralis Major) من أكبر العضلات في الجزء العلوي من الجسم. وهي عضلة مروحية الشكل تغطي الجزء الأمامي من القفص الصدري.
+                            تلعب دورًا رئيسيًا في حركات الدفع الأفقي والعمودي، وهي مسؤولة عن تقريب الذراع (Adduction)، الدوران الداخلي للكتف، وثني الذراع أمام الجسم.
+                            تنقسم عضلة الصدر إلى ثلاثة أجزاء رئيسية، ولكل جزء تمارينه المخصصة التي تستهدفه بشكل أمثل.
+                        </p>
+
+                        <!-- Subdivisions -->
+                        <div class="subdivisions-grid" data-aos="fade-left" data-aos-duration="1000">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">01</div>
+                                            <div class="sub-titles">
+                                                <h4>صدر علوي</h4>
+                                                <span>Upper Chest - Clavicular Head</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            الجزء العلوي من عضلة الصدر يرتبط بعظمة الترقوة (Clavicle). يُستهدف بشكل رئيسي من خلال تمارين الضغط على بنش مائل
+                                            (Incline Bench Press) وتمارين التفتيح المائلة. تطوير هذا الجزء يمنح الصدر مظهرًا ممتلئًا ومتناسقًا من الأعلى،
+                                            وهو من أصعب الأجزاء في النمو لدى كثير من المتدربين.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">02</div>
+                                            <div class="sub-titles">
+                                                <h4>صدر مستوي</h4>
+                                                <span>Mid Chest - Sternal Head</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            الجزء الأوسط والأكبر من عضلة الصدر، يرتبط بعظمة القص (Sternum). يُستهدف من خلال تمارين الضغط المستوي
+                                            (Flat Bench Press) وتمارين التفتيح المستوية. هذا الجزء يمثل الكتلة الرئيسية للصدر ويمنحه العرض والسماكة.
+                                            يُعتبر أسهل أجزاء الصدر في الاستهداف والتطوير.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">03</div>
+                                            <div class="sub-titles">
+                                                <h4>صدر سفلي</h4>
+                                                <span>Lower Chest - Abdominal Head</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            الجزء السفلي من عضلة الصدر يُعطي الصدر شكله المحدد والمنحوت من الأسفل. يُستهدف بتمارين الضغط على بنش منحدر
+                                            (Decline Bench Press) وتمارين الكابل من أعلى لأسفل. تطوير هذا الجزء يبرز الخط السفلي للصدر ويمنحه مظهرًا
+                                            مربعًا ومنحوتًا.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="exercises.html" class="btn-exercises" data-aos="fade-up" data-aos-delay="200">
+                            <span>عرض تمارين الصدر</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+
+                    <!-- Anatomy Image -->
+                    <div class="col-lg-6 order-lg-2 order-1 mb-lg-0 mb-4">
+                        <div class="anatomy-img-wrapper" data-aos="fade-right" data-aos-duration="800">
+                            <img src="assets/images/pdf/page_6_img_3.png" alt="تشريح عضلة الصدر - Chest Anatomy">
+                            <span class="anatomy-img-label">عضلة الصدر - Pectoralis</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- ============================================
+             SECTION 2: BACK MUSCLE - عضلة الظهر
+        ============================================ -->
+        <section class="muscle-anatomy-section" id="back-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Anatomy Image -->
+                    <div class="col-lg-6 mb-lg-0 mb-4">
+                        <div class="anatomy-img-wrapper" data-aos="fade-left" data-aos-duration="800">
+                            <img src="assets/images/pdf/page_6_img_2.png" alt="تشريح عضلة الظهر - Back Anatomy">
+                            <span class="anatomy-img-label">عضلة الظهر - Back Muscles</span>
+                        </div>
+                    </div>
+
+                    <!-- Text Content -->
+                    <div class="col-lg-6">
+                        <div class="muscle-section-header" data-aos="fade-right" data-aos-duration="600">
+                            <div class="muscle-section-number">02</div>
+                            <div class="muscle-section-titles">
+                                <h2>عضلة الظهر</h2>
+                                <span class="en-name">Back Muscles - Latissimus Dorsi & More</span>
+                            </div>
+                        </div>
+                        <p class="muscle-description" data-aos="fade-right" data-aos-duration="800">
+                            عضلات الظهر هي مجموعة عضلية ضخمة ومعقدة تُشكّل الجزء الخلفي من الجذع العلوي. تشمل عدة عضلات متداخلة أبرزها
+                            العضلة العريضة (Latissimus Dorsi)، شبه المنحرفة (Trapezius)، والعضلة الناصبة للعمود الفقري (Erector Spinae).
+                            تلعب عضلات الظهر دورًا محوريًا في حركات السحب، استقرار العمود الفقري، والحفاظ على القوام السليم.
+                            بناء ظهر قوي يُحسّن الأداء الرياضي ويقي من آلام أسفل الظهر.
+                        </p>
+
+                        <!-- Subdivisions -->
+                        <div class="subdivisions-grid" data-aos="fade-right" data-aos-duration="1000">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">01</div>
+                                            <div class="sub-titles">
+                                                <h4>ظهر علوي</h4>
+                                                <span>Upper Back - Trapezius & Rhomboids</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            يشمل عضلات الترابيز العلوية (Upper Trapezius) والعضلات المعينية (Rhomboids) التي تقع بين لوحي الكتف.
+                                            يُستهدف من خلال تمارين التجديف العلوي (Face Pulls)، الشراجز (Shrugs)، وتمارين السحب العالي.
+                                            تطوير الظهر العلوي يمنح مظهر السمك والكثافة من الخلف ويُحسّن وضعية الكتفين.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">02</div>
+                                            <div class="sub-titles">
+                                                <h4>ظهر سفلي</h4>
+                                                <span>Lower Back - Erector Spinae</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            يشمل العضلة الناصبة للعمود الفقري (Erector Spinae) التي تمتد على طول العمود الفقري.
+                                            يُستهدف بتمارين الديدلفت (Deadlift)، الهايبر إكستنشن (Hyperextensions)، وتمارين Good Morning.
+                                            يُعد من أهم العضلات لاستقرار الجذع وحماية العمود الفقري، ويجب تدريبه بعناية لتجنب الإصابات.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">03</div>
+                                            <div class="sub-titles">
+                                                <h4>عضلة الجوانح</h4>
+                                                <span>Lats - Latissimus Dorsi</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            العضلة العريضة الظهرية (Latissimus Dorsi) هي أعرض عضلة في الجسم وتمنح الجسم شكل حرف V المميز.
+                                            تمتد من أسفل الظهر حتى الإبط. يُستهدفها بتمارين السحب الأمامي (Lat Pulldown)، العقلة (Pull-ups)،
+                                            والتجديف بأنواعه. تطوير اللاتس يمنح العرض والضخامة للجزء العلوي من الجسم.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="exercises.html" class="btn-exercises" data-aos="fade-up" data-aos-delay="200">
+                            <span>عرض تمارين الظهر</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- ============================================
+             SECTION 3: SHOULDERS - عضلة الأكتاف
+        ============================================ -->
+        <section class="muscle-anatomy-section" id="shoulder-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Text Content -->
+                    <div class="col-lg-6 order-lg-1 order-2">
+                        <div class="muscle-section-header" data-aos="fade-left" data-aos-duration="600">
+                            <div class="muscle-section-number">03</div>
+                            <div class="muscle-section-titles">
+                                <h2>عضلة الأكتاف</h2>
+                                <span class="en-name">Shoulder Muscles - Deltoids</span>
+                            </div>
+                        </div>
+                        <p class="muscle-description" data-aos="fade-left" data-aos-duration="800">
+                            العضلة الدالية (Deltoid) هي عضلة مثلثية الشكل تغطي مفصل الكتف بالكامل. وهي المسؤولة عن رفع الذراع في جميع الاتجاهات
+                            وتعطي الكتف شكله المستدير المميز. تنقسم إلى ثلاثة رؤوس رئيسية: أمامي، جانبي، وخلفي.
+                            تدريب الأكتاف بشكل متوازن يمنح الجسم عرضًا وتناسقًا، ويحمي مفصل الكتف من الإصابات.
+                            تُعد الأكتاف من أكثر المفاصل حركية في الجسم، مما يستلزم تدريبها بعناية وتقنية صحيحة.
+                        </p>
+
+                        <!-- Subdivisions -->
+                        <div class="subdivisions-grid" data-aos="fade-left" data-aos-duration="1000">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">01</div>
+                                            <div class="sub-titles">
+                                                <h4>كتف أمامي <span class="color-indicator" style="background:#e53935;color:#e53935;"></span></h4>
+                                                <span>Front Delt - Anterior Deltoid</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            الرأس الأمامي للعضلة الدالية (باللون الأحمر في الصورة) مسؤول عن رفع الذراع أمام الجسم (Flexion) والدوران الداخلي.
+                                            يُستهدف بتمارين الضغط العسكري (Overhead Press)، الرفعة الأمامية (Front Raise)، وتمارين ضغط الصدر المائل.
+                                            غالبًا يكون هذا الجزء متطورًا بشكل كافٍ بسبب مشاركته في تمارين الصدر.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">02</div>
+                                            <div class="sub-titles">
+                                                <h4>كتف جانبي <span class="color-indicator" style="background:#43a047;color:#43a047;"></span></h4>
+                                                <span>Lateral Delt - Medial Deltoid</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            الرأس الجانبي (باللون الأخضر في الصورة) مسؤول عن رفع الذراع للجانب (Abduction) وهو ما يمنح الكتف عرضه المميز.
+                                            يُستهدف بتمارين الرفع الجانبي (Lateral Raise) بالدمبل أو الكابل. يُعتبر من أهم أجزاء الكتف
+                                            للحصول على مظهر الأكتاف العريضة المستديرة، ويحتاج لحجم تدريبي عالٍ للنمو الأمثل.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">03</div>
+                                            <div class="sub-titles">
+                                                <h4>كتف خلفي <span class="color-indicator" style="background:#1e88e5;color:#1e88e5;"></span></h4>
+                                                <span>Rear Delt - Posterior Deltoid</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            الرأس الخلفي (باللون الأزرق في الصورة) مسؤول عن سحب الذراع للخلف (Extension) والدوران الخارجي للكتف.
+                                            يُستهدف بتمارين الفيس بول (Face Pull)، الرفعة الخلفية (Reverse Fly)، والتجديف العالي.
+                                            غالبًا يكون هذا الجزء مُهملاً عند كثير من المتدربين، مما يسبب خللاً في توازن الكتف وقد يؤدي لإصابات.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="exercises.html" class="btn-exercises" data-aos="fade-up" data-aos-delay="200">
+                            <span>عرض تمارين الأكتاف</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+
+                    <!-- Anatomy Image -->
+                    <div class="col-lg-6 order-lg-2 order-1 mb-lg-0 mb-4">
+                        <div class="anatomy-img-wrapper" data-aos="fade-right" data-aos-duration="800">
+                            <img src="assets/images/pdf/page_7_img_2.png" alt="تشريح عضلة الأكتاف - Shoulder Anatomy">
+                            <span class="anatomy-img-label">
+                                <span style="color:#ff6666;">أمامي</span> |
+                                <span style="color:#66ff66;">جانبي</span> |
+                                <span style="color:#6699ff;">خلفي</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- ============================================
+             SECTION 4: ARM MUSCLES - عضلات الذراع
+        ============================================ -->
+        <section class="muscle-anatomy-section" id="arms-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Anatomy Image -->
+                    <div class="col-lg-6 mb-lg-0 mb-4">
+                        <div class="anatomy-img-wrapper" data-aos="fade-left" data-aos-duration="800">
+                            <img src="assets/images/pdf/page_8_img_2.png" alt="تشريح عضلات الذراع - Arm Anatomy">
+                            <span class="anatomy-img-label">عضلات الذراع - Arm Muscles</span>
+                        </div>
+                    </div>
+
+                    <!-- Text Content -->
+                    <div class="col-lg-6">
+                        <div class="muscle-section-header" data-aos="fade-right" data-aos-duration="600">
+                            <div class="muscle-section-number">04</div>
+                            <div class="muscle-section-titles">
+                                <h2>عضلات الذراع</h2>
+                                <span class="en-name">Arm Muscles - Biceps, Triceps & Forearms</span>
+                            </div>
+                        </div>
+                        <p class="muscle-description" data-aos="fade-right" data-aos-duration="800">
+                            عضلات الذراع من أكثر العضلات وضوحًا في الجسم وتمثل رمزًا للقوة البدنية. تنقسم إلى ثلاث مجموعات رئيسية:
+                            البايسبس (ثنائية الرؤوس) في الجزء الأمامي، الترايسبس (ثلاثية الرؤوس) في الجزء الخلفي وتشكل ثلثي حجم الذراع،
+                            والسواعد التي تتحكم في حركة المعصم والأصابع. تطوير الذراعين يتطلب تدريب جميع هذه المجموعات بشكل متوازن
+                            للحصول على أذرع ضخمة ومتناسقة من جميع الزوايا.
+                        </p>
+
+                        <!-- Subdivisions -->
+                        <div class="subdivisions-grid" data-aos="fade-right" data-aos-duration="1000">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">01</div>
+                                            <div class="sub-titles">
+                                                <h4>عضلة البايسبس</h4>
+                                                <span>Biceps Brachii</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            العضلة ذات الرأسين (Biceps Brachii) تقع في الجزء الأمامي من الذراع العلوي وتتكون من رأسين: طويل وقصير.
+                                            مسؤولة عن ثني المرفق (Elbow Flexion) وتدوير الساعد (Supination).
+                                            تُستهدف بتمارين الكيرل بأنواعها: كيرل البار (Barbell Curl)، كيرل الدمبل (Dumbbell Curl)،
+                                            والكيرل المركز (Concentration Curl). الرأس الطويل يُعطي الذروة (Peak) بينما القصير يُعطي العرض.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">02</div>
+                                            <div class="sub-titles">
+                                                <h4>عضلة الترايسبس</h4>
+                                                <span>Triceps Brachii</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            العضلة ذات الرؤوس الثلاثة (Triceps Brachii) تقع في الجزء الخلفي من الذراع وتُشكّل حوالي ثلثي حجم العضد.
+                                            تتكون من ثلاثة رؤوس: طويل، جانبي، وداخلي. مسؤولة عن بسط المرفق (Elbow Extension).
+                                            تُستهدف بتمارين التراي بوش داون (Tricep Pushdown)، الضغط الضيق (Close-Grip Press)،
+                                            وتمارين الكسر خلف الرأس (Skull Crushers). تطويرها أساسي لمن يبحث عن حجم كبير للذراع.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">03</div>
+                                            <div class="sub-titles">
+                                                <h4>عضلة السواعد</h4>
+                                                <span>Forearms - Brachioradialis & More</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            مجموعة معقدة من العضلات الصغيرة في الساعد مسؤولة عن حركات المعصم والأصابع وقبضة اليد.
+                                            تشمل عضلات الثني والبسط والانحراف الجانبي للمعصم. أبرزها عضلة العضدية الكعبرية (Brachioradialis).
+                                            تُستهدف بتمارين كيرل المعصم (Wrist Curl)، كيرل المعصم العكسي (Reverse Wrist Curl)، وتمارين القبضة.
+                                            سواعد قوية تُحسّن الأداء في جميع تمارين الجزء العلوي وتمنع ضعف القبضة.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="exercises.html" class="btn-exercises" data-aos="fade-up" data-aos-delay="200">
+                            <span>عرض تمارين الذراع</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- ============================================
+             SECTION 5: THIGH MUSCLES - عضلة الأفخاذ
+        ============================================ -->
+        <section class="muscle-anatomy-section" id="thighs-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Text Content -->
+                    <div class="col-lg-6 order-lg-1 order-2">
+                        <div class="muscle-section-header" data-aos="fade-left" data-aos-duration="600">
+                            <div class="muscle-section-number">05</div>
+                            <div class="muscle-section-titles">
+                                <h2>عضلة الأفخاذ</h2>
+                                <span class="en-name">Thigh Muscles - Quadriceps & Hamstrings</span>
+                            </div>
+                        </div>
+                        <p class="muscle-description" data-aos="fade-left" data-aos-duration="800">
+                            عضلات الأفخاذ هي أقوى وأكبر مجموعة عضلية في الجسم بأكمله. تنقسم إلى مجموعتين رئيسيتين:
+                            العضلة رباعية الرؤوس (Quadriceps) في المقدمة والعضلة الخلفية (Hamstrings) في الجزء الخلفي من الفخذ.
+                            هذه العضلات مسؤولة عن المشي، الجري، القفز، وجميع حركات الجزء السفلي من الجسم.
+                            تدريب الأرجل بانتظام يعزز إفراز هرمون النمو والتستوستيرون بشكل أكبر من أي تمرين آخر، مما يدعم نمو الجسم بالكامل.
+                        </p>
+
+                        <!-- Subdivisions -->
+                        <div class="subdivisions-grid" data-aos="fade-left" data-aos-duration="1000">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">01</div>
+                                            <div class="sub-titles">
+                                                <h4>فخذ أمامي</h4>
+                                                <span>Quadriceps - Rectus Femoris & Vastus Group</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            العضلة رباعية الرؤوس (Quadriceps) تتكون من أربعة رؤوس: المستقيمة الفخذية (Rectus Femoris)،
+                                            المتسعة الوحشية (Vastus Lateralis)، المتسعة الأنسية (Vastus Medialis)، والمتسعة المتوسطة (Vastus Intermedius).
+                                            مسؤولة عن بسط الركبة والمشي وصعود الدرج.
+                                            تُستهدف بتمارين السكوات (Squats)، الليج بريس (Leg Press)، وتمارين بسط الركبة (Leg Extension).
+                                            هي العضلة الأقوى في جسم الإنسان.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">02</div>
+                                            <div class="sub-titles">
+                                                <h4>فخذ خلفي</h4>
+                                                <span>Hamstrings - Biceps Femoris & Semitendinosus</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            العضلات الخلفية للفخذ (Hamstrings) تتكون من ثلاث عضلات: ذات الرأسين الفخذية (Biceps Femoris)،
+                                            نصف الوترية (Semitendinosus)، ونصف الغشائية (Semimembranosus).
+                                            مسؤولة عن ثني الركبة وبسط الورك. تُستهدف بتمارين الديدلفت الروماني (Romanian Deadlift)،
+                                            ثني الركبة (Leg Curl)، وتمارين الجلوت هام رايز. تطوير الهامسترينج أساسي لمنع إصابات الركبة
+                                            وتحقيق التوازن العضلي في الساق.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="exercises.html" class="btn-exercises" data-aos="fade-up" data-aos-delay="200">
+                            <span>عرض تمارين الأفخاذ</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+
+                    <!-- Anatomy Images (Dual) -->
+                    <div class="col-lg-6 order-lg-2 order-1 mb-lg-0 mb-4">
+                        <div class="anatomy-dual-wrapper" data-aos="fade-right" data-aos-duration="800">
+                            <div class="anatomy-img-wrapper">
+                                <img src="assets/images/pdf/page_9_img_3.png" alt="عضلة الفخذ الأمامية - Quadriceps">
+                                <span class="anatomy-img-label">فخذ أمامي - Quads</span>
+                            </div>
+                            <div class="anatomy-img-wrapper">
+                                <img src="assets/images/pdf/page_9_img_2.png" alt="عضلة الفخذ الخلفية - Hamstrings">
+                                <span class="anatomy-img-label">فخذ خلفي - Hamstrings</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- ============================================
+             SECTION 6: CALF MUSCLES - عضلة البطات
+        ============================================ -->
+        <section class="muscle-anatomy-section" id="calves-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Anatomy Image -->
+                    <div class="col-lg-6 mb-lg-0 mb-4">
+                        <div class="anatomy-img-wrapper" data-aos="fade-left" data-aos-duration="800">
+                            <img src="assets/images/pdf/page_9_img_4.png" alt="تشريح عضلة البطات - Calf Anatomy">
+                            <span class="anatomy-img-label">عضلة البطات - Calves</span>
+                        </div>
+                    </div>
+
+                    <!-- Text Content -->
+                    <div class="col-lg-6">
+                        <div class="muscle-section-header" data-aos="fade-right" data-aos-duration="600">
+                            <div class="muscle-section-number">06</div>
+                            <div class="muscle-section-titles">
+                                <h2>عضلة البطات</h2>
+                                <span class="en-name">Calf Muscles - Gastrocnemius & Soleus</span>
+                            </div>
+                        </div>
+                        <p class="muscle-description" data-aos="fade-right" data-aos-duration="800">
+                            عضلات الساق السفلية (البطات) تقع في الجزء الخلفي من الساق أسفل الركبة. تتكون بشكل رئيسي من عضلتين:
+                            عضلة الساق الخلفية (Gastrocnemius) ذات الرأسين التي تُعطي البطة شكلها البارز،
+                            والعضلة النعلية (Soleus) التي تقع تحتها وتمنح الكثافة والعمق.
+                            هذه العضلات مسؤولة عن رفع الكعب (Plantarflexion) وهي ضرورية للمشي والجري والقفز والتوازن.
+                            تُعتبر من أصعب العضلات في النمو بسبب تركيبتها الليفية العالية في الألياف البطيئة.
+                        </p>
+
+                        <!-- Subdivisions -->
+                        <div class="subdivisions-grid" data-aos="fade-right" data-aos-duration="1000">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">01</div>
+                                            <div class="sub-titles">
+                                                <h4>عضلة الساق الخلفية</h4>
+                                                <span>Gastrocnemius - Outer & Inner Head</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            العضلة ذات الرأسين في بطة الساق (Gastrocnemius) هي الأكثر بروزًا. تتكون من رأس داخلي (Medial) ورأس خارجي (Lateral).
+                                            تعمل بشكل أساسي عند ثني الركبة ورفع الكعب معًا.
+                                            تُستهدف بتمارين رفع البطات واقفًا (Standing Calf Raise) حيث تكون الركبة مفرودة.
+                                            تُعطي البطة شكلها الماسي المميز عند التطور الكامل.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="subdivision-card">
+                                        <div class="subdivision-card-header">
+                                            <div class="subdivision-num">02</div>
+                                            <div class="sub-titles">
+                                                <h4>العضلة النعلية</h4>
+                                                <span>Soleus</span>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            العضلة النعلية (Soleus) تقع أسفل عضلة الـ Gastrocnemius وتمتد من أسفل الركبة حتى وتر أخيل.
+                                            تحتوي على نسبة عالية من الألياف البطيئة (Type I) مما يجعلها مقاومة للتعب.
+                                            تُستهدف بشكل خاص بتمارين رفع البطات جالسًا (Seated Calf Raise) حيث تكون الركبة مثنية.
+                                            تطويرها يُضيف عرضًا وكثافة للبطة خاصة عند النظر من الجانب.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="exercises.html" class="btn-exercises" data-aos="fade-up" data-aos-delay="200">
+                            <span>عرض تمارين البطات</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- ============================================
+             Info Bar - Did You Know?
+        ============================================ -->
+        <section class="info-bar">
+            <div class="container">
+                <div class="section-title-ar" data-aos="fade-down" style="margin-bottom:40px;">
+                    <h5>Did You Know?</h5>
+                    <h2>حقائق عن العضلات</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="info-bar-item" data-aos="fade-up" data-aos-delay="100">
+                            <div class="info-bar-icon"><i class="fas fa-heartbeat"></i></div>
+                            <h4>القلب أقوى عضلة</h4>
+                            <p>عضلة القلب تنقبض وتنبسط أكثر من 100,000 مرة يوميًا دون توقف أو إرهاق طوال حياتك.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="info-bar-item" data-aos="fade-up" data-aos-delay="200">
+                            <div class="info-bar-icon"><i class="fas fa-weight-hanging"></i></div>
+                            <h4>40% من وزن الجسم</h4>
+                            <p>تُشكّل العضلات الهيكلية حوالي 40% من وزن الجسم الكلي، مما يجعلها أكبر نسيج في الجسم.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="info-bar-item" data-aos="fade-up" data-aos-delay="300">
+                            <div class="info-bar-icon"><i class="fas fa-fire"></i></div>
+                            <h4>حرق السعرات</h4>
+                            <p>كل كيلوجرام من العضلات يحرق 13 سعرة حرارية يوميًا في الراحة، بينما الدهون تحرق 4 سعرات فقط.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="info-bar-item" data-aos="fade-up" data-aos-delay="400">
+                            <div class="info-bar-icon"><i class="fas fa-bolt"></i></div>
+                            <h4>سرعة الاستجابة</h4>
+                            <p>العضلات تستجيب للتحفيز العصبي في أقل من 10 ميلي ثانية، مما يسمح بردود فعل سريعة للغاية.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             CTA Section
+        ============================================ -->
+        <section class="muscles-cta">
+            <div class="container">
+                <h3 data-aos="fade-up">
+                    الآن بعد أن تعرفت على <span style="color:#ff5722;">تشريح العضلات</span>
+                </h3>
+                <p data-aos="fade-up" data-aos-delay="100">
+                    حان الوقت لتطبيق هذه المعرفة! تصفح دليل التمارين الشامل واكتشف أفضل التمارين لكل مجموعة عضلية،
+                    أو استخدم حاسبة السعرات لتحديد احتياجاتك الغذائية لبناء العضلات.
+                </p>
+                <div class="cta-buttons" data-aos="fade-up" data-aos-delay="200">
+                    <a href="exercises.html" class="btn-exercises">
+                        <span>دليل التمارين</span>
+                        <i class="fas fa-dumbbell"></i>
+                    </a>
+                    <a href="nutrition.html" class="btn-outline-exercises">
+                        <span>دليل التغذية</span>
+                        <i class="fas fa-utensils"></i>
+                    </a>
+                    <a href="calculator.html" class="btn-outline-exercises">
+                        <span>حاسبة السعرات</span>
+                        <i class="fas fa-calculator"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Footer Start
+        ============================================ -->
+        <footer>
+            <div class="footer_sec bg_black makemefit-footer">
+                <div class="container">
+                    <div class="footer_area">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="footer_upper_big_text sec_padding">
+                                    <div class="reveal custom_lightSpeedInLeft" style="text-align:center;">
+                                        <a href="contact.html" class="contact_hover_btn">
+                                            <svg viewBox="0 0 1300 128">
+                                                <symbol id="s-text">
+                                                    <text text-anchor="middle" x="50%" y="50%" dy=".35em">MAKE ME FIT</text>
+                                                </symbol>
+                                                <use class="text" xlink:href="#s-text"></use>
+                                                <use class="text" xlink:href="#s-text"></use>
+                                                <use class="text" xlink:href="#s-text"></use>
+                                                <use class="text" xlink:href="#s-text"></use>
+                                                <use class="text" xlink:href="#s-text"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="footer_mid_area">
+                                    <div class="row align-items-end">
+                                        <div class="col-xl-4 col-lg-3 col-sm-6">
+                                            <div class="footer_logo_area">
+                                                <a href="index.html" class="footer_logo reveal custom_zoom_in d-block">
+                                                    <span class="zen-dots-font" style="font-size:28px;color:#ff5722;">MAKE ME FIT</span>
+                                                </a>
+                                                <p class="tajawal-font line_height_30 fw_500 color_lightgray reveal custom_zoom_in">
+                                                    موقعك الشامل للياقة البدنية والتمارين الرياضية. تواصل معنا عبر البريد
+                                                    <a href="mailto:info@makemefit.com" class="color_lightgray triners_icons">info@makemefit.com</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-lg-2 col-sm-6">
+                                            <div class="footer_quick_contact">
+                                                <h6 class="color_white reveal custom_lightSpeedInLeft tajawal-font">اتصل بنا</h6>
+                                                <div class="footer_contact">
+                                                    <a href="tel:+966500000000" class="tajawal-font line_height_30 fw_500 color_lightgray d-block triners_icons reveal custom_zoom_in">+966 50 000 0000</a>
+                                                    <a href="tel:+966550000000" class="tajawal-font line_height_30 fw_500 color_lightgray d-block triners_icons reveal custom_zoom_in">+966 55 000 0000</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                                            <div class="footer_gym_time">
+                                                <h6 class="color_white reveal custom_lightSpeedInLeft tajawal-font">ساعات العمل</h6>
+                                                <p class="tajawal-font line_height_30 fw_500 color_lightgray reveal custom_zoom_in">السبت - الخميس: 05:00 ص - 11:00 م</p>
+                                                <p class="tajawal-font line_height_30 fw_500 color_lightgray reveal custom_zoom_in">الجمعة: 02:00 م - 11:00 م</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                                            <div class="footer_address pb-30">
+                                                <h6 class="color_white reveal custom_lightSpeedInLeft tajawal-font">روابط سريعة</h6>
+                                                <ul style="list-style:none;padding:0;margin:0;">
+                                                    <li><a href="muscles.html" class="tajawal-font line_height_30 fw_500 color_lightgray triners_icons reveal custom_zoom_in">العضلات</a></li>
+                                                    <li><a href="exercises.html" class="tajawal-font line_height_30 fw_500 color_lightgray triners_icons reveal custom_zoom_in">التمارين</a></li>
+                                                    <li><a href="nutrition.html" class="tajawal-font line_height_30 fw_500 color_lightgray triners_icons reveal custom_zoom_in">التغذية</a></li>
+                                                    <li><a href="calculator.html" class="tajawal-font line_height_30 fw_500 color_lightgray triners_icons reveal custom_zoom_in">حاسبة السعرات</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="footer_bottom_area">
+                                    <div class="row align-items-center">
+                                        <div class="col-sm-6">
+                                            <p class="tajawal-font line_height_24 fw_500 color_lightgray reveal custom_zoom_in">
+                                                جميع الحقوق محفوظة 2024 &copy; <a href="index.html" class="color_lightgray triners_icons">MAKE ME FIT</a>
+                                            </p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <ul class="footer_social_icon">
+                                                <li class="reveal custom_zoom_in">
+                                                    <a href="https://www.facebook.com/" class="triners_icons" target="_blank">
+                                                        <i class="fa-brands fa-facebook-f" style="color:#fff;font-size:16px;"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="reveal custom_zoom_in">
+                                                    <a href="https://x.com/" class="triners_icons" target="_blank">
+                                                        <i class="fa-brands fa-x-twitter" style="color:#fff;font-size:16px;"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="reveal custom_zoom_in">
+                                                    <a href="https://www.instagram.com/" class="triners_icons" target="_blank">
+                                                        <i class="fa-brands fa-instagram" style="color:#fff;font-size:16px;"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="reveal custom_zoom_in">
+                                                    <a href="https://www.youtube.com/" class="triners_icons" target="_blank">
+                                                        <i class="fa-brands fa-youtube" style="color:#fff;font-size:16px;"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer End -->
+
+        <!-- Scroll-Top Start -->
+        <div class="scrolltop_area orangeglow">
+            <button id="scroll-top-btn">
+                <span class="scroll-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                        <path d="M0 0H24V24H0V0Z" fill="white"/>
+                        </mask>
+                        <g>
+                        <path d="M7 11L12 6L17 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M7 17L12 12L17 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                    </svg>
+                </span>
+                <span id="scroll-percentage"></span>
+            </button>
+        </div>
+        <!-- Scroll-Top End -->
+
+        <!-- Custom Mouse Cursor -->
+        <div class="megic-cursor">
+            <div class="megic-cursor-item"></div>
+        </div>
+    </div>
+
+    <!-- Scroll Top Button -->
+    <button id="scroll-top-btn" style="position:fixed;bottom:30px;left:30px;z-index:99;width:50px;height:50px;border-radius:50%;background:#ff5722;border:none;cursor:pointer;display:none;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;"><i class="fas fa-chevron-up"></i><span id="scroll-percentage" style="font-size:0.6rem;display:block;">0%</span></button>
+
+    <!-- JS Here -->
+    <script src="assets/js/jquery-3.7.1.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/slick.min.js"></script>
+    <script src="assets/js/TweenMax.min.js"></script>
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/style.js"></script>
+    <script>AOS.init({ duration: 800, once: true, offset: 50 });</script>
+</body>
+</html>

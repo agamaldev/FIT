@@ -1,0 +1,3138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAKE ME FIT - ميك مي فت | التغذية</title>
+    <!-- CSS Here -->
+    <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/animate_plugin.min.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/aos.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/media-query.css">
+    <style>
+        /* RTL & Arabic Font Overrides */
+        body,
+        h1, h2, h3, h4, h5, h6,
+        p, a, li, span, div, input, button, textarea, select, label {
+            font-family: 'Tajawal', sans-serif !important;
+        }
+
+        .zen-dots-font {
+            font-family: 'Zen Dots', cursive !important;
+        }
+
+        /* Fix header nav direction */
+        #header_sec {
+            direction: rtl;
+        }
+        .sticky {
+            position: fixed !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            direction: rtl !important;
+        }
+        .header_area {
+            direction: rtl;
+        }
+        .desktop_navbar nav ul,
+        .dasktop_navlist {
+            direction: rtl;
+            display: flex;
+            justify-content: center;
+            padding-right: 0;
+        }
+
+        /* Page Banner */
+        .nutrition-banner {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), url('assets/images/common_img/home-header-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .nutrition-banner::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b00, #ff9500, #ff6b00);
+        }
+        .nutrition-banner h2 {
+            font-size: 48px;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .nutrition-banner .breadcrumb-nav {
+            color: #ccc;
+            font-size: 16px;
+        }
+        .nutrition-banner .breadcrumb-nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nutrition-banner .breadcrumb-nav a:hover {
+            color: #ff6b00;
+        }
+        .nutrition-banner .breadcrumb-nav .active-link {
+            color: #ff6b00;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title h2 {
+            font-size: 40px;
+            font-weight: 900;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background: #ff6b00;
+            border-radius: 2px;
+        }
+        .section-title p {
+            color: #aaa;
+            font-size: 18px;
+            margin-top: 15px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Calorie Plan Cards */
+        .calorie-card {
+            background: #1a1a2e;
+            border-radius: 16px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            border-top: 4px solid transparent;
+        }
+        .calorie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .calorie-card .calorie-amount {
+            font-size: 52px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 5px;
+        }
+        .calorie-card .calorie-unit {
+            font-size: 18px;
+            color: #aaa;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .calorie-card .calorie-label {
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .calorie-card .calorie-desc {
+            color: #aaa;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        .calorie-card .calorie-suitable {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-bottom: 25px;
+        }
+        .calorie-card .calorie-suitable span {
+            color: #ccc;
+            font-size: 14px;
+        }
+        .calorie-card .calorie-suitable strong {
+            display: block;
+            color: #fff;
+            font-size: 15px;
+            margin-top: 5px;
+        }
+
+        /* Card color variations */
+        .calorie-card.card-green { border-top-color: #2ecc71; }
+        .calorie-card.card-green .calorie-amount { color: #2ecc71; }
+        .calorie-card.card-green .btn-details { background: #2ecc71; }
+        .calorie-card.card-green .btn-details:hover { background: #27ae60; }
+
+        .calorie-card.card-blue { border-top-color: #3498db; }
+        .calorie-card.card-blue .calorie-amount { color: #3498db; }
+        .calorie-card.card-blue .btn-details { background: #3498db; }
+        .calorie-card.card-blue .btn-details:hover { background: #2980b9; }
+
+        .calorie-card.card-orange { border-top-color: #ff6b00; }
+        .calorie-card.card-orange .calorie-amount { color: #ff6b00; }
+        .calorie-card.card-orange .btn-details { background: #ff6b00; }
+        .calorie-card.card-orange .btn-details:hover { background: #e55d00; }
+
+        .calorie-card.card-red { border-top-color: #e74c3c; }
+        .calorie-card.card-red .calorie-amount { color: #e74c3c; }
+        .calorie-card.card-red .btn-details { background: #e74c3c; }
+        .calorie-card.card-red .btn-details:hover { background: #c0392b; }
+
+        .calorie-card.card-purple { border-top-color: #9b59b6; }
+        .calorie-card.card-purple .calorie-amount { color: #9b59b6; }
+        .calorie-card.card-purple .btn-details { background: #9b59b6; }
+        .calorie-card.card-purple .btn-details:hover { background: #8e44ad; }
+
+        .btn-details {
+            display: inline-block;
+            padding: 12px 30px;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-details:hover {
+            color: #fff;
+            transform: scale(1.05);
+        }
+        .btn-details i {
+            margin-right: 8px;
+        }
+
+        /* Keto Section */
+        .keto-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        .keto-card {
+            background: #0f0f23;
+            border-radius: 16px;
+            padding: 40px;
+            border-right: 5px solid #2ecc71;
+        }
+        .keto-card h3 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #2ecc71;
+            margin-bottom: 20px;
+        }
+        .keto-card p {
+            color: #bbb;
+            line-height: 1.9;
+            font-size: 16px;
+        }
+        .keto-principles {
+            list-style: none;
+            padding: 0;
+            margin: 25px 0 0;
+        }
+        .keto-principles li {
+            color: #ccc;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .keto-principles li:last-child {
+            border-bottom: none;
+        }
+        .keto-principles li i {
+            color: #2ecc71;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .keto-overview-card {
+            background: linear-gradient(135deg, #0a2e1a, #1a3a2a);
+            border-radius: 16px;
+            padding: 35px;
+            text-align: center;
+            border: 1px solid rgba(46, 204, 113, 0.2);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .keto-overview-card .keto-icon {
+            font-size: 60px;
+            color: #2ecc71;
+            margin-bottom: 20px;
+        }
+        .keto-overview-card h4 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .keto-overview-card p {
+            color: #aaa;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        .keto-macros {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .keto-macro-item {
+            text-align: center;
+        }
+        .keto-macro-item .macro-value {
+            font-size: 28px;
+            font-weight: 900;
+            color: #2ecc71;
+        }
+        .keto-macro-item .macro-label {
+            font-size: 13px;
+            color: #aaa;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* Macronutrients Section */
+        .macro-card {
+            background: #1a1a2e;
+            border-radius: 16px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .macro-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        .macro-card .macro-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+        }
+        .macro-card h4 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .macro-card p {
+            color: #aaa;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        .macro-card.protein-card .macro-icon { background: rgba(231, 76, 60, 0.15); color: #e74c3c; }
+        .macro-card.protein-card { border-bottom: 3px solid #e74c3c; }
+        .macro-card.carbs-card .macro-icon { background: rgba(241, 196, 15, 0.15); color: #f1c40f; }
+        .macro-card.carbs-card { border-bottom: 3px solid #f1c40f; }
+        .macro-card.fats-card .macro-icon { background: rgba(52, 152, 219, 0.15); color: #3498db; }
+        .macro-card.fats-card { border-bottom: 3px solid #3498db; }
+        .macro-card.fiber-card .macro-icon { background: rgba(46, 204, 113, 0.15); color: #2ecc71; }
+        .macro-card.fiber-card { border-bottom: 3px solid #2ecc71; }
+
+        /* Tips Section */
+        .tips-section {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+        }
+        .tip-card {
+            background: #0f0f23;
+            border-radius: 16px;
+            padding: 30px 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: all 0.4s ease;
+            height: 100%;
+        }
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        .tip-card .tip-number {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            background: linear-gradient(135deg, #ff6b00, #ff9500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 900;
+            color: #fff;
+        }
+        .tip-card .tip-content h5 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .tip-card .tip-content p {
+            color: #aaa;
+            font-size: 15px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* Section padding */
+        .nutrition-section {
+            padding: 80px 0;
+        }
+
+        /* Background colors */
+        .bg-dark-1 {
+            background: #0f0f23;
+        }
+        .bg-dark-2 {
+            background: #1a1a2e;
+        }
+
+        /* Calorie plans row - 5 columns on large screens */
+        @media (min-width: 1200px) {
+            .calorie-plans-row .calorie-col {
+                flex: 0 0 20%;
+                max-width: 20%;
+            }
+        }
+        @media (max-width: 1199px) and (min-width: 768px) {
+            .calorie-plans-row .calorie-col {
+                flex: 0 0 33.333%;
+                max-width: 33.333%;
+                margin-bottom: 30px;
+            }
+        }
+        @media (max-width: 767px) {
+            .calorie-plans-row .calorie-col {
+                flex: 0 0 100%;
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+            .nutrition-banner h2 {
+                font-size: 32px;
+            }
+            .section-title h2 {
+                font-size: 28px;
+            }
+            .calorie-card .calorie-amount {
+                font-size: 40px;
+            }
+        }
+
+        /* Preloader styles */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0f0f23;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+        }
+
+        /* Navigation active state */
+        .nav-links.active-nav {
+            color: #ff6b00 !important;
+        }
+
+        /* ============================================
+           DETAILED MEAL PLAN STYLES
+           ============================================ */
+
+        /* Plan section header card */
+        .plan-header-card {
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+        .plan-header-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.08;
+            background: radial-gradient(circle at 30% 50%, currentColor 0%, transparent 70%);
+        }
+        .plan-header-card .plan-cal-number {
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        .plan-header-card .plan-cal-label {
+            font-size: 20px;
+            color: #ccc;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .plan-header-card .plan-cal-desc {
+            font-size: 16px;
+            color: #aaa;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Green plan */
+        .plan-header-green { background: linear-gradient(135deg, #0a2e1a, #1a3a2a); border: 2px solid rgba(46, 204, 113, 0.3); }
+        .plan-header-green .plan-cal-number { color: #2ecc71; }
+
+        /* Blue plan */
+        .plan-header-blue { background: linear-gradient(135deg, #0a1a2e, #1a2a3e); border: 2px solid rgba(52, 152, 219, 0.3); }
+        .plan-header-blue .plan-cal-number { color: #3498db; }
+
+        /* Orange plan */
+        .plan-header-orange { background: linear-gradient(135deg, #2e1a0a, #3a2a1a); border: 2px solid rgba(255, 107, 0, 0.3); }
+        .plan-header-orange .plan-cal-number { color: #ff6b00; }
+
+        /* Red plan */
+        .plan-header-red { background: linear-gradient(135deg, #2e0a0a, #3a1a1a); border: 2px solid rgba(231, 76, 60, 0.3); }
+        .plan-header-red .plan-cal-number { color: #e74c3c; }
+
+        /* Purple plan */
+        .plan-header-purple { background: linear-gradient(135deg, #1e0a2e, #2a1a3a); border: 2px solid rgba(155, 89, 182, 0.3); }
+        .plan-header-purple .plan-cal-number { color: #9b59b6; }
+
+        /* Tashkeela (variation) tabs */
+        .tashkeela-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #0f0f23;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .tashkeela-tab {
+            flex: 1;
+            padding: 16px 20px;
+            text-align: center;
+            background: transparent;
+            color: #aaa;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .tashkeela-tab:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.04);
+        }
+        .tashkeela-tab.active {
+            color: #fff;
+            background: rgba(255,255,255,0.08);
+        }
+        .tashkeela-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 20%;
+            width: 60%;
+            height: 3px;
+            border-radius: 3px 3px 0 0;
+        }
+        .tab-green .tashkeela-tab.active::after { background: #2ecc71; }
+        .tab-blue .tashkeela-tab.active::after { background: #3498db; }
+        .tab-orange .tashkeela-tab.active::after { background: #ff6b00; }
+        .tab-red .tashkeela-tab.active::after { background: #e74c3c; }
+        .tab-purple .tashkeela-tab.active::after { background: #9b59b6; }
+
+        .tab-green .tashkeela-tab.active { color: #2ecc71; }
+        .tab-blue .tashkeela-tab.active { color: #3498db; }
+        .tab-orange .tashkeela-tab.active { color: #ff6b00; }
+        .tab-red .tashkeela-tab.active { color: #e74c3c; }
+        .tab-purple .tashkeela-tab.active { color: #9b59b6; }
+
+        .tashkeela-content {
+            display: none;
+        }
+        .tashkeela-content.active {
+            display: block;
+        }
+
+        /* Total summary bar for each tashkeela */
+        .tashkeela-summary {
+            background: #0f0f23;
+            border-radius: 14px;
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .tashkeela-summary .total-cal {
+            font-size: 28px;
+            font-weight: 900;
+            color: #fff;
+        }
+        .tashkeela-summary .total-cal span {
+            font-size: 15px;
+            font-weight: 600;
+            color: #aaa;
+            margin-right: 6px;
+        }
+        .tashkeela-summary .macro-pills {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .macro-pill {
+            background: rgba(255,255,255,0.05);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ccc;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .macro-pill .pill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .pill-dot.protein { background: #e74c3c; }
+        .pill-dot.carbs { background: #f1c40f; }
+        .pill-dot.fats { background: #3498db; }
+
+        /* Meal card */
+        .meal-card {
+            background: #1a1a2e;
+            border-radius: 16px;
+            padding: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+        .meal-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            border-color: rgba(255,255,255,0.08);
+        }
+        .meal-card-header {
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .meal-card-header .meal-type {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .meal-type-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #fff;
+        }
+        .meal-type-icon.breakfast { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .meal-type-icon.lunch { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .meal-type-icon.snack { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        .meal-type-icon.dinner { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+
+        .meal-type-info h5 {
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
+            margin: 0 0 2px 0;
+        }
+        .meal-type-info span {
+            font-size: 13px;
+            color: #888;
+        }
+        .meal-cal-badge {
+            background: rgba(255,255,255,0.08);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 22px;
+            font-weight: 900;
+            color: #fff;
+        }
+        .meal-cal-badge small {
+            font-size: 13px;
+            font-weight: 500;
+            color: #aaa;
+            margin-right: 4px;
+        }
+        .meal-card-body {
+            padding: 0 25px 20px;
+        }
+        .meal-food-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ddd;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .meal-food-name i {
+            margin-left: 8px;
+            color: #ff6b00;
+        }
+
+        /* Food thumbnail image */
+        .meal-food-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid #333;
+            margin-bottom: 15px;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .meal-food-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(255, 107, 0, 0.3);
+            border-color: #ff6b00;
+        }
+
+        /* Macro bars */
+        .macro-bars {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .macro-bar-item {
+            flex: 1;
+            min-width: 100px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 12px;
+            padding: 14px 16px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .macro-bar-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 3px;
+        }
+        .macro-bar-item.protein::before { background: #e74c3c; }
+        .macro-bar-item.carbs::before { background: #f1c40f; }
+        .macro-bar-item.fats::before { background: #3498db; }
+
+        .macro-bar-item .macro-bar-value {
+            font-size: 20px;
+            font-weight: 900;
+            margin-bottom: 2px;
+        }
+        .macro-bar-item.protein .macro-bar-value { color: #e74c3c; }
+        .macro-bar-item.carbs .macro-bar-value { color: #f1c40f; }
+        .macro-bar-item.fats .macro-bar-value { color: #3498db; }
+
+        .macro-bar-item .macro-bar-label {
+            font-size: 12px;
+            color: #888;
+            font-weight: 600;
+        }
+        .macro-bar-item .macro-bar-unit {
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* Plan section divider */
+        .plan-divider {
+            height: 4px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            margin: 30px 0;
+            border-radius: 2px;
+        }
+
+        /* Back to top for plans */
+        .plan-nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #888;
+            font-size: 14px;
+            text-decoration: none;
+            transition: color 0.3s;
+            margin-top: 15px;
+        }
+        .plan-nav-link:hover {
+            color: #ff6b00;
+        }
+
+        /* Responsive */
+        @media (max-width: 767px) {
+            .plan-header-card .plan-cal-number {
+                font-size: 48px;
+            }
+            .tashkeela-summary {
+                flex-direction: column;
+                text-align: center;
+            }
+            .macro-bars {
+                flex-direction: column;
+            }
+            .meal-card-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .meal-card-header .meal-type {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .tashkeela-tab {
+                font-size: 14px;
+                padding: 12px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader Start -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="preloader_img_circle"></div>
+            <div class="preloader_img">
+                <img src="assets/images/preloader/fitness_preimg.gif" alt="fitness_preimg">
+            </div>
+        </div>
+    </div>
+    <!-- Preloader End -->
+
+    <div class="site_content">
+        <!-- Header Start -->
+        <header>
+            <nav style="background:#111;padding:15px 0;position:fixed;top:0;left:0;right:0;z-index:9999;border-bottom:1px solid #ff572233;direction:rtl;">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center" style="direction:rtl;gap:40px;">
+                        <a href="index.html" style="text-decoration:none;font-family:'Zen Dots',cursive;font-size:1.6rem;white-space:nowrap;">
+                            <span style="color:#ff5722;">MAKE ME</span> <span style="color:#fff;">FIT</span>
+                        </a>
+                        <div class="d-none d-lg-flex gap-3 align-items-center">
+                            <a href="index.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الرئيسية</a>
+                            <a href="muscles.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">العضلات</a>
+                            <a href="equipment.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الأجهزة</a>
+                            <a href="exercises.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">التمارين</a>
+                            <a href="nutrition.html" class="nav-link-item" style="color:#ff5722;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">التغذية</a>
+                            <a href="calculator.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">حاسبة السعرات</a>
+                            <a href="contact.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">تواصل معنا</a>
+                        </div>
+                        <button class="d-lg-none" style="background:none;border:1px solid #444;color:#fff;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:1.2rem;" onclick="document.getElementById('mobileNav').classList.toggle('show')">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                    <div id="mobileNav" class="d-lg-none" style="display:none;padding-top:15px;border-top:1px solid #333;margin-top:15px;">
+                        <a href="index.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">الرئيسية</a>
+                        <a href="muscles.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">العضلات</a>
+                        <a href="equipment.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">الأجهزة</a>
+                        <a href="exercises.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">التمارين</a>
+                        <a href="nutrition.html" style="display:block;color:#ff5722;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">التغذية</a>
+                        <a href="calculator.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">حاسبة السعرات</a>
+                        <a href="contact.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">تواصل معنا</a>
+                    </div>
+                </div>
+            </nav>
+            <div style="height:70px;"></div>
+        </header>
+        <!-- Header End -->
+        <style>
+            .nav-link-item:hover { color: #ff5722 !important; }
+            #mobileNav.show { display: block !important; }
+        </style>
+        <script>
+            document.getElementById('mobileNav')?.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') this.classList.remove('show');
+            });
+        </script>
+
+        <!-- Page Banner Start -->
+        <section class="nutrition-banner">
+            <div class="container">
+                <div class="breadcrumb-nav" data-aos="fade-down">
+                    <a href="index.html">الرئيسية</a> / <span class="active-link">التغذية</span>
+                </div>
+                <h2 data-aos="fade-up" data-aos-delay="200">خطط التغذية</h2>
+                <p style="color: #aaa; font-size: 18px; max-width: 600px; margin: 0 auto;" data-aos="fade-up" data-aos-delay="400">
+                    اكتشف خطط التغذية المناسبة لأهدافك الرياضية وحقق أفضل النتائج مع جداول وجبات مفصّلة
+                </p>
+            </div>
+        </section>
+        <!-- Page Banner End -->
+
+        <!-- ============================================================
+             SECTION 1: NUTRITION BASICS - أساسيات التغذية
+             ============================================================ -->
+        <section class="nutrition-section bg-dark-1" id="nutrition-basics">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>أساسيات التغذية الرياضية</h2>
+                    <p>التغذية بالرياضة هدفها الأساسي تطوير الأداء الرياضي وتحسين النتائج البدنية</p>
+                </div>
+
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-12" data-aos="fade-up" data-aos-delay="100">
+                        <div style="background: #1a1a2e; border-radius: 16px; padding: 35px; border-right: 5px solid #ff6b00;">
+                            <h3 style="font-size: 24px; font-weight: 800; color: #ff6b00; margin-bottom: 20px;">
+                                <i class="fas fa-utensils" style="margin-left: 10px;"></i> لماذا التغذية الرياضية مهمة؟
+                            </h3>
+                            <p style="color: #bbb; line-height: 2; font-size: 16px;">
+                                التغذية بالرياضة هدفها الأساسي تطوير الأداء الرياضي. النظام الغذائي المناسب يوفر الطاقة اللازمة للتمارين، يدعم بناء العضلات وإصلاحها، ويُسرّع عملية التعافي بعد المجهود البدني. بدون تغذية سليمة، لن تحقق أقصى استفادة من تمارينك مهما كانت شدتها. العناصر الغذائية الثلاثة الأساسية (الماكروز) هي: البروتين والكربوهيدرات والدهون، وكل منها يلعب دوراً حيوياً في أدائك الرياضي وصحتك العامة.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Protein -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="macro-card protein-card">
+                            <div class="macro-icon">
+                                <i class="fas fa-drumstick-bite"></i>
+                            </div>
+                            <h4>البروتين</h4>
+                            <p>
+                                العنصر الأساسي لبناء وإصلاح العضلات. يساعد على الشعور بالشبع ويحافظ على الكتلة العضلية أثناء فقدان الوزن. يُنصح بتناول 1.6-2.2 جرام لكل كيلو من وزن الجسم يومياً. المصادر: صدور الدجاج، البيض، الأسماك، اللحوم الحمراء، البقوليات.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Carbohydrates -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="macro-card carbs-card">
+                            <div class="macro-icon">
+                                <i class="fas fa-bread-slice"></i>
+                            </div>
+                            <h4>الكربوهيدرات</h4>
+                            <p>
+                                المصدر الرئيسي للطاقة في الجسم. تُغذي التمارين الرياضية وتساعد على التعافي. اختر الكربوهيدرات المعقدة مثل الشوفان والأرز البني والبطاطا الحلوة للحصول على طاقة مستدامة. تجنب السكريات البسيطة قدر الإمكان.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Fats -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="macro-card fats-card">
+                            <div class="macro-icon">
+                                <i class="fas fa-oil-can"></i>
+                            </div>
+                            <h4>الدهون</h4>
+                            <p>
+                                ضرورية لإنتاج الهرمونات وامتصاص الفيتامينات. ركّز على الدهون الصحية مثل زيت الزيتون والأفوكادو والمكسرات وأحماض أوميغا-3 الموجودة في الأسماك الدهنية. الدهون تشكل 20-35% من السعرات اليومية.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             SECTION 2: KETO DIET - برنامج الكيتو
+             ============================================================ -->
+        <section class="nutrition-section keto-section" id="keto-diet">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>جدول برنامج الكيتو</h2>
+                    <p>نظام غذائي منخفض الكربوهيدرات وعالي الدهون لحرق الدهون بكفاءة</p>
+                </div>
+
+                <div class="row align-items-stretch g-4">
+                    <div class="col-lg-7" data-aos="fade-left" data-aos-delay="100">
+                        <div class="keto-card h-100">
+                            <h3><i class="fas fa-fire-alt" style="margin-left: 10px;"></i> ما هو نظام الكيتو؟</h3>
+                            <p>
+                                نظام الكيتو هو نظام غذائي يعتمد على تقليل تناول الكربوهيدرات بشكل كبير وزيادة تناول الدهون الصحية، مما يدفع الجسم للدخول في حالة تسمى "الكيتوسيس" حيث يعتمد الجسم على حرق الدهون كمصدر رئيسي للطاقة بدلاً من الكربوهيدرات.
+                            </p>
+                            <h4 style="color: #fff; font-size: 20px; font-weight: 700; margin-top: 30px; margin-bottom: 15px;">
+                                <i class="fas fa-list-check" style="color: #2ecc71; margin-left: 10px;"></i> المبادئ الأساسية
+                            </h4>
+                            <ul class="keto-principles">
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    تقليل الكربوهيدرات إلى أقل من 50 جرام يومياً
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    الاعتماد على الدهون الصحية كمصدر أساسي للطاقة (70-80% من السعرات)
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    تناول البروتين بكمية معتدلة (20-25% من السعرات)
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    تجنب السكريات والحبوب والفواكه عالية السكر
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    الإكثار من الخضروات الورقية منخفضة الكربوهيدرات
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    شرب كميات كافية من الماء والحفاظ على مستوى الأملاح
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-5" data-aos="fade-right" data-aos-delay="200">
+                        <div class="keto-overview-card">
+                            <div class="keto-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h4>نظرة عامة على الكيتو</h4>
+                            <p>
+                                يساعد نظام الكيتو على حرق الدهون بسرعة، تحسين مستويات الطاقة والتركيز الذهني، وتقليل الشعور بالجوع بفضل الشبع الذي توفره الدهون الصحية.
+                            </p>
+                            <div class="keto-macros">
+                                <div class="keto-macro-item">
+                                    <div class="macro-value">70%</div>
+                                    <span class="macro-label">دهون</span>
+                                </div>
+                                <div class="keto-macro-item">
+                                    <div class="macro-value">25%</div>
+                                    <span class="macro-label">بروتين</span>
+                                </div>
+                                <div class="keto-macro-item">
+                                    <div class="macro-value">5%</div>
+                                    <span class="macro-label">كربوهيدرات</span>
+                                </div>
+                            </div>
+
+                            <!-- 7-Day Keto Schedule -->
+                            <h4 style="margin-top:30px;color:#fff;font-weight:800;"><i class="fas fa-calendar-week" style="color:#4caf50;margin-left:8px;"></i> جدول كيتو لمدة 7 أيام</h4>
+                            <div class="table-responsive" style="margin-top:15px;">
+                                <table style="width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;">
+                                    <thead>
+                                        <tr>
+                                            <th style="background:#4caf50;color:#fff;padding:14px 16px;font-weight:700;text-align:center;font-size:1rem;">اليوم</th>
+                                            <th style="background:#4caf50;color:#fff;padding:14px 16px;font-weight:700;text-align:center;font-size:1rem;"><i class="fas fa-coffee" style="margin-left:5px;"></i> فطور</th>
+                                            <th style="background:#4caf50;color:#fff;padding:14px 16px;font-weight:700;text-align:center;font-size:1rem;"><i class="fas fa-utensils" style="margin-left:5px;"></i> غداء</th>
+                                            <th style="background:#4caf50;color:#fff;padding:14px 16px;font-weight:700;text-align:center;font-size:1rem;"><i class="fas fa-moon" style="margin-left:5px;"></i> عشاء</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="background:#1a1a1a;color:#4caf50;padding:12px;text-align:center;font-weight:700;border-bottom:1px solid #333;">السبت</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">بيض مخفوق + سلطة خضار</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">دجاج مشوي + صوص ليمون + سلطة</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">علبة زبادي</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background:#1a1a1a;color:#4caf50;padding:12px;text-align:center;font-weight:700;border-bottom:1px solid #333;">الأحد</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">بيض مع أفوكادو</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">سلطة متبلة بزيت زيتون مع صدر دجاج</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">سلطة خضار + تونة</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background:#1a1a1a;color:#4caf50;padding:12px;text-align:center;font-weight:700;border-bottom:1px solid #333;">الاثنين</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">شكشوكة جبن</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">سمك مشوي أو مقلي + سلطة خضار</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">زبادي يوناني + مكسرات</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background:#1a1a1a;color:#4caf50;padding:12px;text-align:center;font-weight:700;border-bottom:1px solid #333;">الثلاثاء</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">بيض مسلوق + شرائح خيار</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">شريحة لحم + سلطة خضار</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">سلطة خضار + تونة</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background:#1a1a1a;color:#4caf50;padding:12px;text-align:center;font-weight:700;border-bottom:1px solid #333;">الأربعاء</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">بيض مخفوق + جبن</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">دجاج مشوي + سلطة خضار</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">زبادي يوناني + مكسرات</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background:#1a1a1a;color:#4caf50;padding:12px;text-align:center;font-weight:700;border-bottom:1px solid #333;">الخميس</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">شكشوكة جبن</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">لحم مشوي + سلطة متبلة بزيت زيتون</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;border-bottom:1px solid #333;">بيض مسلوق + أفوكادو</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background:#1a1a1a;color:#4caf50;padding:12px;text-align:center;font-weight:700;">الجمعة</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;">بيض مسلوق + شرائح خيار</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;">سمك مشوي + سلطة خضار</td>
+                                            <td style="background:#111;color:#ccc;padding:12px;text-align:center;">زبادي + مكسرات</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p style="color:#888;font-size:0.85rem;margin-top:12px;text-align:center;">
+                                <i class="fas fa-info-circle" style="color:#4caf50;margin-left:5px;"></i>
+                                تأكد من شرب 2-3 لتر ماء يومياً وتجنب السكريات والنشويات تماماً خلال فترة الكيتو
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             SECTION 3: CALORIE PLANS OVERVIEW (Quick Navigation)
+             ============================================================ -->
+        <section class="nutrition-section bg-dark-1" id="calorie-plans">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>جداول السعرات الحرارية</h2>
+                    <p>اختر الجدول المناسب لاحتياجاتك اليومية من السعرات الحرارية حسب هدفك</p>
+                </div>
+
+                <div class="row calorie-plans-row">
+                    <!-- 1200 Calories -->
+                    <div class="col calorie-col" data-aos="fade-up" data-aos-delay="100">
+                        <div class="calorie-card card-green">
+                            <div class="calorie-amount">1200</div>
+                            <div class="calorie-unit">سعرة حرارية / يوم</div>
+                            <div class="calorie-label">جدول 1200 سعرة</div>
+                            <div class="calorie-desc">
+                                نظام غذائي منخفض السعرات مصمم لفقدان الوزن بشكل فعّال وآمن
+                            </div>
+                            <div class="calorie-suitable">
+                                <span><i class="fas fa-user-check"></i> مناسب لـ:</span>
+                                <strong>فقدان الوزن - حمية منخفضة السعرات</strong>
+                            </div>
+                            <a href="#plan-1200" class="btn-details">
+                                <i class="fas fa-eye"></i> عرض التفاصيل
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 1500 Calories -->
+                    <div class="col calorie-col" data-aos="fade-up" data-aos-delay="200">
+                        <div class="calorie-card card-blue">
+                            <div class="calorie-amount">1500</div>
+                            <div class="calorie-unit">سعرة حرارية / يوم</div>
+                            <div class="calorie-label">جدول 1500 سعرة</div>
+                            <div class="calorie-desc">
+                                نظام غذائي متوازن لفقدان الوزن بشكل تدريجي ومستدام
+                            </div>
+                            <div class="calorie-suitable">
+                                <span><i class="fas fa-user-check"></i> مناسب لـ:</span>
+                                <strong>فقدان الوزن المعتدل - نشاط بدني خفيف</strong>
+                            </div>
+                            <a href="#plan-1500" class="btn-details">
+                                <i class="fas fa-eye"></i> عرض التفاصيل
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 2000 Calories -->
+                    <div class="col calorie-col" data-aos="fade-up" data-aos-delay="300">
+                        <div class="calorie-card card-orange">
+                            <div class="calorie-amount">2000</div>
+                            <div class="calorie-unit">سعرة حرارية / يوم</div>
+                            <div class="calorie-label">جدول 2000 سعرة</div>
+                            <div class="calorie-desc">
+                                نظام غذائي للحفاظ على الوزن الحالي مع نشاط بدني معتدل
+                            </div>
+                            <div class="calorie-suitable">
+                                <span><i class="fas fa-user-check"></i> مناسب لـ:</span>
+                                <strong>الحفاظ على الوزن - نشاط بدني معتدل</strong>
+                            </div>
+                            <a href="#plan-2000" class="btn-details">
+                                <i class="fas fa-eye"></i> عرض التفاصيل
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 2500 Calories -->
+                    <div class="col calorie-col" data-aos="fade-up" data-aos-delay="400">
+                        <div class="calorie-card card-red">
+                            <div class="calorie-amount">2500</div>
+                            <div class="calorie-unit">سعرة حرارية / يوم</div>
+                            <div class="calorie-label">جدول 2500 سعرة</div>
+                            <div class="calorie-desc">
+                                نظام غذائي لبناء العضلات ودعم التمارين عالية الكثافة
+                            </div>
+                            <div class="calorie-suitable">
+                                <span><i class="fas fa-user-check"></i> مناسب لـ:</span>
+                                <strong>بناء العضلات - نشاط بدني عالي</strong>
+                            </div>
+                            <a href="#plan-2500" class="btn-details">
+                                <i class="fas fa-eye"></i> عرض التفاصيل
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 3000 Calories -->
+                    <div class="col calorie-col" data-aos="fade-up" data-aos-delay="500">
+                        <div class="calorie-card card-purple">
+                            <div class="calorie-amount">3000</div>
+                            <div class="calorie-unit">سعرة حرارية / يوم</div>
+                            <div class="calorie-label">جدول 3000 سعرة</div>
+                            <div class="calorie-desc">
+                                نظام غذائي للتضخيم وزيادة الكتلة العضلية بشكل مكثف
+                            </div>
+                            <div class="calorie-suitable">
+                                <span><i class="fas fa-user-check"></i> مناسب لـ:</span>
+                                <strong>التضخيم - نشاط بدني عالي جداً</strong>
+                            </div>
+                            <a href="#plan-3000" class="btn-details">
+                                <i class="fas fa-eye"></i> عرض التفاصيل
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             PLAN 1: 1200 CALORIES - جدول 1200 سعرة
+             ============================================================ -->
+        <section class="nutrition-section bg-dark-2" id="plan-1200">
+            <div class="container">
+                <!-- Plan Header -->
+                <div class="plan-header-card plan-header-green" data-aos="fade-up">
+                    <div class="plan-cal-number">1200</div>
+                    <div class="plan-cal-label">سعرة حرارية يومياً</div>
+                    <div class="plan-cal-desc">نظام غذائي منخفض السعرات مصمم لفقدان الوزن بشكل فعّال وآمن. يتضمن تشكيلتين مختلفتين من الوجبات لتنويع نظامك الغذائي.</div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tashkeela-tabs tab-green" data-aos="fade-up" data-aos-delay="100">
+                    <button class="tashkeela-tab active" onclick="switchTab(this, 'plan1200-t1')">
+                        <i class="fas fa-utensils" style="margin-left: 6px;"></i> التشكيلة الأولى
+                    </button>
+                    <button class="tashkeela-tab" onclick="switchTab(this, 'plan1200-t2')">
+                        <i class="fas fa-utensils" style="margin-left: 6px;"></i> التشكيلة الثانية
+                    </button>
+                </div>
+
+                <!-- Tashkeela 1: 1248 سعرة -->
+                <div class="tashkeela-content active" id="plan1200-t1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tashkeela-summary">
+                        <div class="total-cal">1248 <span>سعرة حرارية</span></div>
+                        <div class="macro-pills">
+                            <div class="macro-pill"><span class="pill-dot protein"></span> بروتين: 104.14 جم</div>
+                            <div class="macro-pill"><span class="pill-dot carbs"></span> كربوهيدرات: 109.94 جم</div>
+                            <div class="macro-pill"><span class="pill-dot fats"></span> دهون: 44.42 جم</div>
+                        </div>
+                    </div>
+
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon breakfast"><i class="fas fa-sun"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الإفطار</h5>
+                                    <span>الوجبة الأولى</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">360 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-egg"></i> بيض مقلية مع خبز توست</div>
+                            <img src="assets/images/pdf/page_169_img_1.png" alt="بيض مقلية مع خبز توست" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">24.75</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">25.22</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">16.41</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon lunch"><i class="fas fa-utensils"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الغداء</h5>
+                                    <span>الوجبة الرئيسية</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">440 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-drumstick-bite"></i> صدور دجاج مشوية مع أرز وسلطة</div>
+                            <img src="assets/images/pdf/page_170_img_1.png" alt="صدور دجاج مشوية مع أرز وسلطة" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">50.99</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">41.36</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">6.80</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Snack -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon snack"><i class="fas fa-apple-alt"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>سناك قبل التمرين</h5>
+                                    <span>وجبة خفيفة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">80 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-apple-alt"></i> تفاح (حبة واحدة متوسطة)</div>
+                            <img src="assets/images/pdf/page_171_img_1.png" alt="تفاح" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">0.50</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">21.31</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">0.21</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon dinner"><i class="fas fa-moon"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>العشاء</h5>
+                                    <span>الوجبة الأخيرة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">367 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-cheese"></i> زبادي يوناني مع مكسرات وعسل</div>
+                            <img src="assets/images/pdf/page_172_img_1.png" alt="زبادي يوناني مع مكسرات وعسل" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">27.90</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">22.05</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">21.00</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tashkeela 2: 1224 سعرة -->
+                <div class="tashkeela-content" id="plan1200-t2">
+                    <div class="tashkeela-summary">
+                        <div class="total-cal">1224 <span>سعرة حرارية</span></div>
+                        <div class="macro-pills">
+                            <div class="macro-pill"><span class="pill-dot protein"></span> بروتين: 91.95 جم</div>
+                            <div class="macro-pill"><span class="pill-dot carbs"></span> كربوهيدرات: 162.84 جم</div>
+                            <div class="macro-pill"><span class="pill-dot fats"></span> دهون: 21.79 جم</div>
+                        </div>
+                    </div>
+
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon breakfast"><i class="fas fa-sun"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الإفطار</h5>
+                                    <span>الوجبة الأولى</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">342 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-bowl-food"></i> كورن فليكس مع حليب</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">8.33</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">67.27</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">5.54</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon lunch"><i class="fas fa-utensils"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الغداء</h5>
+                                    <span>الوجبة الرئيسية</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">561 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-drumstick-bite"></i> دجاج مع رز مسلوق وسلطة</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">66.79</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">49.73</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">8.88</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Snack -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon snack"><i class="fas fa-apple-alt"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>سناك</h5>
+                                    <span>وجبة خفيفة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">117 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-seedling"></i> فاكهة موسمية</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">1.33</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">30.34</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">0.37</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon dinner"><i class="fas fa-moon"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>العشاء</h5>
+                                    <span>الوجبة الأخيرة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">204 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-steak"></i> لحم غنم مشوي مع خضار</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">15.50</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">15.50</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">7.00</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#calorie-plans" class="plan-nav-link"><i class="fas fa-arrow-up"></i> العودة للجداول</a>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             PLAN 2: 1500 CALORIES - جدول 1500 سعرة
+             ============================================================ -->
+        <section class="nutrition-section bg-dark-1" id="plan-1500">
+            <div class="container">
+                <!-- Plan Header -->
+                <div class="plan-header-card plan-header-blue" data-aos="fade-up">
+                    <div class="plan-cal-number">1500</div>
+                    <div class="plan-cal-label">سعرة حرارية يومياً</div>
+                    <div class="plan-cal-desc">نظام غذائي متوازن لفقدان الوزن بشكل تدريجي ومستدام مع الحفاظ على الطاقة والنشاط البدني.</div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tashkeela-tabs tab-blue" data-aos="fade-up" data-aos-delay="100">
+                    <button class="tashkeela-tab active" onclick="switchTab(this, 'plan1500-t1')">
+                        <i class="fas fa-utensils" style="margin-left: 6px;"></i> التشكيلة الأولى
+                    </button>
+                    <button class="tashkeela-tab" onclick="switchTab(this, 'plan1500-t2')">
+                        <i class="fas fa-utensils" style="margin-left: 6px;"></i> التشكيلة الثانية
+                    </button>
+                </div>
+
+                <!-- Tashkeela 1: 1572 سعرة -->
+                <div class="tashkeela-content active" id="plan1500-t1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tashkeela-summary">
+                        <div class="total-cal">1572 <span>سعرة حرارية</span></div>
+                        <div class="macro-pills">
+                            <div class="macro-pill"><span class="pill-dot protein"></span> بروتين: 150.27 جم</div>
+                            <div class="macro-pill"><span class="pill-dot carbs"></span> كربوهيدرات: 159.37 جم</div>
+                            <div class="macro-pill"><span class="pill-dot fats"></span> دهون: 33.42 جم</div>
+                        </div>
+                    </div>
+
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon breakfast"><i class="fas fa-sun"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الإفطار</h5>
+                                    <span>الوجبة الأولى</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">366 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-cheese"></i> جبن أبيض مع خبز وخضار</div>
+                            <img src="assets/images/pdf/page_182_img_1.png" alt="جبن أبيض مع خبز وخضار" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">25.96</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">27.33</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">15.44</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon lunch"><i class="fas fa-utensils"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الغداء</h5>
+                                    <span>الوجبة الرئيسية</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">479 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-drumstick-bite"></i> دجاج منزوع الجلد مع أرز وسلطة</div>
+                            <img src="assets/images/pdf/page_183_img_1.png" alt="دجاج منزوع الجلد مع أرز وسلطة" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">51.81</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">48.73</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">7.77</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Snack -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon snack"><i class="fas fa-apple-alt"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>سناك قبل التمرين</h5>
+                                    <span>وجبة خفيفة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">80 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-apple-alt"></i> تفاح (حبة واحدة متوسطة)</div>
+                            <img src="assets/images/pdf/page_184_img_1.png" alt="تفاح" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">0.50</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">21.31</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">0.21</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon dinner"><i class="fas fa-moon"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>العشاء</h5>
+                                    <span>الوجبة الأخيرة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">646 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-bowl-food"></i> مكرونة بصدور الدجاج وصوص</div>
+                            <img src="assets/images/pdf/page_185_img_1.png" alt="مكرونة بصدور الدجاج وصوص" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">72.00</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">62.00</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">10.00</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tashkeela 2: 1465 سعرة -->
+                <div class="tashkeela-content" id="plan1500-t2">
+                    <div class="tashkeela-summary">
+                        <div class="total-cal">1465 <span>سعرة حرارية</span></div>
+                        <div class="macro-pills">
+                            <div class="macro-pill"><span class="pill-dot protein"></span> بروتين: 120.50 جم</div>
+                            <div class="macro-pill"><span class="pill-dot carbs"></span> كربوهيدرات: 168.30 جم</div>
+                            <div class="macro-pill"><span class="pill-dot fats"></span> دهون: 30.80 جم</div>
+                        </div>
+                    </div>
+
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon breakfast"><i class="fas fa-sun"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الإفطار</h5>
+                                    <span>الوجبة الأولى</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">248 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-bowl-food"></i> كورن فلكس مع حليب قليل الدسم</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">7.80</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">48.50</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">3.20</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon lunch"><i class="fas fa-utensils"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الغداء</h5>
+                                    <span>الوجبة الرئيسية</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">426 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-steak"></i> لحم غنم مع رز مسلوق وسلطة</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">38.20</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">45.80</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">10.60</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Snack -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon snack"><i class="fas fa-apple-alt"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>سناك</h5>
+                                    <span>وجبة خفيفة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">145 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-seedling"></i> موز وعصير طبيعي</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">2.50</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">34.00</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">0.50</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon dinner"><i class="fas fa-moon"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>العشاء</h5>
+                                    <span>الوجبة الأخيرة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">646 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-bowl-food"></i> باستا بالدجاج وصوص طماطم</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">72.00</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">40.00</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">16.50</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#calorie-plans" class="plan-nav-link"><i class="fas fa-arrow-up"></i> العودة للجداول</a>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             PLAN 3: 2000 CALORIES - جدول 2000 سعرة
+             ============================================================ -->
+        <section class="nutrition-section bg-dark-2" id="plan-2000">
+            <div class="container">
+                <!-- Plan Header -->
+                <div class="plan-header-card plan-header-orange" data-aos="fade-up">
+                    <div class="plan-cal-number">2000</div>
+                    <div class="plan-cal-label">سعرة حرارية يومياً</div>
+                    <div class="plan-cal-desc">نظام غذائي للحفاظ على الوزن الحالي مع دعم النشاط البدني المعتدل وبناء العضلات بشكل تدريجي.</div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tashkeela-tabs tab-orange" data-aos="fade-up" data-aos-delay="100">
+                    <button class="tashkeela-tab active" onclick="switchTab(this, 'plan2000-t1')">
+                        <i class="fas fa-utensils" style="margin-left: 6px;"></i> التشكيلة الأولى
+                    </button>
+                    <button class="tashkeela-tab" onclick="switchTab(this, 'plan2000-t2')">
+                        <i class="fas fa-utensils" style="margin-left: 6px;"></i> التشكيلة الثانية
+                    </button>
+                </div>
+
+                <!-- Tashkeela 1: 2049 سعرة -->
+                <div class="tashkeela-content active" id="plan2000-t1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tashkeela-summary">
+                        <div class="total-cal">2049 <span>سعرة حرارية</span></div>
+                        <div class="macro-pills">
+                            <div class="macro-pill"><span class="pill-dot protein"></span> بروتين: 147.76 جم</div>
+                            <div class="macro-pill"><span class="pill-dot carbs"></span> كربوهيدرات: 227.87 جم</div>
+                            <div class="macro-pill"><span class="pill-dot fats"></span> دهون: 59.29 جم</div>
+                        </div>
+                    </div>
+
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon breakfast"><i class="fas fa-sun"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الإفطار</h5>
+                                    <span>الوجبة الأولى</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">557 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-egg"></i> بيض مقلية مع خبز توست وجبن وخضار</div>
+                            <img src="assets/images/pdf/page_195_img_1.png" alt="بيض مقلية مع خبز توست وجبن وخضار" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">38.49</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">48.35</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">22.44</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon lunch"><i class="fas fa-utensils"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الغداء</h5>
+                                    <span>الوجبة الرئيسية</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">757 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-drumstick-bite"></i> صدر دجاج مشوي مع مكرونة وسلطة</div>
+                            <img src="assets/images/pdf/page_196_img_1.png" alt="صدر دجاج مشوي مع مكرونة وسلطة" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">76.27</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">87.21</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">10.64</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Snack -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon snack"><i class="fas fa-apple-alt"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>سناك</h5>
+                                    <span>وجبة خفيفة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">145 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-seedling"></i> موز (حبة واحدة كبيرة)</div>
+                            <img src="assets/images/pdf/page_197_img_1.png" alt="موز" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">1.80</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">34.31</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">0.50</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon dinner"><i class="fas fa-moon"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>العشاء</h5>
+                                    <span>الوجبة الأخيرة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">590 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-hamburger"></i> ساندويتش دجاج صب واي + بطاطس مشوي</div>
+                            <img src="assets/images/pdf/page_198_img_1.png" alt="ساندويتش دجاج صب واي + بطاطس مشوي" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">31.20</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">58.00</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">25.71</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tashkeela 2: 1988 سعرة -->
+                <div class="tashkeela-content" id="plan2000-t2">
+                    <div class="tashkeela-summary">
+                        <div class="total-cal">1988 <span>سعرة حرارية</span></div>
+                        <div class="macro-pills">
+                            <div class="macro-pill"><span class="pill-dot protein"></span> بروتين: 142.30 جم</div>
+                            <div class="macro-pill"><span class="pill-dot carbs"></span> كربوهيدرات: 210.50 جم</div>
+                            <div class="macro-pill"><span class="pill-dot fats"></span> دهون: 62.40 جم</div>
+                        </div>
+                    </div>
+
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon breakfast"><i class="fas fa-sun"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الإفطار</h5>
+                                    <span>الوجبة الأولى</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">554 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-egg"></i> شكشوكة بالبيض والطماطم مع خبز</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">28.50</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">52.30</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">25.20</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon lunch"><i class="fas fa-utensils"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الغداء</h5>
+                                    <span>الوجبة الرئيسية</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">757 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-steak"></i> لحم غنم مع أرز بسمتي وسلطة خضراء</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">55.80</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">78.50</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">22.10</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Snack -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon snack"><i class="fas fa-apple-alt"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>سناك</h5>
+                                    <span>وجبة خفيفة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">254 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-seedling"></i> فاكهة مشكلة ومكسرات</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">5.50</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">38.20</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">9.60</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon dinner"><i class="fas fa-moon"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>العشاء</h5>
+                                    <span>الوجبة الأخيرة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">421 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-steak"></i> لحم مشوي مع سلطة وخبز</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">52.50</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">41.50</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">5.50</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#calorie-plans" class="plan-nav-link"><i class="fas fa-arrow-up"></i> العودة للجداول</a>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             PLAN 4: 2500 CALORIES - جدول 2500 سعرة
+             ============================================================ -->
+        <section class="nutrition-section bg-dark-1" id="plan-2500">
+            <div class="container">
+                <!-- Plan Header -->
+                <div class="plan-header-card plan-header-red" data-aos="fade-up">
+                    <div class="plan-cal-number">2500</div>
+                    <div class="plan-cal-label">سعرة حرارية يومياً</div>
+                    <div class="plan-cal-desc">نظام غذائي لبناء العضلات ودعم التمارين عالية الكثافة مع زيادة تدريجية في الكتلة العضلية.</div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tashkeela-tabs tab-red" data-aos="fade-up" data-aos-delay="100">
+                    <button class="tashkeela-tab active" onclick="switchTab(this, 'plan2500-t1')">
+                        <i class="fas fa-utensils" style="margin-left: 6px;"></i> التشكيلة الأولى
+                    </button>
+                    <button class="tashkeela-tab" onclick="switchTab(this, 'plan2500-t2')">
+                        <i class="fas fa-utensils" style="margin-left: 6px;"></i> التشكيلة الثانية
+                    </button>
+                </div>
+
+                <!-- Tashkeela 1: 2420 سعرة -->
+                <div class="tashkeela-content active" id="plan2500-t1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tashkeela-summary">
+                        <div class="total-cal">2420 <span>سعرة حرارية</span></div>
+                        <div class="macro-pills">
+                            <div class="macro-pill"><span class="pill-dot protein"></span> بروتين: 185.49 جم</div>
+                            <div class="macro-pill"><span class="pill-dot carbs"></span> كربوهيدرات: 258.60 جم</div>
+                            <div class="macro-pill"><span class="pill-dot fats"></span> دهون: 68.30 جم</div>
+                        </div>
+                    </div>
+
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon breakfast"><i class="fas fa-sun"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الإفطار</h5>
+                                    <span>الوجبة الأولى</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">647 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-egg"></i> بيض مقلية مع جبن وخبز وعصير برتقال</div>
+                            <img src="assets/images/pdf/page_208_img_1.png" alt="بيض مقلية مع جبن وخبز وعصير برتقال" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">42.49</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">55.30</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">28.50</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon lunch"><i class="fas fa-utensils"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الغداء</h5>
+                                    <span>الوجبة الرئيسية</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">822 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-drumstick-bite"></i> دجاج منزوع الجلد مع أرز كبير وسلطة ولبن</div>
+                            <img src="assets/images/pdf/page_209_img_1.png" alt="دجاج منزوع الجلد مع أرز كبير وسلطة ولبن" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">72.00</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">96.30</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">14.80</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Snack -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon snack"><i class="fas fa-apple-alt"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>سناك</h5>
+                                    <span>وجبة خفيفة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">304 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-seedling"></i> موز ومكسرات مشكلة (لوز وجوز)</div>
+                            <img src="assets/images/pdf/page_210_img_1.png" alt="موز ومكسرات مشكلة" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">8.00</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">45.00</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">15.00</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon dinner"><i class="fas fa-moon"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>العشاء</h5>
+                                    <span>الوجبة الأخيرة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">646 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-bowl-food"></i> باستا بالدجاج المشوي وصوص كريمي</div>
+                            <img src="assets/images/pdf/page_211_img_1.png" alt="باستا بالدجاج المشوي وصوص كريمي" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">63.00</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">62.00</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">10.00</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tashkeela 2 -->
+                <div class="tashkeela-content" id="plan2500-t2">
+                    <div class="tashkeela-summary">
+                        <div class="total-cal">2480 <span>سعرة حرارية</span></div>
+                        <div class="macro-pills">
+                            <div class="macro-pill"><span class="pill-dot protein"></span> بروتين: 178.60 جم</div>
+                            <div class="macro-pill"><span class="pill-dot carbs"></span> كربوهيدرات: 265.40 جم</div>
+                            <div class="macro-pill"><span class="pill-dot fats"></span> دهون: 72.50 جم</div>
+                        </div>
+                    </div>
+
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon breakfast"><i class="fas fa-sun"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الإفطار</h5>
+                                    <span>الوجبة الأولى</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">620 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-egg"></i> شكشوكة بالبيض مع خبز وجبن أبيض وزيتون</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">35.80</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">58.60</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">28.30</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon lunch"><i class="fas fa-utensils"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الغداء</h5>
+                                    <span>الوجبة الرئيسية</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">860 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-steak"></i> لحم غنم مع أرز بسمتي كبير وسلطة تبولة</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">62.30</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">88.50</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">24.70</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Snack -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon snack"><i class="fas fa-apple-alt"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>سناك</h5>
+                                    <span>وجبة خفيفة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">350 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-seedling"></i> سموذي بروتين مع موز وزبدة فول سوداني</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">28.00</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">38.30</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">10.50</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon dinner"><i class="fas fa-moon"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>العشاء</h5>
+                                    <span>الوجبة الأخيرة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">650 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-fish"></i> سمك مشوي مع أرز وخضار مشكلة</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">52.50</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">80.00</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">9.00</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#calorie-plans" class="plan-nav-link"><i class="fas fa-arrow-up"></i> العودة للجداول</a>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             PLAN 5: 3000 CALORIES - جدول 3000 سعرة
+             ============================================================ -->
+        <section class="nutrition-section bg-dark-2" id="plan-3000">
+            <div class="container">
+                <!-- Plan Header -->
+                <div class="plan-header-card plan-header-purple" data-aos="fade-up">
+                    <div class="plan-cal-number">3000</div>
+                    <div class="plan-cal-label">سعرة حرارية يومياً</div>
+                    <div class="plan-cal-desc">نظام غذائي للتضخيم وزيادة الكتلة العضلية بشكل مكثف. مثالي للرياضيين ذوي النشاط البدني العالي جداً.</div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tashkeela-tabs tab-purple" data-aos="fade-up" data-aos-delay="100">
+                    <button class="tashkeela-tab active" onclick="switchTab(this, 'plan3000-t1')">
+                        <i class="fas fa-utensils" style="margin-left: 6px;"></i> التشكيلة الأولى
+                    </button>
+                    <button class="tashkeela-tab" onclick="switchTab(this, 'plan3000-t2')">
+                        <i class="fas fa-utensils" style="margin-left: 6px;"></i> التشكيلة الثانية
+                    </button>
+                </div>
+
+                <!-- Tashkeela 1: 3056 سعرة -->
+                <div class="tashkeela-content active" id="plan3000-t1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tashkeela-summary">
+                        <div class="total-cal">3056 <span>سعرة حرارية</span></div>
+                        <div class="macro-pills">
+                            <div class="macro-pill"><span class="pill-dot protein"></span> بروتين: 211.56 جم</div>
+                            <div class="macro-pill"><span class="pill-dot carbs"></span> كربوهيدرات: 340.80 جم</div>
+                            <div class="macro-pill"><span class="pill-dot fats"></span> دهون: 82.50 جم</div>
+                        </div>
+                    </div>
+
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon breakfast"><i class="fas fa-sun"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الإفطار</h5>
+                                    <span>الوجبة الأولى</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">623 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-steak"></i> كبدة مقلية مع خبز عربي وسلطة طحينية</div>
+                            <img src="assets/images/pdf/page_221_img_1.png" alt="كبدة مقلية مع خبز عربي وسلطة طحينية" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">53.65</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">48.50</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">22.80</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon lunch"><i class="fas fa-utensils"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الغداء</h5>
+                                    <span>الوجبة الرئيسية</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">1172 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-steak"></i> لحم غنم (حصة كبيرة) مع أرز بسمتي كبير وسلطة ولبن</div>
+                            <img src="assets/images/pdf/page_222_img_1.png" alt="لحم غنم مع أرز بسمتي كبير وسلطة ولبن" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">76.81</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">128.30</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">34.70</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Snack -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon snack"><i class="fas fa-apple-alt"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>سناك</h5>
+                                    <span>وجبة خفيفة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">304 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-seedling"></i> موز ومكسرات مشكلة (لوز وجوز وكاجو)</div>
+                            <img src="assets/images/pdf/page_223_img_1.png" alt="موز ومكسرات مشكلة" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">8.00</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">45.00</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">15.00</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon dinner"><i class="fas fa-moon"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>العشاء</h5>
+                                    <span>الوجبة الأخيرة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">957 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-bowl-food"></i> مكرونة بالدجاج المشوي وصوص كريمي وخبز ثوم</div>
+                            <img src="assets/images/pdf/page_224_img_1.png" alt="مكرونة بالدجاج المشوي وصوص كريمي وخبز ثوم" class="meal-food-img">
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">73.10</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">119.00</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">10.00</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tashkeela 2 -->
+                <div class="tashkeela-content" id="plan3000-t2">
+                    <div class="tashkeela-summary">
+                        <div class="total-cal">3010 <span>سعرة حرارية</span></div>
+                        <div class="macro-pills">
+                            <div class="macro-pill"><span class="pill-dot protein"></span> بروتين: 205.40 جم</div>
+                            <div class="macro-pill"><span class="pill-dot carbs"></span> كربوهيدرات: 335.60 جم</div>
+                            <div class="macro-pill"><span class="pill-dot fats"></span> دهون: 85.20 جم</div>
+                        </div>
+                    </div>
+
+                    <!-- Breakfast -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon breakfast"><i class="fas fa-sun"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الإفطار</h5>
+                                    <span>الوجبة الأولى</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">680 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-egg"></i> فول مدمس مع بيض مسلوق وخبز وجبن وزيت زيتون</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">38.50</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">62.80</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">28.50</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon lunch"><i class="fas fa-utensils"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>الغداء</h5>
+                                    <span>الوجبة الرئيسية</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">1150 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-drumstick-bite"></i> دجاج مشوي (نصف دجاجة) مع أرز كبير ومرق وسلطة</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">82.40</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">120.30</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">32.50</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Snack -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon snack"><i class="fas fa-apple-alt"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>سناك</h5>
+                                    <span>وجبة خفيفة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">380 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-blender"></i> شيك بروتين مع موز وشوفان وحليب</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">32.00</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">48.50</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">8.20</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-card">
+                        <div class="meal-card-header">
+                            <div class="meal-type">
+                                <div class="meal-type-icon dinner"><i class="fas fa-moon"></i></div>
+                                <div class="meal-type-info">
+                                    <h5>العشاء</h5>
+                                    <span>الوجبة الأخيرة</span>
+                                </div>
+                            </div>
+                            <div class="meal-cal-badge">800 <small>سعرة</small></div>
+                        </div>
+                        <div class="meal-card-body">
+                            <div class="meal-food-name"><i class="fas fa-hamburger"></i> برجر لحم مشوي مزدوج مع بطاطس وسلطة كول سلو</div>
+                            <div class="macro-bars">
+                                <div class="macro-bar-item protein">
+                                    <div class="macro-bar-value">52.50</div>
+                                    <div class="macro-bar-label">بروتين</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item carbs">
+                                    <div class="macro-bar-value">104.00</div>
+                                    <div class="macro-bar-label">كربوهيدرات</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                                <div class="macro-bar-item fats">
+                                    <div class="macro-bar-value">16.00</div>
+                                    <div class="macro-bar-label">دهون</div>
+                                    <div class="macro-bar-unit">جرام</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#calorie-plans" class="plan-nav-link"><i class="fas fa-arrow-up"></i> العودة للجداول</a>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             NUTRITION TIPS SECTION
+             ============================================================ -->
+        <section class="nutrition-section tips-section">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>نصائح غذائية مهمة</h2>
+                    <p>اتبع هذه النصائح اليومية لتحقيق أقصى استفادة من نظامك الغذائي</p>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Tip 1 -->
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="tip-card">
+                            <div class="tip-number">1</div>
+                            <div class="tip-content">
+                                <h5>اشرب كمية كافية من الماء</h5>
+                                <p>
+                                    الماء ضروري لجميع وظائف الجسم. اشرب 8-10 أكواب يومياً على الأقل، وزد الكمية أثناء التمارين الرياضية. الماء يساعد على حرق الدهون وتحسين الأداء الرياضي والتعافي بعد التمرين.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tip 2 -->
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="tip-card">
+                            <div class="tip-number">2</div>
+                            <div class="tip-content">
+                                <h5>تناول وجبات متوازنة</h5>
+                                <p>
+                                    احرص على أن تحتوي كل وجبة على مزيج من البروتين والكربوهيدرات والدهون الصحية. التوازن في الوجبات يضمن حصولك على جميع العناصر الغذائية اللازمة ويحافظ على مستوى الطاقة طوال اليوم.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tip 3 -->
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="tip-card">
+                            <div class="tip-number">3</div>
+                            <div class="tip-content">
+                                <h5>لا تتخطى وجبة الإفطار</h5>
+                                <p>
+                                    وجبة الإفطار تُنشّط عملية الأيض وتمنحك الطاقة للبدء بيومك. اختر إفطاراً غنياً بالبروتين مثل البيض والشوفان لتشعر بالشبع لفترة أطول وتتجنب الأكل المفرط لاحقاً.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tip 4 -->
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                        <div class="tip-card">
+                            <div class="tip-number">4</div>
+                            <div class="tip-content">
+                                <h5>تناول البروتين بعد التمرين</h5>
+                                <p>
+                                    تناول البروتين خلال 30-60 دقيقة بعد التمرين يُسرّع عملية بناء وإصلاح العضلات. يمكنك تناول مخفوق البروتين أو وجبة غنية بالبروتين مثل صدور الدجاج أو الأسماك لتحقيق أفضل نتائج.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marquee Section Start -->
+        <div class="gym_marqueer_text_sec reveal">
+            <div class="gym_marqueer_text_slider_list bg_orange orangeglow">
+                <div class="gym_marqueer_leftslide">
+                    <div class="marquee_content">
+                        <ul class="list-inline">
+                            <li><a href="#" class="color_white custom_cursor_whiteglow" style="font-family: 'Tajawal', sans-serif !important;">تغذية صحية</a></li>
+                            <li><a href="javascript:void(0);" class="color_white custom_cursor_whiteglow">*</a></li>
+                            <li><a href="#" class="color_white custom_cursor_whiteglow" style="font-family: 'Tajawal', sans-serif !important;">بناء العضلات</a></li>
+                            <li><a href="javascript:void(0);" class="color_white custom_cursor_whiteglow">*</a></li>
+                            <li><a href="#" class="color_white custom_cursor_whiteglow" style="font-family: 'Tajawal', sans-serif !important;">حياة أفضل</a></li>
+                            <li><a href="javascript:void(0);" class="color_white custom_cursor_whiteglow">*</a></li>
+                            <li><a href="#" class="color_white custom_cursor_whiteglow" style="font-family: 'Tajawal', sans-serif !important;">لياقة بدنية</a></li>
+                            <li><a href="javascript:void(0);" class="color_white custom_cursor_whiteglow">*</a></li>
+                        </ul>
+                        <ul class="list-inline">
+                            <li><a href="#" class="color_white custom_cursor_whiteglow" style="font-family: 'Tajawal', sans-serif !important;">تغذية صحية</a></li>
+                            <li><a href="javascript:void(0);" class="color_white custom_cursor_whiteglow">*</a></li>
+                            <li><a href="#" class="color_white custom_cursor_whiteglow" style="font-family: 'Tajawal', sans-serif !important;">بناء العضلات</a></li>
+                            <li><a href="javascript:void(0);" class="color_white custom_cursor_whiteglow">*</a></li>
+                            <li><a href="#" class="color_white custom_cursor_whiteglow" style="font-family: 'Tajawal', sans-serif !important;">حياة أفضل</a></li>
+                            <li><a href="javascript:void(0);" class="color_white custom_cursor_whiteglow">*</a></li>
+                            <li><a href="#" class="color_white custom_cursor_whiteglow" style="font-family: 'Tajawal', sans-serif !important;">لياقة بدنية</a></li>
+                            <li><a href="javascript:void(0);" class="color_white custom_cursor_whiteglow">*</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Marquee Section End -->
+
+        <!-- Footer Start -->
+        <footer>
+            <div class="footer_sec bg_black">
+                <div class="container">
+                    <div class="footer_area">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="footer_upper_big_text sec_padding">
+                                    <div class="reveal custom_lightSpeedInLeft">
+                                        <a href="contact.html" class="contact_hover_btn">
+                                            <svg viewBox="0 0 1300 128">
+                                                <symbol id="s-text">
+                                                    <text text-anchor="middle" x="50%" y="50%" dy=".35em" style="font-family: 'Tajawal', sans-serif;">تواصل معنا</text>
+                                                </symbol>
+                                                <use class="text" xlink:href="#s-text"></use>
+                                                <use class="text" xlink:href="#s-text"></use>
+                                                <use class="text" xlink:href="#s-text"></use>
+                                                <use class="text" xlink:href="#s-text"></use>
+                                                <use class="text" xlink:href="#s-text"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="footer_mid_area">
+                                    <div class="row align-items-end">
+                                        <div class="col-xl-4 col-lg-3 col-sm-6">
+                                            <div class="footer_logo_area">
+                                                <a href="javascript:void(0);" class="footer_logo reveal custom_zoom_in d-block">
+                                                    <span class="zen-dots-font" style="font-size: 28px; color: #ff6b00;">MAKE ME FIT</span>
+                                                </a>
+                                                <p class="line_height_30 fw_500 color_lightgray reveal custom_zoom_in">
+                                                    ميك مي فت - وجهتك الأولى للياقة البدنية والتغذية الصحية. نساعدك على تحقيق أهدافك الرياضية.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-lg-2 col-sm-6">
+                                            <div class="footer_quick_contact">
+                                                <h6 class="color_white reveal custom_lightSpeedInLeft">اتصل بنا</h6>
+                                                <div class="footer_contact">
+                                                    <a href="tel:+966501234567" class="line_height_30 fw_500 color_lightgray d-block triners_icons reveal custom_zoom_in">+966 50 123 4567</a>
+                                                    <a href="tel:+966559876543" class="line_height_30 fw_500 color_lightgray d-block triners_icons reveal custom_zoom_in">+966 55 987 6543</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                                            <div class="footer_gym_time">
+                                                <h6 class="color_white reveal custom_lightSpeedInLeft">ساعات العمل</h6>
+                                                <p class="line_height_30 fw_500 color_lightgray reveal custom_zoom_in">الأحد - الخميس: 05:00 ص - 11:00 م</p>
+                                                <p class="line_height_30 fw_500 color_lightgray reveal custom_zoom_in">الجمعة - السبت: 02:00 م - 10:00 م</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                                            <div class="footer_address pb-30">
+                                                <h6 class="color_white reveal custom_lightSpeedInLeft">موقعنا</h6>
+                                                <p class="line_height_30 fw_500 color_lightgray reveal custom_zoom_in">الرياض، المملكة العربية السعودية</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="footer_bottom_area">
+                                    <div class="row align-items-center">
+                                        <div class="col-sm-6">
+                                            <p class="line_height_24 fw_500 color_lightgray reveal custom_zoom_in">جميع الحقوق محفوظة 2026 &copy; MAKE ME FIT - ميك مي فت</p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <ul class="footer_social_icon">
+                                                <li class="reveal custom_zoom_in">
+                                                    <a href="https://www.facebook.com/" class="triners_icons" target="_blank">
+                                                        <i class="fab fa-facebook-f" style="color: #fff; font-size: 16px;"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="reveal custom_zoom_in">
+                                                    <a href="https://x.com/" class="triners_icons" target="_blank">
+                                                        <i class="fab fa-twitter" style="color: #fff; font-size: 16px;"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="reveal custom_zoom_in">
+                                                    <a href="https://www.instagram.com/" class="triners_icons" target="_blank">
+                                                        <i class="fab fa-instagram" style="color: #fff; font-size: 16px;"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="reveal custom_zoom_in">
+                                                    <a href="https://www.youtube.com/" class="triners_icons" target="_blank">
+                                                        <i class="fab fa-youtube" style="color: #fff; font-size: 16px;"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer End -->
+
+        <!-- Scroll-Top Start -->
+        <div class="scrolltop_area orangeglow">
+            <button id="scroll-top-btn">
+                <span class="scroll-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                            <path d="M0 0H24V24H0V0Z" fill="white"/>
+                        </mask>
+                        <g>
+                            <path d="M7 11L12 6L17 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M7 17L12 12L17 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                    </svg>
+                </span>
+                <span id="scroll-percentage"></span>
+            </button>
+        </div>
+        <!-- Scroll-Top End -->
+
+        <!-- Custom Mouse Cursor -->
+        <div class="megic-cursor">
+            <div class="megic-cursor-item"></div>
+        </div>
+    </div>
+
+    <!-- JS Here -->
+    <script src="assets/js/jquery-3.7.1.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/slick.min.js"></script>
+    <script src="assets/js/TweenMax.min.js"></script>
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/style.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 50 });
+    </script>
+
+    <!-- Tab Switching Script -->
+    <script>
+        function switchTab(clickedTab, contentId) {
+            // Find parent tabs container
+            var tabsContainer = clickedTab.parentElement;
+            // Remove active from all tabs in this group
+            var allTabs = tabsContainer.querySelectorAll('.tashkeela-tab');
+            allTabs.forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+            // Add active to clicked tab
+            clickedTab.classList.add('active');
+
+            // Find the parent section
+            var section = tabsContainer.closest('section');
+            // Hide all tashkeela-content in this section
+            var allContents = section.querySelectorAll('.tashkeela-content');
+            allContents.forEach(function(content) {
+                content.classList.remove('active');
+            });
+            // Show the target content
+            var targetContent = document.getElementById(contentId);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

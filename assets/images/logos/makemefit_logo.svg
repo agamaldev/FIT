@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" width="280" height="60">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff5722;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff7043;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <text x="10" y="38" font-family="'Zen Dots', cursive, Arial Black, sans-serif" font-weight="900" font-size="28" fill="url(#grad)" letter-spacing="2">MAKE ME</text>
+  <text x="195" y="38" font-family="'Zen Dots', cursive, Arial Black, sans-serif" font-weight="900" font-size="28" fill="#ffffff" letter-spacing="2">FIT</text>
+  <rect x="10" y="46" width="60" height="3" rx="1.5" fill="#ff5722"/>
+  <circle cx="268" cy="20" r="8" fill="none" stroke="#ff5722" stroke-width="2"/>
+  <line x1="262" y1="20" x2="274" y2="20" stroke="#ff5722" stroke-width="3" stroke-linecap="round"/>
+  <line x1="259" y1="20" x2="255" y2="16" stroke="#ff5722" stroke-width="2" stroke-linecap="round"/>
+  <line x1="259" y1="20" x2="255" y2="24" stroke="#ff5722" stroke-width="2" stroke-linecap="round"/>
+  <line x1="277" y1="20" x2="281" y2="16" stroke="#ff5722" stroke-width="2" stroke-linecap="round"/>
+  <line x1="277" y1="20" x2="281" y2="24" stroke="#ff5722" stroke-width="2" stroke-linecap="round"/>
+</svg>
