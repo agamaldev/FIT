@@ -1248,23 +1248,6 @@
             header.classList.toggle('open');
             content.classList.toggle('open');
         }
-         else if (url.includes('youtube.com/shorts/')) {
-                videoId = url.split('shorts/')[1].split('?')[0];
-            } else if (url.includes('youtube.com/watch')) {
-                videoId = url.split('v=')[1].split('&')[0];
-            }
-            if (videoId) {
-                document.getElementById('videoFrame').src = 'https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1&rel=0';
-                document.getElementById('videoModal').style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-                var link = document.getElementById('ytDirectLink');
-                if (link) { link.href = 'https://www.youtube.com/watch?v=' + videoId; link.style.display = 'inline-block'; }
-            }
-        }
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeVideoModal();
-        });
     </script>
 </body>
 </html>
