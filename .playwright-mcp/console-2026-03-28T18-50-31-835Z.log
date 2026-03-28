@@ -1,0 +1,15 @@
+[     236ms] ReferenceError: jQuery is not defined
+    at http://localhost:8080/assets/js/slick.min.js:1:152
+    at http://localhost:8080/assets/js/slick.min.js:1:160
+[     238ms] ReferenceError: jQuery is not defined
+    at http://localhost:8080/assets/js/plugins.js:400:1
+[     242ms] ReferenceError: $ is not defined
+    at http://localhost:8080/assets/js/style.js:2:1
+[     313ms] Unexpected token 'else'
+[   27382ms] ReferenceError: jQuery is not defined
+    at http://localhost:8080/assets/js/slick.min.js:1:152
+    at http://localhost:8080/assets/js/slick.min.js:1:160
+[   27388ms] ReferenceError: jQuery is not defined
+    at http://localhost:8080/assets/js/plugins.js:400:1
+[   27390ms] ReferenceError: $ is not defined
+    at http://localhost:8080/assets/js/style.js:2:1

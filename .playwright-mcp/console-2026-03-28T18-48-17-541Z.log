@@ -1,0 +1,13 @@
+[     787ms] ReferenceError: jQuery is not defined
+    at http://localhost:8080/assets/js/slick.min.js:1:152
+    at http://localhost:8080/assets/js/slick.min.js:1:160
+[     911ms] ReferenceError: jQuery is not defined
+    at http://localhost:8080/assets/js/plugins.js:400:1
+[     931ms] ReferenceError: $ is not defined
+    at http://localhost:8080/assets/js/style.js:2:1
+[     932ms] Unexpected token 'else'
+[   27812ms] ReferenceError: toggleDay is not defined
+    at HTMLDivElement.onclick (http://localhost:8080/workouts.html:137:95)
+    at eval (eval at evaluate (:301:30), <anonymous>:1:56)
+    at UtilityScript.evaluate (<anonymous>:303:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)

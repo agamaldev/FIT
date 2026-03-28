@@ -1,0 +1,7 @@
+[     403ms] ReferenceError: jQuery is not defined
+    at http://127.0.0.1:8080/assets/js/slick.min.js:1:152
+    at http://127.0.0.1:8080/assets/js/slick.min.js:1:160
+[     489ms] ReferenceError: jQuery is not defined
+    at http://127.0.0.1:8080/assets/js/plugins.js:400:1
+[     491ms] ReferenceError: $ is not defined
+    at http://127.0.0.1:8080/assets/js/style.js:2:1
