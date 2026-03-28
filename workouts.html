@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAKE ME FIT - جداول التمارين</title>
+    <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/animate_plugin.min.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/aos.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/media-query.css">
+    <style>
+        body,h1,h2,h3,h4,h5,h6,p,a,span,li,td,th,div{font-family:'Tajawal',sans-serif !important;}
+        .zen-dots-font{font-family:'Zen Dots',cursive !important;}
+        .nav-link-item:hover{color:#ff5722 !important;}
+        #mobileNav.show{display:block !important;}
+        .workout-tabs{display:flex;gap:10px;overflow-x:auto;padding:20px 0;-webkit-overflow-scrolling:touch;justify-content:center;flex-wrap:wrap;}
+        .tab-btn{background:#1a1a1a;border:2px solid #333;color:#ccc;padding:10px 24px;border-radius:30px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.95rem;font-weight:600;white-space:nowrap;transition:all 0.3s;}
+        .tab-btn:hover{border-color:#ff5722;color:#ff5722;}
+        .tab-btn.active{background:#ff5722;border-color:#ff5722;color:#fff;}
+        .tab-panel{display:none;}
+        .tab-panel.active{display:block;}
+        .day-header{background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:15px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;transition:all 0.3s;}
+        .day-header:hover{border-color:#ff5722;}
+        .day-header.open{border-color:#ff5722;background:#222;}
+        .day-content{display:none;padding:20px 0;}
+        .day-content.open{display:block;}
+        .exercise-card{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:20px;transition:all 0.3s;height:100%;margin-bottom:15px;}
+        .exercise-card:hover{border-color:#ff5722;}
+        .rest-card{background:linear-gradient(135deg,#1a1a1a,#111);border:2px solid #333;border-radius:12px;padding:40px;text-align:center;}
+        .schedule-table{width:100%;border-collapse:separate;border-spacing:8px;}
+        .schedule-table td{background:#1a1a1a;border-radius:8px;padding:15px 10px;text-align:center;color:#ccc;font-size:0.9rem;}
+        .schedule-table td.workout-day{border:1px solid #ff5722;color:#ff5722;}
+        .schedule-table td.rest-day{border:1px solid #333;color:#666;}
+        .schedule-table th{color:#ff5722;padding:10px;font-size:0.85rem;}
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="preloader_img_circle"></div>
+            <div class="preloader_img">
+                <img src="assets/images/preloader/fitness_preimg.gif" alt="fitness_preimg">
+            </div>
+        </div>
+    </div>
+
+    <div class="site_content">
+        <!-- Header -->
+        <header>
+            <nav style="background:#111;padding:15px 0;position:fixed;top:0;left:0;right:0;z-index:9999;border-bottom:1px solid #ff572233;direction:rtl;">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center" style="direction:rtl;gap:40px;">
+                        <a href="index.html" style="text-decoration:none;font-family:'Zen Dots',cursive;font-size:1.6rem;white-space:nowrap;">
+                            <span style="color:#ff5722;">MAKE ME</span> <span style="color:#fff;">FIT</span>
+                        </a>
+                        <div class="d-none d-lg-flex gap-3 align-items-center">
+                            <a href="index.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الرئيسية</a>
+                            <a href="warmup.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الإحماء</a>
+                            <a href="workouts.html" class="nav-link-item" style="color:#ff5722;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">التمارين</a>
+                            <a href="cardio.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الكارديو</a>
+                            <a href="nutrition.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">التغذية</a>
+                            <a href="calculator.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">حاسبة السعرات</a>
+                            <a href="contact.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-family:'Tajawal',sans-serif;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">تواصل معنا</a>
+                        </div>
+                        <button class="d-lg-none" style="background:none;border:1px solid #444;color:#fff;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:1.2rem;" onclick="document.getElementById('mobileNav').classList.toggle('show')">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                    <div id="mobileNav" class="d-lg-none" style="display:none;padding-top:15px;border-top:1px solid #333;margin-top:15px;">
+                        <a href="index.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">الرئيسية</a>
+                        <a href="warmup.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">الإحماء</a>
+                        <a href="workouts.html" style="display:block;color:#ff5722;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">التمارين</a>
+                        <a href="cardio.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">الكارديو</a>
+                        <a href="nutrition.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">التغذية</a>
+                        <a href="calculator.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">حاسبة السعرات</a>
+                        <a href="contact.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;">تواصل معنا</a>
+                    </div>
+                </div>
+            </nav>
+            <div style="height:70px;"></div>
+        </header>
+        <script>
+            document.getElementById('mobileNav')?.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') this.classList.remove('show');
+            });
+        </script>
+
+        <!-- Page Banner -->
+        <section style="background:linear-gradient(135deg,#1a0a00,#0a0a0a);padding:60px 0 40px;text-align:center;">
+            <div class="container">
+                <h1 style="color:#fff;font-size:2.5rem;font-weight:800;margin-bottom:10px;" data-aos="fade-up">جداول التمارين</h1>
+                <p style="color:#888;font-size:1.1rem;" data-aos="fade-up" data-aos-delay="200">اختر البرنامج المناسب لك وابدأ رحلتك</p>
+            </div>
+        </section>
+
+        <!-- Tabs Section -->
+        <section style="background:#0a0a0a;padding:40px 0 80px;">
+            <div class="container">
+                <div class="workout-tabs">
+                    <button class="tab-btn active" data-tab="tab-4day" onclick="switchTab('tab-4day')">تمرين 4 أيام</button>
+                    <button class="tab-btn" data-tab="tab-5day" onclick="switchTab('tab-5day')">تمرين 5 أيام</button>
+                    <button class="tab-btn" data-tab="tab-6day" onclick="switchTab('tab-6day')">تمرين 6 أيام</button>
+                    <button class="tab-btn" data-tab="tab-ppl" onclick="switchTab('tab-ppl')">Push Pull Legs</button>
+                    <button class="tab-btn" data-tab="tab-bulk" onclick="switchTab('tab-bulk')">تضخيم</button>
+                    <button class="tab-btn" data-tab="tab-glutes" onclick="switchTab('tab-glutes')">جلوتس</button>
+                    <button class="tab-btn" data-tab="tab-home" onclick="switchTab('tab-home')">تمرين منزلي</button>
+                </div>
+
+                <!-- TAB 1: 4-Day -->
+                <div id="tab-4day" class="tab-panel active">
+                    <div style="overflow-x:auto;margin-bottom:30px;">
+                        <table class="schedule-table">
+                            <tr>
+                                <th>اليوم 1</th><th>اليوم 2</th><th>اليوم 3</th><th>اليوم 4</th><th>اليوم 5</th><th>اليوم 6</th><th>اليوم 7</th>
+                            </tr>
+                            <tr>
+                                <td class="workout-day">الجسم العلوي<br>(صدر، كتف، تراي)</td>
+                                <td class="workout-day">الجسم السفلي<br>(أرجل)</td>
+                                <td class="rest-day">راحة</td>
+                                <td class="workout-day">الجسم العلوي<br>(ظهر، باي)</td>
+                                <td class="workout-day">الجسم السفلي<br>(أرجل)</td>
+                                <td class="rest-day">راحة</td>
+                                <td class="rest-day">راحة</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Day 1 -->
+                    <div class="day-header" data-day="4day-d1" onclick="toggleDay('4day-d1')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 1</span><span style="color:#fff;font-weight:600;">الجسم العلوي (صدر، كتف، تراي)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="4day-d1" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ضغط الصدر العلوي</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Incline Dumbbell Press</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtu.be/hciH2jeDXhs')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الدفع الصدر بالآلة</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Chest Press Machine</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtu.be/IlK0DxWs2Ug')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تفتيح الصدر</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Machine Fly</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtu.be/bomp27z-rXk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الدفع أرنولد</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Arnold Press</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtu.be/wY00Zs2SNb4')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الدفع تراي</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Push Downs</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtube.com/shorts/S3scWsLHenk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الرفرفة</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Lateral Raise</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtu.be/4oW78FD8YAs')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 2 -->
+                    <div class="day-header" data-day="4day-d2" onclick="toggleDay('4day-d2')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 2</span><span style="color:#fff;font-weight:600;">الجسم السفلي (أرجل)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="4day-d2" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد الفخذ</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Leg Extensions</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtube.com/shorts/tgVnKyJGTNA')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد فخذ خلفي</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Lying Leg Curls</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtube.com/shorts/YE_ET_5B73s')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سكوات</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Squats</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtube.com/shorts/KJjBIaOSGuM')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بطات بالمقعد</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Sitting Calf Raises</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtube.com/shorts/MrYoG4FlJIk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">رفع الورك</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Hip Thrust</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtu.be/kCdQo5PQ5Ds')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بلانك</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Plank</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtu.be/vUcc_2DnpqI')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 3 Rest -->
+                    <div class="day-header" data-day="4day-d3" onclick="toggleDay('4day-d3')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 3</span><span style="color:#fff;font-weight:600;">راحة</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="4day-d3" class="day-content">
+                        <div class="rest-card">
+                            <div style="font-size:3rem;margin-bottom:15px;">&#x1F4AA;</div>
+                            <h4 style="color:#fff;font-weight:800;">يوم راحة</h4>
+                            <p style="color:#888;font-size:1.1rem;line-height:1.8;">الراحة جزء من التمرين مو وقت ضايع<br>اليوم ريح عضلاتك وبكرا ترجع أقوى</p>
+                        </div>
+                    </div>
+
+                    <!-- Day 4 -->
+                    <div class="day-header" data-day="4day-d4" onclick="toggleDay('4day-d4')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 4</span><span style="color:#fff;font-weight:600;">الجسم العلوي (ظهر، باي)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="4day-d4" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">السحب العلوي</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Pull-Down</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtu.be/sbhjd9fvpKo')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">السحب الأرضي</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Seated Cable Row</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtu.be/5ZS33XfHnnE')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">العقلة</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Pull Up</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">قدر المستطاع</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtube.com/shorts/TBYynYiKyk8')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد الظهر</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Back Extension</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtu.be/Ue0SschQKOA')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">كيبل لف</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Cable Curl</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtu.be/nrUM_lsMxbg')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">لف الباي</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Bicep Curl</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtu.be/RFT0fRNNgdc')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 5 (same as Day 2) -->
+                    <div class="day-header" data-day="4day-d5" onclick="toggleDay('4day-d5')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 5</span><span style="color:#fff;font-weight:600;">الجسم السفلي (أرجل)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="4day-d5" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد الفخذ</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Leg Extensions</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtube.com/shorts/tgVnKyJGTNA')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد فخذ خلفي</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Lying Leg Curls</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtube.com/shorts/YE_ET_5B73s')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سكوات</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Squats</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtube.com/shorts/KJjBIaOSGuM')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بطات بالمقعد</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Sitting Calf Raises</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtube.com/shorts/MrYoG4FlJIk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">رفع الورك</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Hip Thrust</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtu.be/kCdQo5PQ5Ds')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="exercise-card">
+                                    <h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بلانك</h5>
+                                    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Plank</p>
+                                    <div style="display:flex;gap:15px;margin-bottom:15px;">
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span>
+                                        <span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span>
+                                    </div>
+                                    <button onclick="openVideoModal('https://youtu.be/vUcc_2DnpqI')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                                        <i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 6 Rest -->
+                    <div class="day-header" data-day="4day-d6" onclick="toggleDay('4day-d6')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 6</span><span style="color:#fff;font-weight:600;">راحة</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="4day-d6" class="day-content">
+                        <div class="rest-card">
+                            <div style="font-size:3rem;margin-bottom:15px;">&#x1F4AA;</div>
+                            <h4 style="color:#fff;font-weight:800;">يوم راحة</h4>
+                            <p style="color:#888;font-size:1.1rem;line-height:1.8;">الراحة جزء من التمرين مو وقت ضايع<br>اليوم ريح عضلاتك وبكرا ترجع أقوى</p>
+                        </div>
+                    </div>
+
+                    <!-- Day 7 Rest -->
+                    <div class="day-header" data-day="4day-d7" onclick="toggleDay('4day-d7')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 7</span><span style="color:#fff;font-weight:600;">راحة</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="4day-d7" class="day-content">
+                        <div class="rest-card">
+                            <div style="font-size:3rem;margin-bottom:15px;">&#x1F4AA;</div>
+                            <h4 style="color:#fff;font-weight:800;">يوم راحة</h4>
+                            <p style="color:#888;font-size:1.1rem;line-height:1.8;">الراحة جزء من التمرين مو وقت ضايع<br>اليوم ريح عضلاتك وبكرا ترجع أقوى</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- END TAB 1 -->
+
+                <!-- TAB 2: 5-Day -->
+                <div id="tab-5day" class="tab-panel">
+                    <div style="overflow-x:auto;margin-bottom:30px;">
+                        <table class="schedule-table">
+                            <tr>
+                                <th>اليوم 1</th><th>اليوم 2</th><th>اليوم 3</th><th>اليوم 4</th><th>اليوم 5</th><th>اليوم 6</th><th>اليوم 7</th>
+                            </tr>
+                            <tr>
+                                <td class="workout-day">الجسم العلوي<br>(صدر، كتف، تراي)</td>
+                                <td class="workout-day">الجسم السفلي<br>(أرجل)</td>
+                                <td class="workout-day">الجسم العلوي<br>(ظهر، باي)</td>
+                                <td class="workout-day">الجسم السفلي<br>(أرجل)</td>
+                                <td class="workout-day">الجسم السفلي<br>(أرجل)</td>
+                                <td class="rest-day">راحة</td>
+                                <td class="rest-day">راحة</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- 5day Day 1: Upper (chest, shoulder, tri) - same as 4day Day 1 -->
+                    <div class="day-header" data-day="5day-d1" onclick="toggleDay('5day-d1')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 1</span><span style="color:#fff;font-weight:600;">الجسم العلوي (صدر، كتف، تراي)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="5day-d1" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ضغط الصدر العلوي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Incline Dumbbell Press</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/hciH2jeDXhs')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الدفع الصدر بالآلة</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Chest Press Machine</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/IlK0DxWs2Ug')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تفتيح الصدر</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Machine Fly</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/bomp27z-rXk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الدفع أرنولد</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Arnold Press</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/wY00Zs2SNb4')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الدفع تراي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Push Downs</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/S3scWsLHenk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الرفرفة</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Lateral Raise</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/4oW78FD8YAs')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                        </div>
+                    </div>
+
+                    <!-- 5day Day 2: Lower -->
+                    <div class="day-header" data-day="5day-d2" onclick="toggleDay('5day-d2')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 2</span><span style="color:#fff;font-weight:600;">الجسم السفلي (أرجل)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="5day-d2" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد الفخذ</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Leg Extensions</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/tgVnKyJGTNA')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد فخذ خلفي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Lying Leg Curls</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/YE_ET_5B73s')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سكوات</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Squats</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/KJjBIaOSGuM')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بطات بالمقعد</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Sitting Calf Raises</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/MrYoG4FlJIk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">رفع الورك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Hip Thrust</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/kCdQo5PQ5Ds')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بلانك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Plank</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/vUcc_2DnpqI')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                        </div>
+                    </div>
+
+                    <!-- 5day Day 3: Upper (back, bi) -->
+                    <div class="day-header" data-day="5day-d3" onclick="toggleDay('5day-d3')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 3</span><span style="color:#fff;font-weight:600;">الجسم العلوي (ظهر، باي)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="5day-d3" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">السحب العلوي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Pull-Down</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/sbhjd9fvpKo')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">السحب الأرضي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Seated Cable Row</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/5ZS33XfHnnE')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">العقلة</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Pull Up</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">قدر المستطاع</span></div><button onclick="openVideoModal('https://youtube.com/shorts/TBYynYiKyk8')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد الظهر</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Back Extension</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/Ue0SschQKOA')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">كيبل لف</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Cable Curl</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/nrUM_lsMxbg')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">لف الباي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Bicep Curl</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/RFT0fRNNgdc')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                        </div>
+                    </div>
+
+                    <!-- 5day Day 4: Lower -->
+                    <div class="day-header" data-day="5day-d4" onclick="toggleDay('5day-d4')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 4</span><span style="color:#fff;font-weight:600;">الجسم السفلي (أرجل)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="5day-d4" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد الفخذ</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Leg Extensions</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/tgVnKyJGTNA')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد فخذ خلفي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Lying Leg Curls</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/YE_ET_5B73s')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سكوات</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Squats</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/KJjBIaOSGuM')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بطات بالمقعد</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Sitting Calf Raises</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/MrYoG4FlJIk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">رفع الورك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Hip Thrust</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/kCdQo5PQ5Ds')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بلانك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Plank</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/vUcc_2DnpqI')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                        </div>
+                    </div>
+
+                    <!-- 5day Day 5: Lower -->
+                    <div class="day-header" data-day="5day-d5" onclick="toggleDay('5day-d5')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 5</span><span style="color:#fff;font-weight:600;">الجسم السفلي (أرجل)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="5day-d5" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد الفخذ</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Leg Extensions</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/tgVnKyJGTNA')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد فخذ خلفي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Lying Leg Curls</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/YE_ET_5B73s')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سكوات</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Squats</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/KJjBIaOSGuM')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بطات بالمقعد</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Sitting Calf Raises</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/MrYoG4FlJIk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">رفع الورك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Hip Thrust</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/kCdQo5PQ5Ds')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بلانك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Plank</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/vUcc_2DnpqI')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                        </div>
+                    </div>
+
+                    <!-- 5day Day 6 & 7 Rest -->
+                    <div class="day-header" data-day="5day-d6" onclick="toggleDay('5day-d6')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 6</span><span style="color:#fff;font-weight:600;">راحة</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="5day-d6" class="day-content">
+                        <div class="rest-card"><div style="font-size:3rem;margin-bottom:15px;">&#x1F4AA;</div><h4 style="color:#fff;font-weight:800;">يوم راحة</h4><p style="color:#888;font-size:1.1rem;line-height:1.8;">الراحة جزء من التمرين مو وقت ضايع<br>اليوم ريح عضلاتك وبكرا ترجع أقوى</p></div>
+                    </div>
+                    <div class="day-header" data-day="5day-d7" onclick="toggleDay('5day-d7')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 7</span><span style="color:#fff;font-weight:600;">راحة</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="5day-d7" class="day-content">
+                        <div class="rest-card"><div style="font-size:3rem;margin-bottom:15px;">&#x1F4AA;</div><h4 style="color:#fff;font-weight:800;">يوم راحة</h4><p style="color:#888;font-size:1.1rem;line-height:1.8;">الراحة جزء من التمرين مو وقت ضايع<br>اليوم ريح عضلاتك وبكرا ترجع أقوى</p></div>
+                    </div>
+                </div>
+                <!-- END TAB 2 -->
+
+                <!-- TAB 3: 6-Day -->
+                <div id="tab-6day" class="tab-panel">
+                    <div style="overflow-x:auto;margin-bottom:30px;">
+                        <table class="schedule-table">
+                            <tr><th>اليوم 1</th><th>اليوم 2</th><th>اليوم 3</th><th>اليوم 4</th><th>اليوم 5</th><th>اليوم 6</th><th>اليوم 7</th></tr>
+                            <tr>
+                                <td class="workout-day">الجسم العلوي<br>(صدر، كتف، تراي)</td>
+                                <td class="workout-day">الجسم السفلي<br>(أرجل)</td>
+                                <td class="workout-day">الجسم العلوي<br>(ظهر، باي)</td>
+                                <td class="workout-day">الجسم السفلي<br>(أرجل)</td>
+                                <td class="workout-day">الجسم العلوي<br>(صدر، كتف، تراي)</td>
+                                <td class="workout-day">الجسم السفلي<br>(أرجل)</td>
+                                <td class="rest-day">راحة</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- 6day Day 1: Upper chest/shoulder/tri -->
+                    <div class="day-header" data-day="6day-d1" onclick="toggleDay('6day-d1')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 1</span><span style="color:#fff;font-weight:600;">الجسم العلوي (صدر، كتف، تراي)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="6day-d1" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ضغط الصدر العلوي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Incline Dumbbell Press</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/hciH2jeDXhs')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الدفع الصدر بالآلة</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Chest Press Machine</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/IlK0DxWs2Ug')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تفتيح الصدر</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Machine Fly</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/bomp27z-rXk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الدفع أرنولد</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Arnold Press</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/wY00Zs2SNb4')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الدفع تراي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Push Downs</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/S3scWsLHenk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الرفرفة</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Lateral Raise</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/4oW78FD8YAs')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                        </div>
+                    </div>
+
+                    <!-- 6day Day 2: Lower -->
+                    <div class="day-header" data-day="6day-d2" onclick="toggleDay('6day-d2')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 2</span><span style="color:#fff;font-weight:600;">الجسم السفلي (أرجل)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="6day-d2" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد الفخذ</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Leg Extensions</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/tgVnKyJGTNA')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد فخذ خلفي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Lying Leg Curls</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/YE_ET_5B73s')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سكوات</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Squats</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/KJjBIaOSGuM')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بطات بالمقعد</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Sitting Calf Raises</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/MrYoG4FlJIk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">رفع الورك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Hip Thrust</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/kCdQo5PQ5Ds')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بلانك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Plank</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/vUcc_2DnpqI')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                        </div>
+                    </div>
+
+                    <!-- 6day Day 3: Upper back/bi -->
+                    <div class="day-header" data-day="6day-d3" onclick="toggleDay('6day-d3')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 3</span><span style="color:#fff;font-weight:600;">الجسم العلوي (ظهر، باي)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="6day-d3" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">السحب العلوي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Pull-Down</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/sbhjd9fvpKo')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">السحب الأرضي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Seated Cable Row</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/5ZS33XfHnnE')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">العقلة</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Pull Up</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">قدر المستطاع</span></div><button onclick="openVideoModal('https://youtube.com/shorts/TBYynYiKyk8')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد الظهر</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Back Extension</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/Ue0SschQKOA')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">كيبل لف</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Cable Curl</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/nrUM_lsMxbg')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">لف الباي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Bicep Curl</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/RFT0fRNNgdc')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                        </div>
+                    </div>
+
+                    <!-- 6day Day 4: Lower -->
+                    <div class="day-header" data-day="6day-d4" onclick="toggleDay('6day-d4')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 4</span><span style="color:#fff;font-weight:600;">الجسم السفلي (أرجل)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="6day-d4" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد الفخذ</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Leg Extensions</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/tgVnKyJGTNA')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد فخذ خلفي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Lying Leg Curls</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/YE_ET_5B73s')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سكوات</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Squats</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/KJjBIaOSGuM')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بطات بالمقعد</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Sitting Calf Raises</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/MrYoG4FlJIk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">رفع الورك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Hip Thrust</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/kCdQo5PQ5Ds')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بلانك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Plank</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/vUcc_2DnpqI')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                        </div>
+                    </div>
+
+                    <!-- 6day Day 5: Upper chest/shoulder/tri -->
+                    <div class="day-header" data-day="6day-d5" onclick="toggleDay('6day-d5')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 5</span><span style="color:#fff;font-weight:600;">الجسم العلوي (صدر، كتف، تراي)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="6day-d5" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ضغط الصدر العلوي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Incline Dumbbell Press</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/hciH2jeDXhs')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الدفع الصدر بالآلة</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Chest Press Machine</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/IlK0DxWs2Ug')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تفتيح الصدر</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Machine Fly</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/bomp27z-rXk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الدفع أرنولد</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Arnold Press</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/wY00Zs2SNb4')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الدفع تراي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Push Downs</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/S3scWsLHenk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الرفرفة</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Lateral Raise</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/4oW78FD8YAs')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                        </div>
+                    </div>
+
+                    <!-- 6day Day 6: Lower -->
+                    <div class="day-header" data-day="6day-d6" onclick="toggleDay('6day-d6')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 6</span><span style="color:#fff;font-weight:600;">الجسم السفلي (أرجل)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="6day-d6" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد الفخذ</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Leg Extensions</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/tgVnKyJGTNA')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد فخذ خلفي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Lying Leg Curls</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/YE_ET_5B73s')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سكوات</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Squats</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/KJjBIaOSGuM')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بطات بالمقعد</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Sitting Calf Raises</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/MrYoG4FlJIk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">رفع الورك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Hip Thrust</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/kCdQo5PQ5Ds')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بلانك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Plank</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/vUcc_2DnpqI')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                        </div>
+                    </div>
+
+                    <!-- 6day Day 7: Rest -->
+                    <div class="day-header" data-day="6day-d7" onclick="toggleDay('6day-d7')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 7</span><span style="color:#fff;font-weight:600;">راحة</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="6day-d7" class="day-content">
+                        <div class="rest-card"><div style="font-size:3rem;margin-bottom:15px;">&#x1F4AA;</div><h4 style="color:#fff;font-weight:800;">يوم راحة</h4><p style="color:#888;font-size:1.1rem;line-height:1.8;">الراحة جزء من التمرين مو وقت ضايع<br>اليوم ريح عضلاتك وبكرا ترجع أقوى</p></div>
+                    </div>
+                </div>
+                <!-- END TAB 3 -->
+
+                <!-- TAB 4: Push Pull Legs -->
+                <div id="tab-ppl" class="tab-panel">
+                    <div style="overflow-x:auto;margin-bottom:30px;">
+                        <table class="schedule-table">
+                            <tr><th>اليوم 1</th><th>اليوم 2</th><th>اليوم 3</th><th>اليوم 4</th><th>اليوم 5</th><th>اليوم 6</th><th>اليوم 7</th></tr>
+                            <tr>
+                                <td class="workout-day">Push<br>صدر وكتف وترايسبس وبطن</td>
+                                <td class="workout-day">كارديو</td>
+                                <td class="workout-day">Pull<br>ظهر وبايسبس وساعد وبطن</td>
+                                <td class="rest-day">راحة</td>
+                                <td class="workout-day">Legs<br>أرجل علوية وسفلية وقلوتس</td>
+                                <td class="rest-day">راحة</td>
+                                <td class="rest-day">راحة</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- PPL Day 1: Push -->
+                    <div class="day-header" data-day="ppl-d1" onclick="toggleDay('ppl-d1')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 1 - Push</span><span style="color:#fff;font-weight:600;">صدر وكتف وترايسبس وبطن</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="ppl-d1" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">صدر</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Incline Smith Machine Bench Press</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">5 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ضغط صدر عالي دمبل</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Dumbbell Incline Bench Press</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">كتف جالس دامبل</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Dumbbell Shoulder Press</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">رفرفة كتف جانبي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Dumbbell Lateral Raise</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ترايسبس</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Weighted Tricep Dips</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">اوفر ترايسبس واقف حبل</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Cable Rope Overhead Triceps Extension</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ضغط عضلات البطن</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Ab Crunch Machine</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">5 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">20 تكرارات</span></div></div></div>
+                        </div>
+                    </div>
+
+                    <!-- PPL Day 2: Cardio -->
+                    <div class="day-header" data-day="ppl-d2" onclick="toggleDay('ppl-d2')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 2</span><span style="color:#fff;font-weight:600;">كارديو</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="ppl-d2" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">جهاز الركض</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Treadmill Running</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">1 جولة</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">35 دقيقة</span></div></div></div>
+                        </div>
+                    </div>
+
+                    <!-- PPL Day 3: Pull -->
+                    <div class="day-header" data-day="ppl-d3" onclick="toggleDay('ppl-d3')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 3 - Pull</span><span style="color:#fff;font-weight:600;">ظهر وبايسبس وساعد وبطن</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="ppl-d3" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">عقلة</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Pull Ups</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سحب بار مستوي واقف</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Barbell Curl</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الرفعة الميتة بالبار</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Barbell Deadlift</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سحب دامبل جالس منحني</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Dumbbell Incline Curl</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سحب ظهر جالس</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Seated Machine Row</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">مطرقة دامبل واقف</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Dumbbell Hammer Curls</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمرين القطنية</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Hyperextensions</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سحب عالي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Machine Lat Pull Down</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                        </div>
+                    </div>
+
+                    <!-- PPL Day 4: Rest -->
+                    <div class="day-header" data-day="ppl-d4" onclick="toggleDay('ppl-d4')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 4</span><span style="color:#fff;font-weight:600;">راحة</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="ppl-d4" class="day-content">
+                        <div class="rest-card"><div style="font-size:3rem;margin-bottom:15px;">&#x1F4AA;</div><h4 style="color:#fff;font-weight:800;">يوم راحة</h4><p style="color:#888;font-size:1.1rem;line-height:1.8;">الراحة جزء من التمرين مو وقت ضايع<br>اليوم ريح عضلاتك وبكرا ترجع أقوى</p></div>
+                    </div>
+
+                    <!-- PPL Day 5: Legs -->
+                    <div class="day-header" data-day="ppl-d5" onclick="toggleDay('ppl-d5')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 5 - Legs</span><span style="color:#fff;font-weight:600;">أرجل علوية وسفلية وقلوتس</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="ppl-d5" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد الفخذ</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Leg Extensions</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/tgVnKyJGTNA')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمديد فخذ خلفي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Lying Leg Curls</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/YE_ET_5B73s')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سكوات</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Squats</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/KJjBIaOSGuM')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بطات بالمقعد</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Sitting Calf Raises</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtube.com/shorts/MrYoG4FlJIk')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">رفع الورك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Hip Thrust</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/kCdQo5PQ5Ds')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بلانك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Plank</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div><button onclick="openVideoModal('https://youtu.be/vUcc_2DnpqI')" style="background:#ff5722;border:none;color:#fff;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;"><i class="fas fa-play" style="margin-left:5px;"></i> شاهد الفيديو</button></div></div>
+                        </div>
+                    </div>
+
+                    <!-- PPL Day 6-7: Rest -->
+                    <div class="day-header" data-day="ppl-d6" onclick="toggleDay('ppl-d6')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 6</span><span style="color:#fff;font-weight:600;">راحة</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="ppl-d6" class="day-content">
+                        <div class="rest-card"><div style="font-size:3rem;margin-bottom:15px;">&#x1F4AA;</div><h4 style="color:#fff;font-weight:800;">يوم راحة</h4><p style="color:#888;font-size:1.1rem;line-height:1.8;">الراحة جزء من التمرين مو وقت ضايع<br>اليوم ريح عضلاتك وبكرا ترجع أقوى</p></div>
+                    </div>
+                    <div class="day-header" data-day="ppl-d7" onclick="toggleDay('ppl-d7')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 7</span><span style="color:#fff;font-weight:600;">راحة</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="ppl-d7" class="day-content">
+                        <div class="rest-card"><div style="font-size:3rem;margin-bottom:15px;">&#x1F4AA;</div><h4 style="color:#fff;font-weight:800;">يوم راحة</h4><p style="color:#888;font-size:1.1rem;line-height:1.8;">الراحة جزء من التمرين مو وقت ضايع<br>اليوم ريح عضلاتك وبكرا ترجع أقوى</p></div>
+                    </div>
+                </div>
+                <!-- END TAB 4 -->
+
+                <!-- TAB 5: Bulk -->
+                <div id="tab-bulk" class="tab-panel">
+                    <div style="overflow-x:auto;margin-bottom:30px;">
+                        <table class="schedule-table">
+                            <tr><th>اليوم 1</th><th>اليوم 2</th><th>اليوم 3</th><th>اليوم 4</th><th>اليوم 5</th><th>اليوم 6</th><th>اليوم 7</th></tr>
+                            <tr>
+                                <td class="workout-day">ظهر وكتف<br>وبايسبس</td>
+                                <td class="workout-day">صدر وكتف<br>وترايسبس</td>
+                                <td class="rest-day">راحة</td>
+                                <td class="workout-day">بطن وأرجل<br>ومؤخرة</td>
+                                <td class="workout-day">أرجل علوية<br>وسفلية</td>
+                                <td class="workout-day">كارديو</td>
+                                <td class="rest-day">راحة</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Bulk Day 1 -->
+                    <div class="day-header" data-day="bulk-d1" onclick="toggleDay('bulk-d1')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 1</span><span style="color:#fff;font-weight:600;">ظهر وكتف وبايسبس</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="bulk-d1" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">الرفعة الميتة بالسميث</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Smith Machine Deadlift</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سحب ظهر امامي قبضة واسعة</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Wide Grip Lat Pulldown</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تجديف بالبار</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Smith Machine Bent Over Row</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سحب كيبل حبل كتف خلفي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Cable Rope Face Pull</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سحب دامبل يد واحدة</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Dumbbell One Arm Row</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سحب دامبل واقف</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Dumbbell Bicep Curl</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمرين القطنية</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Hyperextensions</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سحب كيبل جالس</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Cable Seated Row</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Bulk Day 2 -->
+                    <div class="day-header" data-day="bulk-d2" onclick="toggleDay('bulk-d2')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 2</span><span style="color:#fff;font-weight:600;">صدر وكتف وترايسبس</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="bulk-d2" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ماكينة ضغط صدر</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Bench Press Machine</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ضغط قبضة واسعة سميث</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Smith Machine Shoulder Press</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ضغط كتف بالآلة</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Machine Shoulder Press</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ماكينة تفتيح صدر</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Machine Fly</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">كتف امامي دمبل فردي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Dumbbell Front Raise</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">رفرفة كتف جانبي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Dumbbell Lateral Raise</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">رفرفة خلفي منحني</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Dumbbell Reverse Flyes</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سحب حبل كيبل واقف</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Cable Rope Triceps Pushdown</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Bulk Day 3: Rest -->
+                    <div class="day-header" data-day="bulk-d3" onclick="toggleDay('bulk-d3')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 3</span><span style="color:#fff;font-weight:600;">راحة</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="bulk-d3" class="day-content">
+                        <div class="rest-card"><div style="font-size:3rem;margin-bottom:15px;">&#x1F4AA;</div><h4 style="color:#fff;font-weight:800;">يوم راحة</h4><p style="color:#888;font-size:1.1rem;line-height:1.8;">الراحة جزء من التمرين مو وقت ضايع<br>اليوم ريح عضلاتك وبكرا ترجع أقوى</p></div>
+                    </div>
+
+                    <!-- Bulk Day 4 -->
+                    <div class="day-header" data-day="bulk-d4" onclick="toggleDay('bulk-d4')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 4</span><span style="color:#fff;font-weight:600;">بطن وأرجل علوية ومؤخرة (جلوتس)</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="bulk-d4" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بلانك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Plank</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">رمي الدامبل بين القدمين</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Kettlebell Figure Eight</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تويست بالبليت</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Weight Plate Russian Twist</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">آلة ضغط العضلة الخارجية</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Thigh Abductor</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سحب كيبل سفلي رجل جانبي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Hip Adduction</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">دفع البار بالحوض</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Barbell Hip Thrust</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">رفع الساق ضغط بطن سفلي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Leg Raise</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">رفع الساق مفرودة متوازي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Parallel Bar Leg Raise</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Bulk Day 5 -->
+                    <div class="day-header" data-day="bulk-d5" onclick="toggleDay('bulk-d5')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 5</span><span style="color:#fff;font-weight:600;">أرجل علوية وسفلية</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="bulk-d5" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سكوات دامبل امامي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Kettlebell Front Squats</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ضغط سمانة على المكبس</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Calf Press On Leg Press</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ضغط رجل مكبس</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Leg Press</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">آلة ضغط رجل خلفي جالس</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Seated Leg Curl</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Bulk Day 6: Cardio -->
+                    <div class="day-header" data-day="bulk-d6" onclick="toggleDay('bulk-d6')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 6</span><span style="color:#fff;font-weight:600;">كارديو</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="bulk-d6" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">جهاز الركض</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Treadmill Running</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">1 جولة</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">35 دقيقة</span></div></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Bulk Day 7: Rest -->
+                    <div class="day-header" data-day="bulk-d7" onclick="toggleDay('bulk-d7')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 7</span><span style="color:#fff;font-weight:600;">راحة</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="bulk-d7" class="day-content">
+                        <div class="rest-card"><div style="font-size:3rem;margin-bottom:15px;">&#x1F4AA;</div><h4 style="color:#fff;font-weight:800;">يوم راحة</h4><p style="color:#888;font-size:1.1rem;line-height:1.8;">الراحة جزء من التمرين مو وقت ضايع<br>اليوم ريح عضلاتك وبكرا ترجع أقوى</p></div>
+                    </div>
+                </div>
+                <!-- END TAB 5 -->
+
+                <!-- TAB 6: Glutes -->
+                <div id="tab-glutes" class="tab-panel">
+                    <div style="background:#1a1a1a;border:1px solid #ff5722;border-radius:12px;padding:30px;margin-bottom:30px;text-align:center;">
+                        <h4 style="color:#ff5722;font-weight:800;margin-bottom:15px;">تقسيم عضلات الأرداف</h4>
+                        <p style="color:#ccc;font-size:1.05rem;line-height:1.8;">هناك ثلاث عضلات للأرداف - العضلة الكبرى والوسطى والصغرى. وظيفتها الأساسية هي إبعاد مفصل الورك والدوران الداخلي والخارجي.</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">Barbell Glute Bridge</h5><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                        <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">Leg Over Knee Glute Bridge</h5><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                        <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">Hip Thrust</h5><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                        <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">Quadruped Kickbacks</h5><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                        <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">Step Ups</h5><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                        <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">Standing Kickbacks</h5><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                        <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">Hamstring Stability Ball</h5><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                        <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">Prone Hip Extension on Stability Ball</h5><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                        <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">Clamshell</h5><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">4 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">8 تكرارات</span></div></div></div>
+                    </div>
+                </div>
+                <!-- END TAB 6 -->
+
+                <!-- TAB 7: Home Workout -->
+                <div id="tab-home" class="tab-panel">
+                    <div style="overflow-x:auto;margin-bottom:30px;">
+                        <table class="schedule-table">
+                            <tr><th>اليوم 1</th><th>اليوم 2</th><th>اليوم 3</th><th>اليوم 4</th><th>اليوم 5</th><th>اليوم 6</th><th>اليوم 7</th></tr>
+                            <tr>
+                                <td class="workout-day">مؤخرة وبطن<br>وأرجل وظهر</td>
+                                <td class="workout-day">صدر وترايسبس<br>وظهر وبطن وكتف</td>
+                                <td class="rest-day">راحة</td>
+                                <td class="workout-day">أرجل علوية<br>وبايسبس وترايسبس</td>
+                                <td class="workout-day">ترايسبس وصدر<br>وظهر وبطن</td>
+                                <td class="workout-day">صدر وترايسبس<br>وكتف وبطن</td>
+                                <td class="rest-day">راحة</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Home Day 1 -->
+                    <div class="day-header" data-day="home-d1" onclick="toggleDay('home-d1')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 1</span><span style="color:#fff;font-weight:600;">مؤخرة وبطن وأرجل وظهر</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="home-d1" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ركل الرجل للخلف</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Glute Kickback</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">لف الرجل عكس الجسم</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Iron Cross Stretch</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">شد البطن مستلقي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Scorpion</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سكوات يد خلف الرأس</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Prisoner Squat</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">سكوات قفز</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Freehand Jump Squat</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تمرين سوبر مان</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Superman</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">اطالة البطن ساجد</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Extended Arm Child Pose</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Home Day 2 -->
+                    <div class="day-header" data-day="home-d2" onclick="toggleDay('home-d2')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 2</span><span style="color:#fff;font-weight:600;">صدر وترايسبس وظهر وبطن وكتف</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="home-d2" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">اطالة عضلات الصدر</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Dynamic Chest Stretch</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">اطالة ترايسبس واقف</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Tricep Stretch</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">اطالة الظهر</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Dynamic Back Stretch</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بلانك ركل الرجل</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Plank with Side Kick</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ضغط صدر بوزن الجسم</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Push Up</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">بلانك</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Plank</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">لمس الكعب بالتبادل</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Alternate Heel Touchers</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ضغط بطن جانبي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Side Bridge</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Home Day 3: Rest -->
+                    <div class="day-header" data-day="home-d3" onclick="toggleDay('home-d3')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 3</span><span style="color:#fff;font-weight:600;">راحة</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="home-d3" class="day-content">
+                        <div class="rest-card"><div style="font-size:3rem;margin-bottom:15px;">&#x1F4AA;</div><h4 style="color:#fff;font-weight:800;">يوم راحة</h4><p style="color:#888;font-size:1.1rem;line-height:1.8;">الراحة جزء من التمرين مو وقت ضايع<br>اليوم ريح عضلاتك وبكرا ترجع أقوى</p></div>
+                    </div>
+
+                    <!-- Home Day 4 -->
+                    <div class="day-header" data-day="home-d4" onclick="toggleDay('home-d4')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 4</span><span style="color:#fff;font-weight:600;">أرجل علوية وبايسبس وترايسبس</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="home-d4" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">اطالة رجل خلفي</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Leg-Up Hamstring Stretch</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">اطالة فرد الذراع والرجل</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Superman Leg Stretch</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ضغط رجل واحدة</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Rear Bodyweight Lunge</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ترايسبس بوزن الجسم</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Single Bench Dip</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Home Day 5 -->
+                    <div class="day-header" data-day="home-d5" onclick="toggleDay('home-d5')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 5</span><span style="color:#fff;font-weight:600;">ترايسبس وصدر وظهر وبطن</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="home-d5" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">اطالة عضلات الصدر</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Dynamic Chest Stretch</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تويست واقف</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Middle Back Stretch</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ضغط مع رفع رجل واحدة</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Leg 1 Pushup</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">اطالة البطن ساجد</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Extended Arm Child Pose</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Home Day 6 -->
+                    <div class="day-header" data-day="home-d6" onclick="toggleDay('home-d6')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 6</span><span style="color:#fff;font-weight:600;">صدر وترايسبس وكتف وبطن</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="home-d6" class="day-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">اطالة عضلات الصدر</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Dynamic Chest Stretch</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">تويست واقف</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Middle Back Stretch</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">اطالة كتف واقف يد واحدة</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Posterior Capsule</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                            <div class="col-lg-6 col-md-6"><div class="exercise-card"><h5 style="color:#fff;font-weight:700;margin-bottom:5px;">ضغط صدر بوزن الجسم</h5><p style="color:#888;font-size:0.85rem;margin-bottom:10px;">Push Up</p><div style="display:flex;gap:15px;margin-bottom:15px;"><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">3 جولات</span><span style="background:#222;padding:5px 12px;border-radius:6px;color:#ff5722;font-size:0.85rem;">10 تكرارات</span></div></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Home Day 7: Rest -->
+                    <div class="day-header" data-day="home-d7" onclick="toggleDay('home-d7')">
+                        <div><span style="color:#ff5722;font-weight:800;margin-left:10px;">اليوم 7</span><span style="color:#fff;font-weight:600;">راحة</span></div>
+                        <i class="fas fa-chevron-down" style="color:#ff5722;"></i>
+                    </div>
+                    <div id="home-d7" class="day-content">
+                        <div class="rest-card"><div style="font-size:3rem;margin-bottom:15px;">&#x1F4AA;</div><h4 style="color:#fff;font-weight:800;">يوم راحة</h4><p style="color:#888;font-size:1.1rem;line-height:1.8;">الراحة جزء من التمرين مو وقت ضايع<br>اليوم ريح عضلاتك وبكرا ترجع أقوى</p></div>
+                    </div>
+                </div>
+                <!-- END TAB 7 -->
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer_sec bg_black">
+                <div class="container">
+                    <div class="footer_area">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="footer_upper_big_text sec_padding">
+                                    <div class="reveal custom_lightSpeedInLeft">
+                                        <a href="contact.html" class="contact_hover_btn">
+                                            <svg viewBox="0 0 1300 128">
+                                                <symbol id="s-text">
+                                                    <text text-anchor="middle" x="50%" y="50%" dy=".35em">MAKE ME FIT</text>
+                                                </symbol>
+                                                <use class="text" xlink:href="#s-text"></use>
+                                                <use class="text" xlink:href="#s-text"></use>
+                                                <use class="text" xlink:href="#s-text"></use>
+                                                <use class="text" xlink:href="#s-text"></use>
+                                                <use class="text" xlink:href="#s-text"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="footer_mid_area">
+                                    <div class="row align-items-start">
+                                        <div class="col-xl-4 col-lg-4 col-sm-6">
+                                            <div class="footer_logo_area">
+                                                <a href="index.html" class="footer_logo reveal custom_zoom_in d-block">
+                                                    <img src="assets/images/logos/makemefit_logo.svg" alt="MAKE ME FIT Logo">
+                                                </a>
+                                                <p class="line_height_30 fw_500 color_lightgray reveal custom_zoom_in" style="margin-top: 15px;">
+                                                    ميك مي فت - دليلك الشامل لعالم اللياقة البدنية. نقدم لك كل ما تحتاجه من تمارين وتغذية وجداول تدريبية لبناء جسمك المثالي.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-lg-2 col-sm-6">
+                                            <div class="footer_quick_links">
+                                                <h6 class="color_white reveal custom_lightSpeedInLeft mb-3">روابط سريعة</h6>
+                                                <ul>
+                                                    <li class="reveal custom_zoom_in"><a href="index.html">الرئيسية</a></li>
+                                                    <li class="reveal custom_zoom_in"><a href="warmup.html">الإحماء</a></li>
+                                                    <li class="reveal custom_zoom_in"><a href="workouts.html">التمارين</a></li>
+                                                    <li class="reveal custom_zoom_in"><a href="cardio.html">الكارديو</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                                            <div class="footer_quick_links">
+                                                <h6 class="color_white reveal custom_lightSpeedInLeft mb-3">المزيد</h6>
+                                                <ul>
+                                                    <li class="reveal custom_zoom_in"><a href="nutrition.html">التغذية</a></li>
+                                                    <li class="reveal custom_zoom_in"><a href="calculator.html">حاسبة السعرات</a></li>
+                                                    <li class="reveal custom_zoom_in"><a href="contact.html">تواصل معنا</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                                            <div class="footer_address pb-30">
+                                                <h6 class="color_white reveal custom_lightSpeedInLeft mb-3">تواصل معنا</h6>
+                                                <p class="line_height_30 fw_500 color_lightgray reveal custom_zoom_in">
+                                                    <a href="mailto:info@makemefit.com" class="color_lightgray triners_icons">info@makemefit.com</a>
+                                                </p>
+                                                <p class="line_height_30 fw_500 color_lightgray reveal custom_zoom_in" style="margin-top: 10px;">
+                                                    موقع متخصص في اللياقة البدنية والتغذية الرياضية
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="footer_bottom_area">
+                                    <div class="row align-items-center">
+                                        <div class="col-sm-6">
+                                            <p class="line_height_24 fw_500 color_lightgray reveal custom_zoom_in">
+                                                جميع الحقوق محفوظة &copy; 2024 MAKE ME FIT - ميك مي فت
+                                            </p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <ul class="footer_social_icon">
+                                                <li class="reveal custom_zoom_in"><a href="https://www.facebook.com/" class="triners_icons" target="_blank"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><mask style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20"><rect width="20" height="20" fill="white"/></mask><g><path d="M11.6654 11.2498H13.7487L14.582 7.9165H11.6654V6.24984C11.6654 5.39202 11.6654 4.58317 13.332 4.58317H14.582V1.78325C14.3106 1.74721 13.2845 1.6665 12.2011 1.6665C9.93903 1.6665 8.33203 3.04722 8.33203 5.58293V7.9165H5.83203V11.2498H8.33203V18.3332H11.6654V11.2498Z" fill="white"/></g></svg></a></li>
+                                                <li class="reveal custom_zoom_in"><a href="https://x.com/" class="triners_icons" target="_blank"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><mask style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20"><rect width="20" height="20" fill="white"/></mask><g><path d="M18.5104 4.71337C17.8743 4.99479 17.1996 5.17962 16.5088 5.26176C17.2366 4.8261 17.7812 4.14075 18.0411 3.33337C17.3573 3.73967 16.6088 4.02564 15.8282 4.17884C15.1693 3.47588 14.2483 3.07752 13.2848 3.07862C11.3605 3.07862 9.79975 4.63884 9.79975 6.56402C9.79975 6.83715 9.83109 7.10202 9.88967 7.35757C6.99206 7.2117 4.42506 5.82504 2.70565 3.71617C2.39608 4.24806 2.23338 4.85265 2.2342 5.46806C2.2342 6.67716 2.84967 7.74437 3.78458 8.36917C3.23115 8.35167 2.6899 8.2022 2.20599 7.93311C2.20545 7.94775 2.20545 7.96239 2.20545 7.97623C2.20545 9.66533 3.40683 11.0743 5.00166 11.3942C4.70234 11.4752 4.3936 11.5162 4.08352 11.5159C3.85831 11.5159 3.63976 11.4952 3.42733 11.4544C3.8711 12.8387 5.15739 13.8466 6.683 13.8742C5.44845 14.8432 3.92391 15.3688 2.35453 15.3666C2.07677 15.3668 1.79925 15.3504 1.52344 15.3176C3.1167 16.3418 4.97127 16.8854 6.86535 16.8834C13.2763 16.8834 16.7817 11.5729 16.7817 6.96759C16.7817 6.81692 16.778 6.66572 16.7713 6.51664C17.4536 6.02371 18.0425 5.41306 18.5104 4.71337Z" fill="white"/></g></svg></a></li>
+                                                <li class="reveal custom_zoom_in"><a href="https://www.instagram.com/" class="triners_icons" target="_blank"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><mask style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20"><rect width="20" height="20" fill="white"/></mask><g><path d="M10.0013 7.49984C8.62015 7.49984 7.5013 8.61909 7.5013 9.99984C7.5013 11.3809 8.62057 12.4998 10.0013 12.4998C11.3824 12.4998 12.5013 11.3806 12.5013 9.99984C12.5013 8.61875 11.3821 7.49984 10.0013 7.49984ZM10.0013 5.83317C12.3017 5.83317 14.168 7.69742 14.168 9.99984C14.168 12.3003 12.3037 14.1665 10.0013 14.1665C7.70091 14.1665 5.83464 12.3023 5.83464 9.99984C5.83464 7.69945 7.69889 5.83317 10.0013 5.83317ZM15.418 5.62413C15.418 6.19922 14.9507 6.66581 14.3763 6.66581C13.8012 6.66581 13.3347 6.1985 13.3347 5.62413C13.3347 5.04975 13.8019 4.58317 14.3763 4.58317C14.9499 4.58245 15.418 5.04975 15.418 5.62413ZM10.0013 3.33317C7.93924 3.33317 7.60314 3.33863 6.64404 3.38134C5.99061 3.41201 5.55259 3.4999 5.14562 3.6579C4.78395 3.79816 4.52306 3.96565 4.24509 4.24363C3.96604 4.52267 3.79885 4.78286 3.65915 5.1447C3.50079 5.5526 3.41293 5.98993 3.3828 6.64246C3.33968 7.5625 3.33464 7.88405 3.33464 9.99984C3.33464 12.0619 3.34009 12.398 3.38279 13.357C3.41349 14.0102 3.50149 14.4488 3.6591 14.8548C3.79974 15.217 3.96757 15.4785 4.2442 15.7552C4.52434 16.0349 4.78531 16.2027 5.14371 16.341C5.55564 16.5003 5.99339 16.5883 6.64392 16.6183C7.56397 16.6614 7.88551 16.6665 10.0013 16.6665C12.0634 16.6665 12.3995 16.661 13.3585 16.6183C14.0102 16.5878 14.4492 16.4995 14.8563 16.342C15.2175 16.2018 15.4798 16.0333 15.7567 15.7569C16.0368 15.4763 16.2042 15.216 16.3427 14.8568C16.5016 14.4463 16.5897 14.008 16.6198 13.3573C16.6629 12.4372 16.668 12.1156 16.668 9.99984C16.668 7.93777 16.6625 7.60168 16.6198 6.64265C16.5892 5.99072 16.5009 5.55108 16.3432 5.14415C16.2033 4.78349 16.0352 4.5218 15.7575 4.24363C15.478 3.96413 15.2185 3.79728 14.8564 3.65769C14.4488 3.49945 14.0108 3.41147 13.3587 3.38135C12.4387 3.33821 12.1171 3.33317 10.0013 3.33317ZM10.0013 1.6665C12.2652 1.6665 12.5478 1.67484 13.4367 1.7165C14.3235 1.75748 14.9284 1.89775 15.4597 2.104C16.0089 2.31581 16.4728 2.60192 16.936 3.06511C17.3985 3.52831 17.6847 3.99359 17.8972 4.5415C18.1027 5.07206 18.243 5.67761 18.2847 6.56442C18.3242 7.45331 18.3347 7.73595 18.3347 9.99984C18.3347 12.2638 18.3263 12.5463 18.2847 13.4353C18.2437 14.3221 18.1027 14.9269 17.8972 15.4582C17.6853 16.0075 17.3985 16.4713 16.936 16.9346C16.4728 17.3971 16.0068 17.6832 15.4597 17.8957C14.9284 18.1013 14.3235 18.2415 13.4367 18.2832C12.5478 18.3228 12.2652 18.3332 10.0013 18.3332C7.73741 18.3332 7.45477 18.3248 6.56589 18.2832C5.67908 18.2422 5.07491 18.1013 4.54297 17.8957C3.99435 17.6838 3.52977 17.3971 3.06658 16.9346C2.60339 16.4713 2.31797 16.0054 2.10547 15.4582C1.89922 14.9269 1.75964 14.3221 1.71797 13.4353C1.67839 12.5463 1.66797 12.2638 1.66797 9.99984C1.66797 7.73595 1.6763 7.45331 1.71797 6.56442C1.75894 5.67692 1.89922 5.07275 2.10547 4.5415C2.31727 3.9929 2.60339 3.52831 3.06658 3.06511C3.52977 2.60192 3.99505 2.3165 4.54297 2.104C5.07422 1.89775 5.67839 1.75817 6.56589 1.7165C7.45477 1.67692 7.73741 1.6665 10.0013 1.6665Z" fill="white"/></g></svg></a></li>
+                                                <li class="reveal custom_zoom_in"><a href="https://www.youtube.com" class="triners_icons" target="_blank"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><mask style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20"><rect width="20" height="20" fill="white"/></mask><g><path d="M10.5366 3C10.9817 3.00245 12.0952 3.01322 13.2784 3.06061L13.6979 3.0789C14.8892 3.1353 16.0794 3.23165 16.6698 3.39625C17.4572 3.61746 18.0761 4.26292 18.2852 5.0811C18.6183 6.38034 18.66 8.91617 18.6652 9.52983L18.6659 9.657V9.66592C18.6659 9.66592 18.6659 9.669 18.6659 9.67492L18.6652 9.80208C18.66 10.4158 18.6183 12.9516 18.2852 14.2508C18.0732 15.072 17.4543 15.7175 16.6698 15.9357C16.0794 16.1003 14.8892 16.1966 13.6979 16.253L13.2784 16.2713C12.0952 16.3187 10.9817 16.3294 10.5366 16.3319L10.3412 16.3326H10.3326C10.3326 16.3326 10.3297 16.3326 10.3239 16.3326L10.1287 16.3319C9.18675 16.3268 5.2481 16.2842 3.99542 15.9357C3.208 15.7144 2.5891 15.069 2.37989 14.2508C2.04683 12.9516 2.0052 10.4158 2 9.80208V9.52983C2.0052 8.91617 2.04683 6.38034 2.37989 5.0811C2.592 4.25988 3.2109 3.61443 3.99542 3.39625C5.2481 3.04769 9.18675 3.00518 10.1287 3H10.5366ZM8.66593 6.74928V12.5826L13.6659 9.66592L8.66593 6.74928Z" fill="white"/></g></svg></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scroll Top Button -->
+        <button id="scroll-top-btn" style="position:fixed;bottom:30px;left:30px;z-index:99;width:50px;height:50px;border-radius:50%;background:#ff5722;border:none;cursor:pointer;display:none;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;">
+            <i class="fas fa-chevron-up"></i>
+            <span id="scroll-percentage" style="font-size:0.6rem;display:block;">0%</span>
+        </button>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);z-index:10000;align-items:center;justify-content:center;" onclick="closeVideoModal()">
+        <div style="position:relative;width:90%;max-width:800px;margin:auto;margin-top:10vh;" onclick="event.stopPropagation()">
+            <button onclick="closeVideoModal()" style="position:absolute;top:-40px;left:0;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;z-index:10001;">&times;</button>
+            <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;">
+                <iframe id="videoFrame" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="assets/js/jquery-3.7.1.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/slick.min.js"></script>
+    <script src="assets/js/TweenMax.min.js"></script>
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/style.js"></script>
+    <script>AOS.init({ duration: 800, once: true, offset: 50 });</script>
+    <script>
+        function switchTab(tabId){
+            document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+            document.querySelector('[data-tab="'+tabId+'"]').classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+        function toggleDay(dayId){
+            var header=document.querySelector('[data-day="'+dayId+'"]');
+            var content=document.getElementById(dayId);
+            header.classList.toggle('open');
+            content.classList.toggle('open');
+        }
+        function openVideoModal(url) {
+            var videoId = '';
+            if (url.includes('youtu.be/')) {
+                videoId = url.split('youtu.be/')[1].split('?')[0];
+            } else if (url.includes('youtube.com/shorts/')) {
+                videoId = url.split('shorts/')[1].split('?')[0];
+            } else if (url.includes('youtube.com/watch')) {
+                videoId = url.split('v=')[1].split('&')[0];
+            }
+            document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+            document.getElementById('videoModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeVideoModal() {
+            document.getElementById('videoFrame').src = '';
+            document.getElementById('videoModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeVideoModal();
+        });
+    </script>
+</body>
+</html>
