@@ -116,6 +116,31 @@
         <!-- Tabs Section -->
         <section style="background:#0a0a0a;padding:40px 0 80px;">
             <div class="container">
+                <!-- Phase 3: شريط إنجاز التمرين والسلسلة -->
+                <div id="streak-bar" style="display:none;background:#1a1a1a;border:1px solid #333;border-radius:14px;padding:20px;margin-bottom:24px;">
+                    <div style="display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;">
+                        <button id="mark-workout-btn" type="button" style="background:#f59e0b;color:#111;border:none;border-radius:10px;padding:12px 26px;font-weight:800;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.95rem;transition:background .3s;">
+                            <i class="fas fa-check" style="margin-left:6px;"></i> أنهيت تمرين اليوم
+                        </button>
+                        <div style="display:flex;gap:22px;">
+                            <div style="text-align:center;">
+                                <div id="sb-streak" style="font-size:1.6rem;font-weight:800;color:#f59e0b;font-family:'Zen Dots',cursive;">0</div>
+                                <div style="color:#888;font-size:0.78rem;margin-top:3px;">سلسلة حالية</div>
+                            </div>
+                            <div style="width:1px;background:#333;"></div>
+                            <div style="text-align:center;">
+                                <div id="sb-longest" style="font-size:1.6rem;font-weight:800;color:#f59e0b;font-family:'Zen Dots',cursive;">0</div>
+                                <div style="color:#888;font-size:0.78rem;margin-top:3px;">أطول سلسلة</div>
+                            </div>
+                            <div style="width:1px;background:#333;"></div>
+                            <div style="text-align:center;">
+                                <div id="sb-total" style="font-size:1.6rem;font-weight:800;color:#f59e0b;font-family:'Zen Dots',cursive;">0</div>
+                                <div style="color:#888;font-size:0.78rem;margin-top:3px;">إجمالي الأيام</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sb-msg" style="text-align:center;margin-top:12px;font-size:0.9rem;font-weight:700;color:#9be29e;display:none;"></div>
+                </div>
                 <div class="workout-tabs">
                     <button class="tab-btn active" data-tab="tab-4day" onclick="switchTab('tab-4day')">تمرين 4 أيام</button>
                     <button class="tab-btn" data-tab="tab-5day" onclick="switchTab('tab-5day')">تمرين 5 أيام</button>
@@ -1258,6 +1283,7 @@
     <script src="assets/js/aos.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/style.js"></script>
+    <script type="module" src="assets/js/auth.js"></script>
     <script>AOS.init({ duration: 800, once: true, offset: 50 });</script>
     <script>
         var womenTabs = ['tab-ppl','tab-bulk','tab-glutes','tab-home'];
@@ -1305,6 +1331,129 @@
         }
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeVideoModal();
+        });
+    </script>
+
+    <!-- Phase 2/3: المفضلة + إضافة للخطة + متابعة الإنجاز -->
+    <script type="module">
+        // ألوان القلب وزر الخطة تتبع الثيم (golden/crimson) تلقائياً عبر CSS
+        const st = document.createElement('style');
+        st.textContent =
+            '.fav-heart:hover,.add-plan-btn:hover{color:#f59e0b !important;}' +
+            '.fav-heart.on,.add-plan-btn.added{color:#f59e0b !important;}' +
+            'body.theme-crimson .fav-heart:hover,body.theme-crimson .add-plan-btn:hover{color:#e94560 !important;}' +
+            'body.theme-crimson .fav-heart.on,body.theme-crimson .add-plan-btn.added{color:#e94560 !important;}';
+        document.head.appendChild(st);
+
+        const slug = (s) => (s || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+        const cards = Array.from(document.querySelectorAll('.exercise-card'));
+        cards.forEach((card, i) => {
+            const ar  = (card.querySelector('h5')?.textContent || '').trim();
+            const en  = (card.querySelector('p')?.textContent || '').trim();
+            const tab = card.closest('.tab-panel')?.id || '';
+            const id  = (tab ? tab + '__' : '') + (slug(en) || slug(ar) || 'ex') + '__' + i;
+
+            card.style.position = 'relative';
+
+            // زر المفضلة (قلب)
+            const favBtn = document.createElement('button');
+            favBtn.type = 'button';
+            favBtn.className = 'fav-heart';
+            favBtn.title = 'أضف إلى المفضلة';
+            favBtn.dataset.id = id;
+            favBtn.style.cssText = 'position:absolute;top:12px;left:12px;background:rgba(0,0,0,.45);border:none;color:#888;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:color .25s,transform .15s;z-index:2;';
+            favBtn.innerHTML = '<i class="far fa-heart"></i>';
+            favBtn.addEventListener('mouseenter', () => (favBtn.style.transform = 'scale(1.12)'));
+            favBtn.addEventListener('mouseleave', () => (favBtn.style.transform = 'scale(1)'));
+            favBtn.addEventListener('click', async (e) => {
+                e.stopPropagation();
+                if (!window.FITAuth.user) { location.href = 'auth.html'; return; }
+                favBtn.disabled = true;
+                try {
+                    const on = await window.FITData.toggleFavorite({ id, nameAr: ar, nameEn: en, tab, type: 'exercise' });
+                    setHeart(favBtn, on);
+                } catch (err) { console.error(err); }
+                finally { favBtn.disabled = false; }
+            });
+            card.appendChild(favBtn);
+
+            // زر إضافة للخطة (+)
+            const planBtn = document.createElement('button');
+            planBtn.type = 'button';
+            planBtn.className = 'add-plan-btn';
+            planBtn.title = 'أضف لخطتي';
+            planBtn.dataset.id = id;
+            planBtn.style.cssText = 'position:absolute;top:12px;left:54px;background:rgba(0,0,0,.45);border:none;color:#888;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;transition:color .25s,transform .15s;z-index:2;';
+            planBtn.innerHTML = '<i class="fas fa-plus"></i>';
+            planBtn.addEventListener('mouseenter', () => (planBtn.style.transform = 'scale(1.12)'));
+            planBtn.addEventListener('mouseleave', () => (planBtn.style.transform = 'scale(1)'));
+            planBtn.addEventListener('click', async (e) => {
+                e.stopPropagation();
+                if (!window.FITAuth.user) { location.href = 'auth.html'; return; }
+                planBtn.disabled = true;
+                try {
+                    await window.FITData.addToPlan({ id, nameAr: ar, nameEn: en, tab });
+                    setPlanBtn(planBtn, true);
+                } catch (err) { console.error(err); }
+                finally { planBtn.disabled = false; }
+            });
+            card.appendChild(planBtn);
+        });
+
+        function setHeart(btn, on) {
+            btn.classList.toggle('on', on);
+            btn.innerHTML = on ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>';
+            btn.title = on ? 'إزالة من المفضلة' : 'أضف إلى المفضلة';
+        }
+        function setPlanBtn(btn, added) {
+            btn.classList.toggle('added', added);
+            btn.innerHTML = added ? '<i class="fas fa-check"></i>' : '<i class="fas fa-plus"></i>';
+            btn.title = added ? 'في خطتي' : 'أضف لخطتي';
+        }
+
+        // --- متابعة إنجاز التمرين (streak) ---
+        const markBtn = document.getElementById('mark-workout-btn');
+        function updateStreakBar(stats) {
+            const s = document.getElementById('sb-streak'), l = document.getElementById('sb-longest'), t = document.getElementById('sb-total');
+            if (s) s.textContent = stats.streak;
+            if (l) l.textContent = stats.longestStreak;
+            if (t) t.textContent = stats.total;
+        }
+        markBtn?.addEventListener('click', async () => {
+            if (!window.FITAuth.user) { location.href = 'auth.html'; return; }
+            markBtn.disabled = true;
+            try {
+                const stats = await window.FITData.markWorkoutToday();
+                updateStreakBar(stats);
+                const msg = document.getElementById('sb-msg');
+                if (msg) { msg.textContent = 'أحسنت! تم تسجيل تمرين اليوم 💪'; msg.style.display = 'block'; setTimeout(() => { msg.style.display = 'none'; }, 3000); }
+            } catch (err) { console.error(err); alert('تعذّر تسجيل التمرين.'); }
+            finally { markBtn.disabled = false; }
+        });
+
+        // عند الدخول: تمييز المفضلة + الخطة + عرض السلسلة
+        window.FITAuth.onUser(async (user) => {
+            const bar = document.getElementById('streak-bar');
+            if (!user) {
+                document.querySelectorAll('.fav-heart').forEach((b) => setHeart(b, false));
+                document.querySelectorAll('.add-plan-btn').forEach((b) => setPlanBtn(b, false));
+                if (bar) bar.style.display = 'none';
+                return;
+            }
+            if (bar) bar.style.display = 'block';
+            try {
+                const [favs, plan, dates] = await Promise.all([
+                    window.FITData.getFavorites(),
+                    window.FITData.getPlan(),
+                    window.FITData.getCompletedDates()
+                ]);
+                const favIds = new Set(favs.map((f) => f.id));
+                document.querySelectorAll('.fav-heart').forEach((b) => setHeart(b, favIds.has(b.dataset.id)));
+                const planIds = new Set(plan.map((e) => e.id));
+                document.querySelectorAll('.add-plan-btn').forEach((b) => setPlanBtn(b, planIds.has(b.dataset.id)));
+                updateStreakBar(window.FITData._getStreakStats(dates));
+            } catch (e) { console.warn(e); }
         });
     </script>
 </body>

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAKE ME FIT - مساحتي الشخصية</title>
+    <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/media-query.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        body,h1,h2,h3,h4,h5,h6,p,a,span,li,td,th,div,label,input,select,button{font-family:'Tajawal',sans-serif !important;}
+        body{background:#0d0d0d;}
+        .nav-link-item:hover{color:#f59e0b !important;}
+        #mobileNav.show{display:block !important;}
+
+        .pf-wrap{max-width:960px;margin:0 auto;padding:30px 16px 80px;}
+        .pf-loading{min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#888;}
+        .pf-spinner{width:46px;height:46px;border:4px solid #2a2a2a;border-top-color:#f59e0b;border-radius:50%;animation:spin 0.9s linear infinite;}
+        @keyframes spin{to{transform:rotate(360deg);}}
+
+        .pf-card{background:#161616;border:1px solid #2a2a2a;border-radius:16px;padding:24px;margin-bottom:22px;}
+        .pf-card h2{color:#fff;font-size:1.2rem;font-weight:800;margin:0 0 18px;display:flex;align-items:center;gap:10px;}
+        .pf-card h2 i{color:#f59e0b;}
+
+        .pf-header{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+        .pf-avatar{width:72px;height:72px;border-radius:50%;background:#f59e0b;color:#111;display:flex;align-items:center;
+            justify-content:center;font-size:1.8rem;font-weight:800;overflow:hidden;flex:0 0 auto;}
+        .pf-avatar img{width:100%;height:100%;object-fit:cover;}
+        .pf-header .name{color:#fff;font-size:1.35rem;font-weight:800;margin:0;}
+        .pf-header .email{color:#888;font-size:0.95rem;margin:2px 0 0;}
+        .pf-logout{margin-inline-start:auto;background:none;border:1px solid #e94560;color:#e94560;border-radius:9px;
+            padding:9px 18px;font-weight:700;cursor:pointer;transition:all .25s;}
+        .pf-logout:hover{background:#e94560;color:#fff;}
+
+        .verify-banner{display:none;background:#f59e0b18;border:1px solid #f59e0b66;color:#ffd591;border-radius:12px;
+            padding:12px 16px;margin-bottom:22px;font-size:0.92rem;align-items:center;gap:12px;flex-wrap:wrap;}
+        .verify-banner.show{display:flex;}
+        .verify-banner button{background:#f59e0b;color:#111;border:none;border-radius:8px;padding:6px 14px;font-weight:700;cursor:pointer;}
+
+        .pf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;}
+        .pf-field label{display:block;color:#bbb;font-size:0.88rem;margin-bottom:6px;font-weight:600;}
+        .pf-input{width:100%;background:#0d0d0d;border:1px solid #2e2e2e;border-radius:10px;color:#fff;padding:11px 13px;
+            font-size:0.95rem;outline:none;transition:border-color .25s;}
+        .pf-input:focus{border-color:#f59e0b;}
+        .pf-save{margin-top:16px;background:#f59e0b;color:#111;border:none;border-radius:10px;padding:11px 26px;
+            font-weight:800;cursor:pointer;transition:background .25s;}
+        .pf-save:hover{background:#d97706;}
+        .pf-inline-msg{margin-inline-start:14px;font-weight:700;font-size:0.9rem;}
+
+        .fav-card{background:#0f0f0f;border:1px solid #2a2a2a;border-radius:12px;padding:14px 16px;display:flex;
+            align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;}
+        .fav-card .ar{color:#fff;font-weight:700;}
+        .fav-card .en{color:#777;font-size:0.82rem;}
+        .icon-del{background:none;border:none;color:#e94560;cursor:pointer;font-size:1rem;padding:6px;border-radius:8px;}
+        .icon-del:hover{background:#e9456020;}
+
+        .pf-table{width:100%;border-collapse:separate;border-spacing:0 8px;}
+        .pf-table th{color:#f59e0b;font-size:0.82rem;text-align:center;padding:6px;}
+        .pf-table td{background:#0f0f0f;color:#ddd;text-align:center;padding:12px 8px;font-size:0.9rem;border-top:1px solid #222;border-bottom:1px solid #222;}
+        .pf-table td:first-child{border-inline-start:1px solid #222;border-radius:0 10px 10px 0;}
+        .pf-table td:last-child{border-inline-end:1px solid #222;border-radius:10px 0 0 10px;}
+
+        .empty{color:#666;text-align:center;padding:18px;font-size:0.95rem;}
+        .badge-amber{background:#f59e0b22;border:1px solid #f59e0b;color:#f59e0b;border-radius:20px;padding:3px 12px;font-size:0.8rem;font-weight:700;}
+    </style>
+</head>
+<body>
+    <div class="site_content">
+        <!-- Header (مطابق لباقي الصفحات) -->
+        <header>
+            <nav style="background:#111;padding:15px 0;position:fixed;top:0;left:0;right:0;z-index:9999;border-bottom:1px solid #f59e0b33;direction:rtl;">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center" style="direction:rtl;gap:40px;">
+                        <a href="index.html" style="text-decoration:none;font-family:'Zen Dots',cursive;font-size:1.6rem;white-space:nowrap;">
+                            <span style="color:#f59e0b;">MAKE ME</span> <span style="color:#fff;">FIT</span>
+                        </a>
+                        <div class="d-none d-lg-flex gap-3 align-items-center">
+                            <a href="index.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الرئيسية</a>
+                            <a href="warmup.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الإحماء</a>
+                            <a href="workouts.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">التمارين</a>
+                            <a href="cardio.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الكارديو</a>
+                            <a href="nutrition.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">التغذية</a>
+                            <a href="calculator.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">حاسبة السعرات</a>
+                            <a href="contact.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">تواصل معنا</a>
+                        </div>
+                        <button class="d-lg-none" style="background:none;border:1px solid #444;color:#fff;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:1.2rem;" onclick="document.getElementById('mobileNav').classList.toggle('show')">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                    <div id="mobileNav" class="d-lg-none" style="display:none;padding-top:15px;border-top:1px solid #333;margin-top:15px;">
+                        <a href="index.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">الرئيسية</a>
+                        <a href="warmup.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">الإحماء</a>
+                        <a href="workouts.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">التمارين</a>
+                        <a href="cardio.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">الكارديو</a>
+                        <a href="nutrition.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">التغذية</a>
+                        <a href="calculator.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">حاسبة السعرات</a>
+                        <a href="contact.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">تواصل معنا</a>
+                    </div>
+                </div>
+            </nav>
+            <div style="height:70px;"></div>
+        </header>
+        <script>
+            document.getElementById('mobileNav')?.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') this.classList.remove('show');
+            });
+        </script>
+
+        <!-- حالة التحميل (تُخفى بعد حسم المصادقة) -->
+        <div class="pf-loading" id="pf-loading">
+            <div class="pf-spinner"></div>
+            <p>جارٍ التحميل…</p>
+        </div>
+
+        <!-- المحتوى (يظهر بعد التأكد من الدخول) -->
+        <main class="pf-wrap" id="pf-content" style="display:none;">
+
+            <!-- شريط تأكيد البريد -->
+            <div class="verify-banner" id="verify-banner">
+                <i class="fas fa-envelope-circle-check"></i>
+                <span>لم يتم تأكيد بريدك بعد. تحقّق من صندوق الوارد.</span>
+                <button type="button" id="btn-resend">إعادة إرسال الرابط</button>
+                <span id="resend-msg" style="color:#9be29e;"></span>
+            </div>
+
+            <!-- رأس الملف -->
+            <div class="pf-card">
+                <div class="pf-header">
+                    <div style="position:relative;flex:0 0 auto;">
+                        <div class="pf-avatar" id="pf-avatar">؟</div>
+                        <button id="btn-edit-avatar" title="تغيير الصورة" style="position:absolute;bottom:0;left:0;background:#f59e0b;border:2px solid #161616;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#111;font-size:0.8rem;">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                        <input type="file" id="avatar-input" accept="image/*" style="display:none;">
+                    </div>
+                    <div>
+                        <p class="name" id="pf-name">—</p>
+                        <p class="email" id="pf-email">—</p>
+                    </div>
+                    <button class="pf-logout" id="btn-logout"><i class="fas fa-right-from-bracket"></i> تسجيل الخروج</button>
+                </div>
+            </div>
+
+            <!-- بيانات الملف الشخصي -->
+            <div class="pf-card">
+                <h2><i class="fas fa-id-card"></i> بياناتي</h2>
+                <form id="pf-form">
+                    <div class="pf-grid">
+                        <div class="pf-field">
+                            <label for="pf-display">الاسم</label>
+                            <input type="text" id="pf-display" class="pf-input" placeholder="اسمك">
+                        </div>
+                        <div class="pf-field">
+                            <label for="pf-weight">الوزن (كجم)</label>
+                            <input type="number" id="pf-weight" class="pf-input" min="30" max="400" placeholder="مثال: 75">
+                        </div>
+                        <div class="pf-field">
+                            <label for="pf-height">الطول (سم)</label>
+                            <input type="number" id="pf-height" class="pf-input" min="100" max="250" placeholder="مثال: 175">
+                        </div>
+                        <div class="pf-field">
+                            <label for="pf-goal">الهدف</label>
+                            <select id="pf-goal" class="pf-input">
+                                <option value="">— اختر —</option>
+                                <option value="lose">إنقاص الوزن (حرق دهون)</option>
+                                <option value="maintain">الحفاظ على الوزن</option>
+                                <option value="gain">زيادة الوزن (بناء عضلات)</option>
+                            </select>
+                        </div>
+                        <div class="pf-field">
+                            <label for="pf-activity">مستوى النشاط</label>
+                            <select id="pf-activity" class="pf-input">
+                                <option value="">— اختر —</option>
+                                <option value="1.2">خامل — بدون تمارين</option>
+                                <option value="1.375">نشاط خفيف — 1-3 أيام/أسبوع</option>
+                                <option value="1.55">نشاط معتدل — 3-5 أيام/أسبوع</option>
+                                <option value="1.725">نشاط عالي — 6-7 أيام/أسبوع</option>
+                                <option value="1.9">نشاط عالي جداً — يومياً</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="pf-save">حفظ البيانات</button>
+                    <span class="pf-inline-msg" id="pf-save-msg"></span>
+                </form>
+            </div>
+
+            <!-- التمارين المفضلة -->
+            <div class="pf-card">
+                <h2><i class="fas fa-heart"></i> تماريني المفضلة</h2>
+                <div id="pf-favorites"><p class="empty">جارٍ التحميل…</p></div>
+            </div>
+
+            <!-- سجل حاسبة السعرات -->
+            <div class="pf-card">
+                <h2><i class="fas fa-calculator"></i> سجل حاسبة السعرات</h2>
+                <div id="pf-calc"><p class="empty">جارٍ التحميل…</p></div>
+            </div>
+
+            <!-- خطط التغذية المحفوظة -->
+            <div class="pf-card">
+                <h2><i class="fas fa-utensils"></i> خطط التغذية المحفوظة</h2>
+                <div id="pf-plans"><p class="empty">جارٍ التحميل…</p></div>
+            </div>
+
+            <!-- تقدّمك في التمارين (streak) -->
+            <div class="pf-card">
+                <h2><i class="fas fa-fire"></i> تقدّمك في التمارين</h2>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;margin-bottom:22px;">
+                    <div style="background:#0f0f0f;border:1px solid #2a2a2a;border-radius:10px;padding:16px;text-align:center;">
+                        <div style="font-size:1.8rem;font-weight:800;color:#f59e0b;font-family:'Zen Dots',cursive;" id="pf-streak">0</div>
+                        <div style="color:#888;font-size:0.8rem;margin-top:6px;font-weight:600;">سلسلة حالية (يوم)</div>
+                    </div>
+                    <div style="background:#0f0f0f;border:1px solid #2a2a2a;border-radius:10px;padding:16px;text-align:center;">
+                        <div style="font-size:1.8rem;font-weight:800;color:#f59e0b;font-family:'Zen Dots',cursive;" id="pf-longest">0</div>
+                        <div style="color:#888;font-size:0.8rem;margin-top:6px;font-weight:600;">أطول سلسلة</div>
+                    </div>
+                    <div style="background:#0f0f0f;border:1px solid #2a2a2a;border-radius:10px;padding:16px;text-align:center;">
+                        <div style="font-size:1.8rem;font-weight:800;color:#f59e0b;font-family:'Zen Dots',cursive;" id="pf-total">0</div>
+                        <div style="color:#888;font-size:0.8rem;margin-top:6px;font-weight:600;">إجمالي الأيام</div>
+                    </div>
+                </div>
+                <h4 style="color:#fff;font-size:0.95rem;font-weight:700;margin-bottom:12px;"><i class="fas fa-calendar-alt" style="color:#f59e0b;margin-left:6px;"></i> آخر ٣٠ يوماً</h4>
+                <div id="pf-heatmap" style="display:grid;grid-template-columns:repeat(10,1fr);gap:5px;"></div>
+                <div style="display:flex;gap:14px;margin-top:12px;font-size:0.8rem;justify-content:center;">
+                    <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;background:#262626;border-radius:3px;display:inline-block;"></span><span style="color:#888;">لم تتمرّن</span></span>
+                    <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;background:#f59e0b;border-radius:3px;display:inline-block;"></span><span style="color:#888;">تمرّنت</span></span>
+                </div>
+            </div>
+
+            <!-- متابع الوزن والقياسات -->
+            <div class="pf-card">
+                <h2><i class="fas fa-weight-scale"></i> متابع الوزن والقياسات</h2>
+                <div style="position:relative;height:280px;margin-bottom:8px;">
+                    <canvas id="weight-chart"></canvas>
+                </div>
+                <p style="color:#666;text-align:center;font-size:0.82rem;margin-bottom:22px;">الرسم يعرض آخر ٩٠ يوماً من سجلك</p>
+
+                <div style="background:#0f0f0f;border:1px solid #2a2a2a;border-radius:12px;padding:18px;margin-bottom:22px;">
+                    <h4 style="color:#fff;font-weight:700;margin-bottom:14px;font-size:1rem;">إضافة قياس جديد</h4>
+                    <form id="weight-form">
+                        <div class="pf-grid">
+                            <div class="pf-field">
+                                <label for="weight-date">التاريخ</label>
+                                <input type="date" id="weight-date" class="pf-input" required>
+                            </div>
+                            <div class="pf-field">
+                                <label for="weight-value">الوزن (كجم) <span style="color:#e94560;">*</span></label>
+                                <input type="number" id="weight-value" class="pf-input" min="10" max="500" step="0.1" placeholder="75.5" required>
+                            </div>
+                            <div class="pf-field">
+                                <label for="waist-value">الخصر (سم)</label>
+                                <input type="number" id="waist-value" class="pf-input" min="30" max="200" step="0.1" placeholder="اختياري">
+                            </div>
+                            <div class="pf-field">
+                                <label for="chest-value">الصدر (سم)</label>
+                                <input type="number" id="chest-value" class="pf-input" min="40" max="200" step="0.1" placeholder="اختياري">
+                            </div>
+                            <div class="pf-field">
+                                <label for="arms-value">الذراع (سم)</label>
+                                <input type="number" id="arms-value" class="pf-input" min="15" max="100" step="0.1" placeholder="اختياري">
+                            </div>
+                        </div>
+                        <button type="submit" class="pf-save"><i class="fas fa-plus" style="margin-left:6px;"></i> إضافة القياس</button>
+                        <span class="pf-inline-msg" id="weight-form-msg"></span>
+                    </form>
+                </div>
+
+                <div style="overflow-x:auto;">
+                    <table class="pf-table">
+                        <thead><tr><th>التاريخ</th><th>الوزن</th><th>الخصر</th><th>الصدر</th><th>الذراع</th><th></th></tr></thead>
+                        <tbody id="weight-table-body"><tr><td colspan="6" class="empty">جارٍ التحميل…</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- خطتي المخصصة -->
+            <div class="pf-card">
+                <h2><i class="fas fa-dumbbell"></i> خطتي المخصصة</h2>
+                <div id="pf-custom-plan"><p class="empty">جارٍ التحميل…</p></div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- وحدة المصادقة (تُعرّف window.FITAuth و window.FITData) -->
+    <script type="module" src="assets/js/auth.js"></script>
+
+    <!-- منطق الصفحة: module يأتي بعد auth.js فيُضمن تعريف FITAuth -->
+    <script type="module">
+        const $ = (id) => document.getElementById(id);
+
+        const GOAL_LABEL = { lose: "إنقاص وزن", maintain: "حفاظ", gain: "زيادة وزن" };
+
+        // حماية الصفحة: تحويل لصفحة الدخول إن لم يكن داخلاً
+        window.FITAuth.requireAuth(async (user) => {
+            $("pf-loading").style.display = "none";
+            $("pf-content").style.display = "block";
+            renderHeader(user);
+            $("weight-date").value = new Date().toLocaleDateString("en-CA");
+            await Promise.all([
+                loadProfile(), loadFavorites(), loadCalc(), loadPlans(),
+                loadStreak(), loadWeightLog(), loadCustomPlan()
+            ]);
+        });
+
+        function renderHeader(user) {
+            const name = user.displayName || (user.email ? user.email.split("@")[0] : "حسابي");
+            $("pf-name").textContent = name;
+            $("pf-email").textContent = user.email || "";
+            const av = $("pf-avatar");
+            if (user.photoURL) {
+                av.innerHTML = "";
+                const img = document.createElement("img");
+                img.src = user.photoURL; img.alt = name; img.referrerPolicy = "no-referrer";
+                av.appendChild(img);
+            } else {
+                av.textContent = (name.trim()[0] || "؟").toUpperCase();
+            }
+            // شريط تأكيد البريد لمستخدمي البريد/كلمة المرور غير المؤكدين
+            const isPasswordUser = user.providerData.some((p) => p.providerId === "password");
+            if (isPasswordUser && !user.emailVerified) $("verify-banner").classList.add("show");
+        }
+
+        $("btn-logout").addEventListener("click", () => window.FITAuth.logout());
+
+        // --- رفع صورة الملف الشخصي ---
+        const avatarInput = $("avatar-input");
+        const editAvatarBtn = $("btn-edit-avatar");
+        editAvatarBtn?.addEventListener("click", () => avatarInput && avatarInput.click());
+        avatarInput?.addEventListener("change", async (e) => {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            const orig = editAvatarBtn.innerHTML;
+            editAvatarBtn.disabled = true;
+            editAvatarBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            try {
+                await window.FITAuth.uploadAvatar(file);
+                editAvatarBtn.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => { editAvatarBtn.innerHTML = orig; }, 1500);
+            } catch (err) {
+                console.error(err);
+                alert(err.message || "تعذّر رفع الصورة");
+                editAvatarBtn.innerHTML = orig;
+            } finally {
+                editAvatarBtn.disabled = false;
+                avatarInput.value = "";
+            }
+        });
+
+        $("btn-resend").addEventListener("click", async () => {
+            try {
+                await window.FITAuth.resendVerification();
+                $("resend-msg").textContent = "تم الإرسال ✓";
+            } catch (e) { $("resend-msg").textContent = "تعذّر الإرسال"; }
+        });
+
+        // --- الملف الشخصي ---
+        async function loadProfile() {
+            const p = (await window.FITData.getProfile()) || {};
+            $("pf-display").value  = p.displayName || (window.FITAuth.user.displayName || "");
+            $("pf-weight").value   = p.weight ?? "";
+            $("pf-height").value   = p.height ?? "";
+            $("pf-goal").value     = p.goal || "";
+            $("pf-activity").value = p.activity || "";
+        }
+
+        $("pf-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const msg = $("pf-save-msg");
+            msg.textContent = ""; msg.style.color = "";
+            try {
+                await window.FITData.saveProfile({
+                    displayName: $("pf-display").value.trim(),
+                    weight:   numOrNull($("pf-weight").value),
+                    height:   numOrNull($("pf-height").value),
+                    goal:     $("pf-goal").value || null,
+                    activity: $("pf-activity").value ? parseFloat($("pf-activity").value) : null
+                });
+                msg.textContent = "تم الحفظ ✓"; msg.style.color = "#9be29e";
+            } catch (err) {
+                console.error(err);
+                msg.textContent = "تعذّر الحفظ"; msg.style.color = "#ff8aa0";
+            }
+        });
+        function numOrNull(v) { const n = parseFloat(v); return isNaN(n) ? null : n; }
+
+        // --- المفضلة ---
+        async function loadFavorites() {
+            const list = await window.FITData.getFavorites();
+            const box = $("pf-favorites");
+            if (!list.length) { box.innerHTML = '<p class="empty">لا توجد تمارين مفضلة بعد. أضِف تمارينك من صفحة التمارين.</p>'; return; }
+            box.innerHTML = "";
+            list.forEach((f) => {
+                const card = document.createElement("div");
+                card.className = "fav-card";
+                const info = document.createElement("div");
+                info.innerHTML = `<div class="ar">${esc(f.nameAr || f.nameEn || "تمرين")}</div>` +
+                                 (f.nameEn ? `<div class="en">${esc(f.nameEn)}</div>` : "");
+                const del = document.createElement("button");
+                del.className = "icon-del"; del.title = "إزالة";
+                del.innerHTML = '<i class="fas fa-trash"></i>';
+                del.addEventListener("click", async () => {
+                    await window.FITData.removeFavorite(f.id);
+                    loadFavorites();
+                });
+                card.appendChild(info); card.appendChild(del);
+                box.appendChild(card);
+            });
+        }
+
+        // --- سجل الحاسبة ---
+        async function loadCalc() {
+            const rows = await window.FITData.getCalcHistory();
+            const box = $("pf-calc");
+            if (!rows.length) { box.innerHTML = '<p class="empty">لا يوجد سجل بعد. احفظ نتيجتك من صفحة حاسبة السعرات.</p>'; return; }
+            let html = '<div style="overflow-x:auto;"><table class="pf-table"><thead><tr>' +
+                '<th>التاريخ</th><th>الهدف</th><th>السعرات الموصى بها</th><th>BMI</th>' +
+                '<th>بروتين</th><th>كارب</th><th>دهون</th><th></th></tr></thead><tbody>';
+            rows.forEach((r) => {
+                html += `<tr>
+                    <td>${fmtDate(r.createdAt)}</td>
+                    <td>${GOAL_LABEL[r.goal] || "—"}</td>
+                    <td><span class="badge-amber">${num(r.calRecommended)}</span></td>
+                    <td>${r.bmi ?? "—"}</td>
+                    <td>${num(r.protein)} جم</td>
+                    <td>${num(r.carbs)} جم</td>
+                    <td>${num(r.fats)} جم</td>
+                    <td><button class="icon-del" data-id="${r.id}" title="حذف"><i class="fas fa-trash"></i></button></td>
+                </tr>`;
+            });
+            html += "</tbody></table></div>";
+            box.innerHTML = html;
+            box.querySelectorAll(".icon-del").forEach((b) =>
+                b.addEventListener("click", async () => {
+                    await window.FITData.deleteCalcResult(b.getAttribute("data-id"));
+                    loadCalc();
+                }));
+        }
+
+        // --- خطط التغذية ---
+        async function loadPlans() {
+            const list = await window.FITData.getNutritionPlans();
+            const box = $("pf-plans");
+            if (!list.length) { box.innerHTML = '<p class="empty">لا توجد خطط محفوظة بعد. احفظ خطة من صفحة التغذية.</p>'; return; }
+            box.innerHTML = "";
+            list.forEach((p) => {
+                const card = document.createElement("div");
+                card.className = "fav-card";
+                const link = document.createElement("a");
+                link.href = "nutrition.html#" + encodeURIComponent(p.calId || "");
+                link.style.cssText = "color:#fff;font-weight:700;text-decoration:none;";
+                link.textContent = p.label || p.id;
+                link.onmouseenter = () => (link.style.color = "#f59e0b");
+                link.onmouseleave = () => (link.style.color = "#fff");
+                const del = document.createElement("button");
+                del.className = "icon-del"; del.title = "إزالة";
+                del.innerHTML = '<i class="fas fa-trash"></i>';
+                del.addEventListener("click", async () => {
+                    await window.FITData.removeNutritionPlan(p.id);
+                    loadPlans();
+                });
+                card.appendChild(link); card.appendChild(del);
+                box.appendChild(card);
+            });
+        }
+
+        // أدوات مساعدة
+        function esc(s) { const d = document.createElement("div"); d.textContent = s == null ? "" : String(s); return d.innerHTML; }
+        function num(n) { return (n == null || isNaN(n)) ? "—" : Number(n).toLocaleString("ar-EG"); }
+        function fmtDate(ts) {
+            try {
+                const d = ts && ts.toDate ? ts.toDate() : (ts ? new Date(ts) : null);
+                return d ? d.toLocaleDateString("ar-EG", { year: "numeric", month: "short", day: "numeric" }) : "—";
+            } catch (e) { return "—"; }
+        }
+
+        // --- متابع الوزن والقياسات ---
+        let weightChart = null;
+        async function loadWeightLog() {
+            const rows = await window.FITData.getWeightLog();
+            const tbody = $("weight-table-body");
+            if (!rows.length) {
+                tbody.innerHTML = '<tr><td colspan="6" class="empty">لا توجد قياسات بعد. أضِف قياسك الأول أعلاه.</td></tr>';
+            } else {
+                tbody.innerHTML = "";
+                rows.forEach((r) => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML =
+                        `<td>${esc(r.date)}</td>` +
+                        `<td><span class="badge-amber">${num(r.weight)}</span></td>` +
+                        `<td>${num(r.waist)}</td><td>${num(r.chest)}</td><td>${num(r.arms)}</td>` +
+                        `<td><button class="icon-del" data-id="${esc(r.id)}" title="حذف"><i class="fas fa-trash"></i></button></td>`;
+                    tbody.appendChild(tr);
+                });
+                tbody.querySelectorAll(".icon-del").forEach((b) =>
+                    b.addEventListener("click", async () => {
+                        if (!confirm("حذف هذا القياس؟")) return;
+                        await window.FITData.deleteWeightEntry(b.getAttribute("data-id"));
+                        loadWeightLog();
+                    }));
+            }
+            renderWeightChart(rows);
+        }
+
+        function renderWeightChart(rows) {
+            const canvas = $("weight-chart");
+            if (!canvas || !window.Chart) return;
+            const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - 90);
+            const data = rows
+                .filter((r) => r.date && new Date(r.date) >= cutoff)
+                .map((r) => ({ date: r.date, weight: r.weight }))
+                .sort((a, b) => (a.date < b.date ? -1 : 1));
+            if (weightChart) { weightChart.destroy(); weightChart = null; }
+            const wrap = canvas.parentElement;
+            const oldMsg = wrap.querySelector(".empty"); if (oldMsg) oldMsg.remove();
+            if (!data.length) {
+                canvas.style.display = "none";
+                const p = document.createElement("p"); p.className = "empty";
+                p.textContent = "لا توجد بيانات كافية للرسم البياني.";
+                wrap.appendChild(p);
+                return;
+            }
+            canvas.style.display = "block";
+            weightChart = new Chart(canvas, {
+                type: "line",
+                data: {
+                    labels: data.map((d) => d.date),
+                    datasets: [{
+                        label: "الوزن (كجم)",
+                        data: data.map((d) => d.weight),
+                        borderColor: "#f59e0b",
+                        backgroundColor: "rgba(245,158,11,0.13)",
+                        borderWidth: 3, fill: true, tension: 0.35,
+                        pointBackgroundColor: "#f59e0b", pointBorderColor: "#fff",
+                        pointRadius: 4, pointHoverRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { labels: { color: "#bbb" } } },
+                    scales: {
+                        x: { ticks: { color: "#888", font: { size: 10 } }, grid: { color: "#222" } },
+                        y: { ticks: { color: "#888", font: { size: 10 } }, grid: { color: "#222" } }
+                    }
+                }
+            });
+        }
+
+        $("weight-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const msg = $("weight-form-msg"); msg.textContent = ""; msg.style.color = "";
+            try {
+                await window.FITData.addWeightEntry({
+                    weight: parseFloat($("weight-value").value),
+                    waist:  $("waist-value").value ? parseFloat($("waist-value").value) : null,
+                    chest:  $("chest-value").value ? parseFloat($("chest-value").value) : null,
+                    arms:   $("arms-value").value  ? parseFloat($("arms-value").value)  : null,
+                    date:   $("weight-date").value || new Date().toLocaleDateString("en-CA")
+                });
+                msg.textContent = "تمت الإضافة ✓"; msg.style.color = "#9be29e";
+                $("weight-value").value = ""; $("waist-value").value = "";
+                $("chest-value").value = ""; $("arms-value").value = "";
+                loadWeightLog();
+            } catch (err) {
+                console.error(err);
+                msg.textContent = err.message || "تعذّرت الإضافة"; msg.style.color = "#ff8aa0";
+            }
+        });
+
+        // --- تقدّم التمارين (السلسلة + الخريطة الحرارية) ---
+        async function loadStreak() {
+            const dates = await window.FITData.getCompletedDates();
+            const stats = window.FITData._getStreakStats(dates);
+            $("pf-streak").textContent  = stats.streak;
+            $("pf-longest").textContent = stats.longestStreak;
+            $("pf-total").textContent   = stats.total;
+            renderHeatmap(dates);
+        }
+        function renderHeatmap(dates) {
+            const set = new Set(dates || []);
+            const box = $("pf-heatmap"); box.innerHTML = "";
+            for (let i = 29; i >= 0; i--) {
+                const d = new Date(); d.setDate(d.getDate() - i);
+                const ds = d.toLocaleDateString("en-CA");
+                const on = set.has(ds);
+                const cell = document.createElement("div");
+                cell.title = ds + (on ? " — تمرّنت" : "");
+                cell.style.cssText = `aspect-ratio:1;border-radius:3px;background:${on ? "#f59e0b" : "#262626"};border:1px solid ${on ? "#f59e0b" : "#333"};`;
+                box.appendChild(cell);
+            }
+        }
+
+        // --- خطتي المخصصة ---
+        async function loadCustomPlan() {
+            const list = (await window.FITData.getPlan()).slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+            const box = $("pf-custom-plan");
+            if (!list.length) { box.innerHTML = '<p class="empty">خطتك فارغة. أضِف تمارين بزر (+) من صفحة التمارين.</p>'; return; }
+            box.innerHTML = "";
+            const header = document.createElement("div");
+            header.style.cssText = "display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #2a2a2a;";
+            header.innerHTML = `<span style="color:#f59e0b;font-weight:700;">${list.length} تمرين</span>`;
+            const clearBtn = document.createElement("button");
+            clearBtn.style.cssText = "background:none;border:1px solid #e94560;color:#e94560;border-radius:8px;padding:6px 14px;font-weight:700;cursor:pointer;";
+            clearBtn.innerHTML = '<i class="fas fa-trash-alt" style="margin-left:6px;"></i> امسح الخطة';
+            clearBtn.addEventListener("click", async () => {
+                if (!confirm("حذف الخطة كاملة؟")) return;
+                await window.FITData.clearPlan(); loadCustomPlan();
+            });
+            header.appendChild(clearBtn);
+            box.appendChild(header);
+
+            list.forEach((ex, idx) => {
+                const card = document.createElement("div");
+                card.style.cssText = "background:#0f0f0f;border:1px solid #2a2a2a;border-radius:12px;padding:14px;margin-bottom:10px;";
+                card.innerHTML =
+                    `<div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;">
+                        <div style="flex:1;">
+                            <div style="color:#fff;font-weight:700;">${esc(ex.nameAr || ex.nameEn || "تمرين")}</div>
+                            ${ex.nameEn ? `<div style="color:#777;font-size:0.82rem;">${esc(ex.nameEn)}</div>` : ""}
+                        </div>
+                        <div style="flex:0 0 auto;display:flex;gap:6px;">
+                            <button class="plan-up" data-idx="${idx}" title="رفع" style="background:none;border:1px solid #f59e0b55;color:#f59e0b;width:30px;height:30px;border-radius:6px;cursor:pointer;font-weight:800;">↑</button>
+                            <button class="plan-down" data-idx="${idx}" title="خفض" style="background:none;border:1px solid #f59e0b55;color:#f59e0b;width:30px;height:30px;border-radius:6px;cursor:pointer;font-weight:800;">↓</button>
+                            <button class="plan-del" data-id="${esc(ex.id)}" title="حذف" style="background:none;border:1px solid #e94560;color:#e94560;width:30px;height:30px;border-radius:6px;cursor:pointer;"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:10px;">
+                        <div style="flex:1;"><label style="color:#bbb;font-size:0.82rem;display:block;margin-bottom:4px;">جولات</label><input type="number" class="pf-input plan-sets" data-id="${esc(ex.id)}" value="${ex.sets ?? 4}" min="1" max="20"></div>
+                        <div style="flex:1;"><label style="color:#bbb;font-size:0.82rem;display:block;margin-bottom:4px;">تكرارات</label><input type="number" class="pf-input plan-reps" data-id="${esc(ex.id)}" value="${ex.reps ?? 10}" min="1" max="50"></div>
+                    </div>`;
+                box.appendChild(card);
+            });
+
+            box.querySelectorAll(".plan-del").forEach((b) =>
+                b.addEventListener("click", async () => { await window.FITData.removeFromPlan(b.getAttribute("data-id")); loadCustomPlan(); }));
+            box.querySelectorAll(".plan-up").forEach((b) =>
+                b.addEventListener("click", () => movePlan(parseInt(b.dataset.idx), -1)));
+            box.querySelectorAll(".plan-down").forEach((b) =>
+                b.addEventListener("click", () => movePlan(parseInt(b.dataset.idx), 1)));
+            box.querySelectorAll(".plan-sets, .plan-reps").forEach((inp) =>
+                inp.addEventListener("change", savePlanEdits));
+        }
+
+        async function movePlan(idx, dir) {
+            const list = (await window.FITData.getPlan()).slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+            const j = idx + dir;
+            if (j < 0 || j >= list.length) return;
+            [list[idx], list[j]] = [list[j], list[idx]];
+            list.forEach((e, i) => { e.order = i; });
+            await window.FITData.updatePlan(list);
+            loadCustomPlan();
+        }
+
+        async function savePlanEdits() {
+            const list = (await window.FITData.getPlan()).slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+            document.querySelectorAll("#pf-custom-plan .plan-sets").forEach((inp) => {
+                const it = list.find((e) => e.id === inp.dataset.id);
+                if (it) it.sets = parseInt(inp.value) || 4;
+            });
+            document.querySelectorAll("#pf-custom-plan .plan-reps").forEach((inp) => {
+                const it = list.find((e) => e.id === inp.dataset.id);
+                if (it) it.reps = parseInt(inp.value) || 10;
+            });
+            try { await window.FITData.updatePlan(list); } catch (e) { console.error(e); }
+        }
+    </script>
+</body>
+</html>

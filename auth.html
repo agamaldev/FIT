@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAKE ME FIT - تسجيل الدخول</title>
+    <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/media-query.css">
+    <style>
+        body,h1,h2,h3,h4,h5,h6,p,a,span,li,td,th,div,label,input,button{font-family:'Tajawal',sans-serif !important;}
+        body{background:#0d0d0d;}
+        .nav-link-item:hover{color:#f59e0b !important;}
+        #mobileNav.show{display:block !important;}
+
+        .auth-wrap{min-height:calc(100vh - 70px);display:flex;align-items:center;justify-content:center;padding:40px 16px;
+            background:linear-gradient(135deg,#1a0a00,#0a0a0a);}
+        .auth-card{width:100%;max-width:440px;background:#161616;border:1px solid #f59e0b33;border-radius:18px;
+            padding:34px 28px;box-shadow:0 20px 60px rgba(0,0,0,.6);}
+        .auth-card h1{color:#fff;font-size:1.5rem;font-weight:800;text-align:center;margin-bottom:4px;}
+        .auth-card .sub{color:#888;text-align:center;font-size:0.95rem;margin-bottom:22px;}
+
+        .auth-tabs{display:flex;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:12px;padding:5px;margin-bottom:22px;}
+        .auth-tab{flex:1;background:none;border:none;color:#aaa;padding:10px;border-radius:9px;cursor:pointer;
+            font-weight:700;font-size:0.95rem;transition:all .25s;}
+        .auth-tab.active{background:#f59e0b;color:#111;}
+
+        .social-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:12px;
+            border-radius:10px;border:1px solid #333;background:#fff;color:#222;font-weight:700;font-size:0.95rem;
+            cursor:pointer;margin-bottom:12px;transition:transform .15s,box-shadow .25s;}
+        .social-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.4);}
+        .social-btn.ms{background:#2f2f2f;color:#fff;border-color:#444;}
+        .social-btn img,.social-btn i{width:20px;height:20px;font-size:1.1rem;}
+
+        .auth-divider{display:flex;align-items:center;gap:12px;color:#666;margin:18px 0;font-size:0.85rem;}
+        .auth-divider::before,.auth-divider::after{content:"";flex:1;height:1px;background:#2a2a2a;}
+
+        .auth-field{margin-bottom:14px;}
+        .auth-field label{display:block;color:#ccc;font-size:0.9rem;margin-bottom:6px;font-weight:600;}
+        .auth-input{width:100%;background:#0d0d0d;border:1px solid #2e2e2e;border-radius:10px;color:#fff;
+            padding:12px 14px;font-size:0.95rem;outline:none;transition:border-color .25s;}
+        .auth-input:focus{border-color:#f59e0b;}
+        .auth-submit{width:100%;background:#f59e0b;color:#111;border:none;border-radius:10px;padding:13px;
+            font-weight:800;font-size:1rem;cursor:pointer;margin-top:6px;transition:background .25s;}
+        .auth-submit:hover{background:#d97706;}
+        .auth-submit:disabled{opacity:.6;cursor:not-allowed;}
+        .forgot{display:inline-block;color:#f59e0b;font-size:0.85rem;text-decoration:none;margin-top:2px;}
+        .forgot:hover{text-decoration:underline;}
+
+        .auth-msg{display:none;border-radius:10px;padding:12px 14px;font-size:0.9rem;margin-bottom:16px;font-weight:600;}
+        .auth-msg.error{display:block;background:#e9456022;border:1px solid #e94560;color:#ff8aa0;}
+        .auth-msg.success{display:block;background:#4caf5022;border:1px solid #4caf50;color:#9be29e;}
+        .hidden{display:none;}
+    </style>
+</head>
+<body>
+    <div class="site_content">
+        <!-- Header (مطابق لباقي الصفحات) -->
+        <header>
+            <nav style="background:#111;padding:15px 0;position:fixed;top:0;left:0;right:0;z-index:9999;border-bottom:1px solid #f59e0b33;direction:rtl;">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center" style="direction:rtl;gap:40px;">
+                        <a href="index.html" style="text-decoration:none;font-family:'Zen Dots',cursive;font-size:1.6rem;white-space:nowrap;">
+                            <span style="color:#f59e0b;">MAKE ME</span> <span style="color:#fff;">FIT</span>
+                        </a>
+                        <div class="d-none d-lg-flex gap-3 align-items-center">
+                            <a href="index.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الرئيسية</a>
+                            <a href="warmup.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الإحماء</a>
+                            <a href="workouts.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">التمارين</a>
+                            <a href="cardio.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الكارديو</a>
+                            <a href="nutrition.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">التغذية</a>
+                            <a href="calculator.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">حاسبة السعرات</a>
+                            <a href="contact.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">تواصل معنا</a>
+                        </div>
+                        <button class="d-lg-none" style="background:none;border:1px solid #444;color:#fff;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:1.2rem;" onclick="document.getElementById('mobileNav').classList.toggle('show')">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                    <div id="mobileNav" class="d-lg-none" style="display:none;padding-top:15px;border-top:1px solid #333;margin-top:15px;">
+                        <a href="index.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">الرئيسية</a>
+                        <a href="warmup.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">الإحماء</a>
+                        <a href="workouts.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">التمارين</a>
+                        <a href="cardio.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">الكارديو</a>
+                        <a href="nutrition.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">التغذية</a>
+                        <a href="calculator.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">حاسبة السعرات</a>
+                        <a href="contact.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">تواصل معنا</a>
+                    </div>
+                </div>
+            </nav>
+            <div style="height:70px;"></div>
+        </header>
+        <script>
+            document.getElementById('mobileNav')?.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') this.classList.remove('show');
+            });
+        </script>
+
+        <!-- بطاقة المصادقة -->
+        <main class="auth-wrap">
+            <div class="auth-card">
+                <h1>أهلاً بك في <span class="zen-dots-font" style="color:#f59e0b;">MAKE ME FIT</span></h1>
+                <p class="sub" id="auth-subtitle">سجّل دخولك للوصول إلى مساحتك الشخصية</p>
+
+                <div class="auth-tabs">
+                    <button type="button" class="auth-tab active" id="tab-login">تسجيل الدخول</button>
+                    <button type="button" class="auth-tab" id="tab-register">إنشاء حساب</button>
+                </div>
+
+                <div class="auth-msg" id="auth-msg" role="alert" aria-live="polite"></div>
+
+                <!-- أزرار الدخول السريع -->
+                <button type="button" class="social-btn" id="btn-google">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                    <span>المتابعة بحساب Google</span>
+                </button>
+                <button type="button" class="social-btn ms" id="btn-microsoft">
+                    <i class="fab fa-microsoft" style="color:#00a4ef;"></i>
+                    <span>المتابعة بحساب Microsoft</span>
+                </button>
+
+                <div class="auth-divider">أو</div>
+
+                <!-- نموذج تسجيل الدخول -->
+                <form id="form-login" autocomplete="on">
+                    <div class="auth-field">
+                        <label for="login-email">البريد الإلكتروني</label>
+                        <input type="email" id="login-email" class="auth-input" required autocomplete="email" placeholder="you@example.com">
+                    </div>
+                    <div class="auth-field">
+                        <label for="login-password">كلمة المرور</label>
+                        <input type="password" id="login-password" class="auth-input" required autocomplete="current-password" placeholder="••••••••">
+                        <a href="#" class="forgot" id="link-forgot">نسيت كلمة المرور؟</a>
+                    </div>
+                    <button type="submit" class="auth-submit" id="submit-login">تسجيل الدخول</button>
+                </form>
+
+                <!-- نموذج إنشاء حساب -->
+                <form id="form-register" class="hidden" autocomplete="on">
+                    <div class="auth-field">
+                        <label for="reg-name">الاسم</label>
+                        <input type="text" id="reg-name" class="auth-input" required autocomplete="name" placeholder="اسمك الكامل">
+                    </div>
+                    <div class="auth-field">
+                        <label for="reg-email">البريد الإلكتروني</label>
+                        <input type="email" id="reg-email" class="auth-input" required autocomplete="email" placeholder="you@example.com">
+                    </div>
+                    <div class="auth-field">
+                        <label for="reg-password">كلمة المرور</label>
+                        <input type="password" id="reg-password" class="auth-input" required minlength="6" autocomplete="new-password" placeholder="٦ أحرف على الأقل">
+                    </div>
+                    <div class="auth-field">
+                        <label for="reg-confirm">تأكيد كلمة المرور</label>
+                        <input type="password" id="reg-confirm" class="auth-input" required minlength="6" autocomplete="new-password" placeholder="أعد كتابة كلمة المرور">
+                    </div>
+                    <button type="submit" class="auth-submit" id="submit-register">إنشاء الحساب</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- وحدة المصادقة (تُعرّف window.FITAuth) -->
+    <script type="module" src="assets/js/auth.js"></script>
+
+    <!-- معالجات الصفحة: module يأتي بعد auth.js فيُضمن تعريف FITAuth -->
+    <script type="module">
+        const $ = (id) => document.getElementById(id);
+        const msg = $("auth-msg");
+
+        function showMsg(text, type) {
+            msg.textContent = text;
+            msg.className = "auth-msg " + type;
+        }
+        function clearMsg() { msg.className = "auth-msg"; msg.textContent = ""; }
+        function goProfile() { location.replace("profile.html"); }
+
+        // تبديل التابات
+        const tabLogin = $("tab-login"), tabReg = $("tab-register");
+        const formLogin = $("form-login"), formReg = $("form-register");
+        function selectTab(login) {
+            tabLogin.classList.toggle("active", login);
+            tabReg.classList.toggle("active", !login);
+            formLogin.classList.toggle("hidden", !login);
+            formReg.classList.toggle("hidden", login);
+            $("auth-subtitle").textContent = login
+                ? "سجّل دخولك للوصول إلى مساحتك الشخصية"
+                : "أنشئ حساباً جديداً وابدأ رحلتك";
+            clearMsg();
+        }
+        tabLogin.addEventListener("click", () => selectTab(true));
+        tabReg.addEventListener("click", () => selectTab(false));
+
+        // إذا كان المستخدم داخلاً بالفعل → اذهب للملف الشخصي
+        window.FITAuth.onUser((user) => { if (user) goProfile(); });
+
+        // تغليف يعطّل الزر أثناء التنفيذ ويعرض الأخطاء بالعربية
+        async function run(btn, fn) {
+            const original = btn.textContent;
+            btn.disabled = true; btn.textContent = "جارٍ المعالجة…";
+            clearMsg();
+            try { await fn(); }
+            catch (err) {
+                console.error(err);
+                showMsg(window.FITAuth.errMessage(err && err.code), "error");
+            } finally { btn.disabled = false; btn.textContent = original; }
+        }
+
+        // الدخول الاجتماعي
+        $("btn-google").addEventListener("click", () =>
+            run($("btn-google"), async () => { await window.FITAuth.signInGoogle(); goProfile(); }));
+        $("btn-microsoft").addEventListener("click", () =>
+            run($("btn-microsoft"), async () => { await window.FITAuth.signInMicrosoft(); goProfile(); }));
+
+        // تسجيل الدخول بالبريد
+        formLogin.addEventListener("submit", (e) => {
+            e.preventDefault();
+            run($("submit-login"), async () => {
+                await window.FITAuth.loginEmail({
+                    email: $("login-email").value.trim(),
+                    password: $("login-password").value
+                });
+                goProfile();
+            });
+        });
+
+        // إنشاء حساب
+        formReg.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const pass = $("reg-password").value, confirm = $("reg-confirm").value;
+            if (pass !== confirm) { showMsg("كلمتا المرور غير متطابقتين.", "error"); return; }
+            run($("submit-register"), async () => {
+                await window.FITAuth.registerEmail({
+                    name: $("reg-name").value.trim(),
+                    email: $("reg-email").value.trim(),
+                    password: pass
+                });
+                showMsg("تم إنشاء حسابك! أرسلنا رابط تأكيد إلى بريدك. جارٍ تحويلك…", "success");
+                setTimeout(goProfile, 1800);
+            });
+        });
+
+        // نسيت كلمة المرور
+        $("link-forgot").addEventListener("click", (e) => {
+            e.preventDefault();
+            const email = ($("login-email").value || "").trim();
+            if (!email) { showMsg("اكتب بريدك في الحقل أعلاه أولاً.", "error"); return; }
+            run($("submit-login"), async () => {
+                await window.FITAuth.resetPassword(email);
+                showMsg("أرسلنا رابط إعادة تعيين كلمة المرور إلى بريدك.", "success");
+            });
+        });
+    </script>
+</body>
+</html>

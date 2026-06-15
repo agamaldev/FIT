@@ -1197,6 +1197,7 @@
 <script src="assets/js/aos.js"></script>
 <script src="assets/js/plugins.js"></script>
 <script src="assets/js/style.js"></script>
+<script type="module" src="assets/js/auth.js"></script>
 <script>AOS.init({ duration: 800, once: true, offset: 50 });</script>
 <script>
 function switchNTab(tabId){
@@ -1212,6 +1213,54 @@ function switchVariation(calId,varId){
     parent.querySelector('[data-var="'+varId+'"]').classList.add('active');
     document.getElementById(calId+'-'+varId).style.display='block';
 }
+</script>
+
+<!-- Phase 2: حفظ خطة التغذية الحالية في الحساب -->
+<script type="module">
+    function ntabLabel(calId) {
+        const b = document.querySelector('[data-ntab="' + calId + '"]');
+        return b ? b.textContent.trim() : calId;
+    }
+    function activeVar(panel) {
+        const b = panel.querySelector('.var-btn.active');
+        return b ? { varId: b.getAttribute('data-var'), text: b.textContent.trim() } : { varId: null, text: '' };
+    }
+
+    document.querySelectorAll('.ntab-panel').forEach((panel) => {
+        const bar = document.createElement('div');
+        bar.style.cssText = 'display:flex;justify-content:flex-start;margin-bottom:16px;';
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.style.cssText = 'background:none;border:1px solid #f59e0b;color:#f59e0b;border-radius:20px;padding:8px 18px;font-weight:700;cursor:pointer;font-family:Tajawal,sans-serif;font-size:0.9rem;transition:all .25s;';
+        btn.innerHTML = '<i class="fas fa-bookmark" style="margin-left:6px;"></i> حفظ هذه الخطة';
+        btn.addEventListener('mouseenter', () => { btn.style.background = '#f59e0b'; btn.style.color = '#111'; });
+        btn.addEventListener('mouseleave', () => { btn.style.background = 'none'; btn.style.color = '#f59e0b'; });
+        btn.addEventListener('click', async () => {
+            if (!window.FITAuth.user) { location.href = 'auth.html'; return; }
+            const calId = panel.id;
+            const v = activeVar(panel);
+            const label = ntabLabel(calId) + (v.text ? ' - ' + v.text : '');
+            const old = btn.innerHTML; btn.disabled = true; btn.innerHTML = 'جارٍ الحفظ…';
+            try {
+                const added = await window.FITData.saveNutritionPlan({ calId, varId: v.varId, label });
+                btn.innerHTML = '<i class="fas fa-check" style="margin-left:6px;"></i> ' + (added ? 'تم الحفظ' : 'محفوظة بالفعل');
+            } catch (e) {
+                console.error(e); btn.innerHTML = old; alert('تعذّر حفظ الخطة. حاول مجدداً.'); btn.disabled = false; return;
+            }
+            setTimeout(() => { btn.innerHTML = old; btn.disabled = false; }, 1800);
+        });
+        bar.appendChild(btn);
+        panel.insertBefore(bar, panel.firstChild);
+    });
+
+    // فتح التاب المطابق عند القدوم من رابط مثل nutrition.html#cal1200
+    const hash = decodeURIComponent((location.hash || '').slice(1));
+    if (hash) {
+        const el = document.getElementById(hash);
+        if (el && el.classList.contains('ntab-panel') && typeof window.switchNTab === 'function') {
+            window.switchNTab(hash);
+        }
+    }
 </script>
 </body>
 </html>

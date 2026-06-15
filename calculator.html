@@ -350,32 +350,15 @@
                 <h2 class="section-title text-center">جدول <span>متابعة التطور</span></h2>
                 <p class="section-subtitle text-center">تابع تقدمك الأسبوعي باستخدام هذا الجدول</p>
             </div>
-            <div class="progress-section" data-aos="fade-up">
-                <div class="table-responsive">
-                    <table class="table progress-table">
-                        <thead>
-                            <tr>
-                                <th>الأسبوع</th>
-                                <th>الوزن (كج)</th>
-                                <th>محيط الخصر (سم)</th>
-                                <th>محيط الصدر (سم)</th>
-                                <th>محيط الذراع (سم)</th>
-                                <th>ملاحظات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>الأسبوع 1</td><td>___</td><td>___</td><td>___</td><td>___</td><td>___</td></tr>
-                            <tr><td>الأسبوع 2</td><td>___</td><td>___</td><td>___</td><td>___</td><td>___</td></tr>
-                            <tr><td>الأسبوع 3</td><td>___</td><td>___</td><td>___</td><td>___</td><td>___</td></tr>
-                            <tr><td>الأسبوع 4</td><td>___</td><td>___</td><td>___</td><td>___</td><td>___</td></tr>
-                            <tr><td>الأسبوع 5</td><td>___</td><td>___</td><td>___</td><td>___</td><td>___</td></tr>
-                            <tr><td>الأسبوع 6</td><td>___</td><td>___</td><td>___</td><td>___</td><td>___</td></tr>
-                            <tr><td>الأسبوع 7</td><td>___</td><td>___</td><td>___</td><td>___</td><td>___</td></tr>
-                            <tr><td>الأسبوع 8</td><td>___</td><td>___</td><td>___</td><td>___</td><td>___</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <p style="color:#666;font-size:0.85rem;margin-top:10px;text-align:center;">
+            <div class="progress-section" data-aos="fade-up" style="text-align:center;">
+                <i class="fas fa-chart-line" style="font-size:2.4rem;color:#f59e0b;margin-bottom:14px;"></i>
+                <p style="color:#ccc;font-size:1.05rem;margin-bottom:18px;">
+                    سجّل وزنك وقياساتك وتابع تطوّرك برسم بياني تفاعلي داخل مساحتك الشخصية
+                </p>
+                <a href="profile.html" style="display:inline-block;background:#f59e0b;color:#111;text-decoration:none;font-weight:800;padding:12px 28px;border-radius:10px;transition:background .3s;" onmouseover="this.style.background='#d97706'" onmouseout="this.style.background='#f59e0b'">
+                    <i class="fas fa-weight-scale" style="margin-left:6px;"></i> افتح متابع الوزن
+                </a>
+                <p style="color:#666;font-size:0.85rem;margin-top:16px;">
                     <i class="fas fa-info-circle me-1"></i>
                     خذ قياساتك مرة أسبوعياً في نفس الوقت صباحاً قبل تناول الطعام للحصول على نتائج دقيقة
                 </p>
@@ -430,6 +413,7 @@
     <script src="assets/js/TweenMax.min.js"></script>
     <script src="assets/js/aos.js"></script>
     <script src="assets/js/plugins.js"></script>
+    <script type="module" src="assets/js/auth.js"></script>
     <script>
         // Hide preloader
         window.addEventListener('load', () => {
@@ -515,6 +499,13 @@
             document.getElementById('macro-carbs').textContent   = carbs;
             document.getElementById('macro-fats').textContent    = fats;
 
+            // لقطة للنتيجة لاستخدامها مع زر "حفظ النتيجة" (Phase 2)
+            window.__lastCalc = {
+                gender, age, height, weight, activity, goal,
+                bmi, tdee, calLose, calMaintain, calGain, calRecommended,
+                protein, carbs, fats
+            };
+
             // Show results
             const resultsEl = document.getElementById('results');
             resultsEl.classList.add('show');
@@ -523,6 +514,49 @@
 
         // Enter key trigger
         document.addEventListener('keydown', (e) => { if (e.key === 'Enter') calculate(); });
+    </script>
+
+    <!-- Phase 2: حفظ النتيجة في الحساب + تعبئة مسبقة من الملف الشخصي -->
+    <script type="module">
+        const results = document.getElementById('results');
+        if (results) {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.id = 'save-calc-btn';
+            btn.style.cssText = 'width:100%;margin-top:18px;background:#f59e0b;color:#111;border:none;border-radius:10px;padding:13px;font-weight:800;font-size:1rem;cursor:pointer;font-family:Tajawal,sans-serif;';
+            btn.innerHTML = '<i class="fas fa-bookmark" style="margin-left:6px;"></i> حفظ النتيجة في حسابي';
+            const msg = document.createElement('div');
+            msg.style.cssText = 'text-align:center;margin-top:8px;font-weight:700;font-size:0.9rem;';
+            results.appendChild(btn);
+            results.appendChild(msg);
+
+            btn.addEventListener('click', async () => {
+                if (!window.FITAuth.user) { location.href = 'auth.html'; return; }
+                if (!window.__lastCalc) { msg.textContent = 'احسب نتيجتك أولاً.'; msg.style.color = '#ff8aa0'; return; }
+                const t = btn.innerHTML; btn.disabled = true; btn.innerHTML = 'جارٍ الحفظ…';
+                try {
+                    await window.FITData.saveCalcResult(window.__lastCalc);
+                    msg.textContent = 'تم حفظ النتيجة في حسابك ✓'; msg.style.color = '#9be29e';
+                } catch (e) {
+                    console.error(e); msg.textContent = 'تعذّر الحفظ. حاول مجدداً.'; msg.style.color = '#ff8aa0';
+                } finally { btn.disabled = false; btn.innerHTML = t; }
+            });
+        }
+
+        // تعبئة الحقول من الملف الشخصي عند الدخول
+        window.FITAuth.onUser(async (user) => {
+            if (!user) return;
+            try {
+                const p = await window.FITData.getProfile();
+                if (!p) return;
+                const w = document.getElementById('weight'), h = document.getElementById('height');
+                const g = document.getElementById('goal'), a = document.getElementById('activity');
+                if (p.weight && w && !w.value) w.value = p.weight;
+                if (p.height && h && !h.value) h.value = p.height;
+                if (p.goal && g) g.value = p.goal;
+                if (p.activity && a) a.value = p.activity;
+            } catch (e) { console.warn(e); }
+        });
     </script>
 </body>
 </html>
