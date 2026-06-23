@@ -43,6 +43,12 @@ builder.Services.ConfigureApplicationCookie(options =>
     };
 });
 builder.Services.AddScoped<FitApi.Services.IEmailSender, FitApi.Services.SmtpEmailSender>();
+builder.Services.AddAuthentication().AddGoogle(o =>
+{
+    var cfg = builder.Configuration;
+    o.ClientId = cfg["Authentication:Google:ClientId"] ?? "test-client-id";
+    o.ClientSecret = cfg["Authentication:Google:ClientSecret"] ?? "test-client-secret";
+});
 // FIT:SERVICES-END
 
 var app = builder.Build();
