@@ -13,3 +13,6 @@
 artifacts/
 TestResults/
 *.received.*
+
+# Runtime/test upload artifacts (avatars are created at runtime/in tests)
+server/FitApi/uploads/
