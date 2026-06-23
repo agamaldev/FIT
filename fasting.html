@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصيام المتقطع - MAKE ME FIT</title>
+    <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/media-query.css">
+    <style>
+        /* ===== مطابق لنظام تصميم حاسبة السعرات ===== */
+        body { font-family: 'Tajawal', sans-serif; background:#0d0d0d; }
+        .nav-link-item:hover { color:#f59e0b !important; }
+        #mobileNav.show { display:block !important; }
+        .section-title { color:#fff; font-size:2rem; font-weight:800; margin-bottom:10px; }
+        .section-title span { color:#f59e0b; }
+        .section-subtitle { color:#aaa; font-size:1rem; margin-bottom:22px; }
+        .calc-card { background:#1a1a1a; border:1px solid #333; border-radius:12px; padding:30px; }
+        .calc-card label { color:#ccc; font-weight:600; margin-bottom:8px; display:block; }
+        .calc-card .form-control, .calc-card .form-select { background:#111; border:1px solid #444; color:#fff; border-radius:8px; padding:12px 15px; font-family:'Tajawal',sans-serif; font-size:1rem; }
+        .calc-card .form-control:focus, .calc-card .form-select:focus { background:#111; border-color:#f59e0b; color:#fff; box-shadow:0 0 0 3px rgba(245,158,11,0.15); }
+        .calc-card .form-control::placeholder { color:#666; }
+        .btn-calc { background:#f59e0b; border:none; color:#fff; font-weight:700; font-size:1.1rem; padding:14px 40px; border-radius:8px; cursor:pointer; transition:all 0.3s; width:100%; margin-top:16px; }
+        .btn-calc:hover { background:#e64a19; transform:translateY(-2px); }
+
+        /* شريط علوي بصورة خلفية — مطابق لحاسبة السعرات */
+        .page-banner { background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('assets/images/heading-bg/our_program_bg.png'); background-size:cover; background-position:center; padding:70px 0; text-align:center; border-bottom:2px solid #f59e0b; }
+        .page-banner h1 { color:#fff; font-size:3rem; font-weight:900; margin-bottom:10px; }
+        .page-banner h1 span { color:#f59e0b; }
+        .page-banner p { color:#aaa; font-size:1.1rem; margin:0; }
+        .breadcrumb-item a { color:#f59e0b; text-decoration:none; }
+        .breadcrumb-item.active { color:#aaa; }
+        .breadcrumb-item+.breadcrumb-item::before { color:#666; content:"/"; }
+
+        .fa-stage { padding:26px 0; }
+
+        /* صندوق التوصية */
+        .reco-box { display:none; background:#111; border:1px solid #f59e0b55; border-radius:10px; padding:14px; margin-top:14px; }
+        .reco-box.show { display:block; }
+        .reco-proto { font-family:'Zen Dots',cursive; color:#f59e0b; font-size:1.6rem; line-height:1; }
+
+        /* أزرار الأنظمة */
+        .proto-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
+        .proto-btn { position:relative; flex:1 1 auto; background:#111; border:2px solid #333; color:#aaa; padding:8px 10px; border-radius:8px; cursor:pointer; font-weight:700; font-size:0.9rem; transition:all .25s; }
+        .proto-btn:hover { border-color:#f59e0b; color:#f59e0b; }
+        .proto-btn.active { background:#f59e0b; border-color:#f59e0b; color:#fff; }
+        .proto-btn .reco-badge { position:absolute; top:-9px; left:50%; transform:translateX(-50%); background:#e64a19; color:#fff; font-size:0.6rem; padding:1px 7px; border-radius:10px; white-space:nowrap; display:none; }
+        .proto-btn.recommended .reco-badge { display:block; }
+
+        /* بطاقة المؤقّت (تتبع حدّ result-card الذهبي) */
+        .timer-card { background:#1a1a1a; border:1px solid #f59e0b; border-radius:12px; padding:22px; text-align:center; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+        .ring-box { position:relative; width:210px; height:210px; }
+        .ring-center { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+        .ring-phase { color:#f59e0b; font-weight:700; font-size:0.9rem; margin-bottom:2px; }
+        .ring-time { font-family:'Zen Dots',cursive; color:#fff; font-size:1.9rem; letter-spacing:1px; }
+        .ring-sub { color:#888; font-size:0.78rem; margin-top:6px; max-width:180px; }
+        .timer-actions { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:18px; }
+        .t-btn { border:none; border-radius:8px; padding:11px 24px; font-weight:700; font-size:0.95rem; cursor:pointer; transition:all .25s; }
+        .t-btn.start { background:#f59e0b; color:#fff; } .t-btn.start:hover { background:#e64a19; transform:translateY(-2px); }
+        .t-btn.end { background:none; border:1px solid #e94560; color:#e94560; } .t-btn.end:hover { background:#e94560; color:#fff; }
+        .t-btn.ghost { background:none; border:1px solid #444; color:#bbb; } .t-btn.ghost:hover { border-color:#f59e0b; color:#f59e0b; }
+
+        .disclaimer { color:#777; font-size:0.78rem; line-height:1.6; margin-top:14px; }
+        .disclaimer i { color:#e94560; }
+
+        /* مودال السجل */
+        .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.72); z-index:10001; align-items:center; justify-content:center; padding:20px; }
+        .modal-overlay.open { display:flex; }
+        .fa-table { width:100%; border-collapse:separate; border-spacing:0 8px; }
+        .fa-table th { color:#f59e0b; font-size:0.8rem; text-align:center; padding:6px; }
+        .fa-table td { background:#111; color:#ddd; text-align:center; padding:11px 8px; font-size:0.88rem; }
+        .icon-del { background:none; border:none; color:#e94560; cursor:pointer; padding:6px; border-radius:8px; }
+        .icon-del:hover { background:#e9456020; }
+        .empty { color:#666; text-align:center; padding:18px; font-size:0.95rem; }
+
+        :focus-visible { outline:2px solid #f59e0b; outline-offset:2px; }
+        @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+        @media (max-width: 991px) { .fa-stage { padding:24px 0; } .timer-card { margin-top:8px; } }
+    </style>
+</head>
+<body>
+    <div class="site_content">
+        <!-- Header (مطابق لباقي الصفحات؛ رابط "الصيام" يُحقن تلقائياً) -->
+        <header>
+            <nav style="background:#111;padding:15px 0;position:fixed;top:0;left:0;right:0;z-index:9999;border-bottom:1px solid #f59e0b33;direction:rtl;">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center" style="direction:rtl;gap:40px;">
+                        <a href="index.html" style="text-decoration:none;font-family:'Zen Dots',cursive;font-size:1.6rem;white-space:nowrap;">
+                            <span style="color:#f59e0b;">MAKE ME</span> <span style="color:#fff;">FIT</span>
+                        </a>
+                        <div class="d-none d-lg-flex gap-3 align-items-center">
+                            <a href="index.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الرئيسية</a>
+                            <a href="warmup.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الإحماء</a>
+                            <a href="workouts.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">التمارين</a>
+                            <a href="cardio.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الكارديو</a>
+                            <a href="nutrition.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">التغذية</a>
+                            <a href="calculator.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">حاسبة السعرات</a>
+                            <a href="fasting.html" class="nav-link-item" style="color:#f59e0b;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">الصيام</a>
+                            <a href="contact.html" class="nav-link-item" style="color:#ccc;text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;">تواصل معنا</a>
+                        </div>
+                        <button class="d-lg-none" style="background:none;border:1px solid #444;color:#fff;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:1.2rem;" onclick="document.getElementById('mobileNav').classList.toggle('show')">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                    <div id="mobileNav" class="d-lg-none" style="display:none;padding-top:15px;border-top:1px solid #333;margin-top:15px;">
+                        <a href="index.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">الرئيسية</a>
+                        <a href="warmup.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">الإحماء</a>
+                        <a href="workouts.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">التمارين</a>
+                        <a href="cardio.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">الكارديو</a>
+                        <a href="nutrition.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">التغذية</a>
+                        <a href="calculator.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">حاسبة السعرات</a>
+                        <a href="fasting.html" style="display:block;color:#f59e0b;text-decoration:none;padding:10px 0;">الصيام</a>
+                        <a href="contact.html" style="display:block;color:#ccc;text-decoration:none;padding:10px 0;">تواصل معنا</a>
+                    </div>
+                </div>
+            </nav>
+            <div style="height:70px;"></div>
+        </header>
+        <script>
+            document.getElementById('mobileNav')?.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') this.classList.remove('show');
+            });
+        </script>
+
+        <!-- شريط علوي بصورة خلفية (مطابق لحاسبة السعرات) -->
+        <section class="page-banner">
+            <div class="container">
+                <nav aria-label="breadcrumb" class="mb-3">
+                    <ol class="breadcrumb justify-content-center" style="background:none;">
+                        <li class="breadcrumb-item"><a href="index.html">الرئيسية</a></li>
+                        <li class="breadcrumb-item active">الصيام المتقطع</li>
+                    </ol>
+                </nav>
+                <h1>الصيام <span>المتقطع</span></h1>
+                <p>توصية ذكية لنظام صيامك ومؤقّت حيّ يتابع وقتك</p>
+            </div>
+        </section>
+
+        <section class="fa-stage">
+                <div class="container">
+                    <div class="row g-4 align-items-stretch">
+
+                        <!-- التوصية + اختيار النظام (يمين) -->
+                        <div class="col-lg-7">
+                            <h2 class="section-title">نظامك <span>المقترح</span></h2>
+                            <p class="section-subtitle">تُملأ بياناتك تلقائياً من ملفك عند الدخول</p>
+                            <div class="calc-card">
+                                <form id="reco-form">
+                                    <div class="row g-3">
+                                        <div class="col-6">
+                                            <label for="fa-weight">الوزن (كجم)</label>
+                                            <input type="number" class="form-control" id="fa-weight" min="30" max="400" step="0.1" placeholder="80" required>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="fa-height">الطول (سم)</label>
+                                            <input type="number" class="form-control" id="fa-height" min="100" max="250" placeholder="175" required>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="fa-goal">الهدف</label>
+                                            <select class="form-select" id="fa-goal">
+                                                <option value="lose">إنقاص الوزن</option>
+                                                <option value="maintain" selected>الحفاظ على الوزن</option>
+                                                <option value="gain">زيادة الوزن</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="fa-activity">النشاط / التمارين</label>
+                                            <select class="form-select" id="fa-activity">
+                                                <option value="1.2">خامل — بدون تمارين</option>
+                                                <option value="1.375">خفيف — 1-3 أيام</option>
+                                                <option value="1.55" selected>معتدل — 3-5 أيام</option>
+                                                <option value="1.725">عالي — 6-7 أيام</option>
+                                                <option value="1.9">عالي جداً — يومياً</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn-calc"><i class="fas fa-bolt me-2"></i> احسب التوصية</button>
+                                </form>
+
+                                <div class="reco-box" id="reco-box">
+                                    <div class="d-flex align-items-center" style="gap:16px;flex-wrap:wrap;">
+                                        <div>
+                                            <div style="color:#888;font-size:0.8rem;">النظام المقترح</div>
+                                            <div class="reco-proto" id="reco-proto">16:8</div>
+                                        </div>
+                                        <div style="width:1px;align-self:stretch;background:#333;"></div>
+                                        <div>
+                                            <div style="color:#888;font-size:0.8rem;">مؤشر الكتلة</div>
+                                            <div style="color:#fff;font-weight:800;font-size:1.3rem;" id="reco-bmi">—</div>
+                                        </div>
+                                        <div style="flex:1;min-width:160px;">
+                                            <p style="color:#ccc;font-size:0.85rem;margin:0;" id="reco-why">—</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="proto-row" id="proto-row">
+                                    <button type="button" class="proto-btn" data-fast="12">12:12<span class="reco-badge">موصى</span></button>
+                                    <button type="button" class="proto-btn" data-fast="14">14:10<span class="reco-badge">موصى</span></button>
+                                    <button type="button" class="proto-btn active" data-fast="16">16:8<span class="reco-badge">موصى</span></button>
+                                    <button type="button" class="proto-btn" data-fast="18">18:6<span class="reco-badge">موصى</span></button>
+                                    <button type="button" class="proto-btn" data-fast="20">20:4<span class="reco-badge">موصى</span></button>
+                                    <button type="button" class="proto-btn" data-fast="23">OMAD<span class="reco-badge">موصى</span></button>
+                                </div>
+                                <p style="color:#666;font-size:0.8rem;text-align:center;margin:12px 0 0;" id="proto-desc">١٦ ساعة صيام، ٨ ساعات نافذة أكل.</p>
+                            </div>
+                        </div>
+
+                        <!-- المؤقّت (يسار) -->
+                        <div class="col-lg-5">
+                            <h2 class="section-title">المؤقّت <span>الحيّ</span></h2>
+                            <p class="section-subtitle">ابدأ صيامك وتابع وقتك لحظة بلحظة</p>
+                            <div class="timer-card">
+                                <div class="ring-box">
+                                    <svg viewBox="0 0 220 220" width="210" height="210">
+                                        <circle cx="110" cy="110" r="96" fill="none" stroke="#262626" stroke-width="13"/>
+                                        <circle id="ring-progress" cx="110" cy="110" r="96" fill="none" stroke="#f59e0b" stroke-width="13" stroke-linecap="round"
+                                                stroke-dasharray="603.18" stroke-dashoffset="603.18" transform="rotate(-90 110 110)" style="transition:stroke-dashoffset .5s linear,stroke .3s;"/>
+                                    </svg>
+                                    <div class="ring-center">
+                                        <div class="ring-phase" id="ring-phase">جاهز للبدء</div>
+                                        <div class="ring-time" id="ring-time">--:--:--</div>
+                                        <div class="ring-sub" id="ring-sub">اختر نظاماً واضغط ابدأ</div>
+                                    </div>
+                                </div>
+                                <div class="timer-actions">
+                                    <button type="button" class="t-btn start" id="btn-start"><i class="fas fa-play me-1"></i> ابدأ الصيام</button>
+                                    <button type="button" class="t-btn end" id="btn-end" style="display:none;"><i class="fas fa-stop me-1"></i> إنهاء</button>
+                                    <button type="button" class="t-btn ghost" id="btn-history" style="display:none;"><i class="fas fa-clock-rotate-left me-1"></i> السجل</button>
+                                </div>
+                                <div id="timer-note" style="color:#9be29e;font-size:0.85rem;margin-top:10px;min-height:1px;"></div>
+                                <p class="disclaimer">
+                                    <i class="fas fa-circle-info"></i>
+                                    توصية إرشادية وليست نصيحة طبية. استشر مختصاً قبل صيام طويل.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        <!-- مودال سجل الصيام -->
+        <div class="modal-overlay" id="history-modal">
+            <div class="calc-card" style="max-width:580px;width:100%;max-height:82vh;overflow:auto;">
+                <div class="d-flex justify-content-between align-items-center" style="margin-bottom:16px;">
+                    <h3 class="section-title" style="font-size:1.3rem;margin:0;">سجل <span>الصيام</span></h3>
+                    <button type="button" class="t-btn ghost" id="history-close" style="padding:6px 12px;"><i class="fas fa-xmark"></i></button>
+                </div>
+                <div id="fa-history"><p class="empty">جارٍ التحميل…</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- وحدة المصادقة (تُعرّف window.FITAuth و window.FITData) -->
+    <script type="module" src="assets/js/auth.js"></script>
+
+    <!-- منطق الصيام: module يأتي بعد auth.js فيُضمن تعريف FITAuth -->
+    <script type="module">
+        const $ = (id) => document.getElementById(id);
+        const LS_KEY = "fit_activeFast";
+        const HOUR = 3600000;
+
+        let selectedFast = 16;          // ساعات الصيام المختارة
+        let active = null;              // { fast, startTime(ms) } أو null
+        let ticking = null;
+
+        const protoLabel = (f) => f === 23 ? "OMAD (23:1)" : `${f}:${24 - f}`;
+        const protoDesc  = (f) => f === 23
+            ? "وجبة واحدة يومياً (٢٣ ساعة صيام، ساعة أكل)."
+            : `${f} ساعة صيام، ${24 - f} ساعات نافذة أكل.`;
+
+        // ===== اختيار النظام =====
+        function selectProtocol(f) {
+            selectedFast = f;
+            document.querySelectorAll(".proto-btn").forEach((b) =>
+                b.classList.toggle("active", parseInt(b.dataset.fast) === f));
+            $("proto-desc").textContent = protoDesc(f);
+        }
+        document.querySelectorAll(".proto-btn").forEach((b) =>
+            b.addEventListener("click", () => { if (!active) selectProtocol(parseInt(b.dataset.fast)); }));
+
+        // ===== التوصية الذكية =====
+        function recommend({ weight, height, goal, activity }) {
+            const h = height / 100;
+            const bmi = (weight && height) ? +(weight / (h * h)).toFixed(1) : null;
+            let f = 14, why = [];
+            if (goal === "lose") { f += 2; why.push("هدفك إنقاص الوزن (+ساعتان)"); }
+            else if (goal === "gain") { f -= 2; why.push("هدفك زيادة الوزن (−ساعتان)"); }
+            else why.push("هدفك الحفاظ على الوزن");
+            if (bmi != null) {
+                if (bmi >= 30) { f += 2; why.push("مؤشر الكتلة مرتفع (+ساعتان)"); }
+                else if (bmi >= 25) { f += 1; why.push("وزن زائد (+ساعة)"); }
+                else if (bmi < 18.5) { f -= 2; why.push("وزن منخفض (−ساعتان)"); }
+            }
+            const act = parseFloat(activity);
+            if (act >= 1.9) { f -= 2; why.push("نشاطك عالٍ جداً (−ساعتان)"); }
+            else if (act >= 1.725) { f -= 1; why.push("نشاطك عالٍ (−ساعة)"); }
+            else if (act <= 1.2) { f += 1; why.push("نشاطك منخفض (+ساعة)"); }
+            f = Math.max(12, Math.min(20, Math.round(f / 2) * 2));
+            return { bmi, fast: f, why: why.join("، ") };
+        }
+
+        $("reco-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const weight = parseFloat($("fa-weight").value);
+            const height = parseFloat($("fa-height").value);
+            if (!weight || !height) return;
+            const r = recommend({ weight, height, goal: $("fa-goal").value, activity: $("fa-activity").value });
+            $("reco-proto").textContent = protoLabel(r.fast);
+            $("reco-bmi").textContent = r.bmi != null ? r.bmi : "—";
+            $("reco-why").textContent = r.why;
+            $("reco-box").classList.add("show");
+            document.querySelectorAll(".proto-btn").forEach((b) =>
+                b.classList.toggle("recommended", parseInt(b.dataset.fast) === r.fast));
+            if (!active) selectProtocol(r.fast);
+        });
+
+        // ===== التخزين (Firestore عند الدخول + localStorage دائماً) =====
+        async function saveActive(obj) {
+            try { localStorage.setItem(LS_KEY, JSON.stringify(obj)); } catch (e) {}
+            if (window.FITAuth.user) { try { await window.FITData.setActiveFast(obj); } catch (e) { console.warn(e); } }
+        }
+        async function clearActiveStore() {
+            try { localStorage.removeItem(LS_KEY); } catch (e) {}
+            if (window.FITAuth.user) { try { await window.FITData.clearActiveFast(); } catch (e) { console.warn(e); } }
+        }
+        async function loadActive() {
+            if (window.FITAuth.user) {
+                try { const f = await window.FITData.getActiveFast(); if (f) return f; } catch (e) { console.warn(e); }
+            }
+            try { return JSON.parse(localStorage.getItem(LS_KEY) || "null"); } catch (e) { return null; }
+        }
+
+        // ===== المؤقّت =====
+        function pad(n) { return String(n).padStart(2, "0"); }
+        function fmtDuration(ms) {
+            ms = Math.max(0, ms);
+            const s = Math.floor(ms / 1000);
+            return `${pad(Math.floor(s / 3600))}:${pad(Math.floor((s % 3600) / 60))}:${pad(s % 60)}`;
+        }
+        const RING_CIRC = 603.18;
+        function setRing(p, color) {
+            const c = $("ring-progress");
+            c.style.strokeDashoffset = String(RING_CIRC * (1 - Math.max(0, Math.min(1, p))));
+            if (color) c.style.stroke = color;
+        }
+
+        function startFast() {
+            if (active) return;
+            active = { fast: selectedFast, startTime: Date.now() };
+            saveActive(active);
+            beginTicking();
+        }
+        async function endFast(silent) {
+            if (!active) return;
+            const now = Date.now();
+            const elapsedH = (now - active.startTime) / HOUR;
+            if (window.FITAuth.user && !silent) {
+                try {
+                    await window.FITData.saveFastingSession({
+                        startTime: active.startTime,
+                        endTime: now,
+                        targetHours: active.fast,
+                        completedHours: +elapsedH.toFixed(2),
+                        label: protoLabel(active.fast)
+                    });
+                    loadHistory();
+                } catch (e) { console.warn(e); }
+            }
+            active = null;
+            await clearActiveStore();
+            stopTicking();
+            resetTimerUI();
+            if (!silent) $("timer-note").textContent = `انتهى الصيام بعد ${elapsedH.toFixed(1)} ساعة. أحسنت! 💪`;
+        }
+
+        function resetTimerUI() {
+            $("ring-phase").textContent = "جاهز للبدء";
+            $("ring-time").textContent = "--:--:--";
+            $("ring-sub").textContent = "اختر نظاماً واضغط ابدأ";
+            setRing(0, "#f59e0b");
+            $("btn-start").style.display = "";
+            $("btn-end").style.display = "none";
+            document.querySelectorAll(".proto-btn").forEach((b) => (b.style.opacity = "1"));
+        }
+
+        function renderTick() {
+            if (!active) return;
+            const now = Date.now();
+            const fastMs = active.fast * HOUR;
+            const eatMs = (24 - active.fast) * HOUR;
+            const fastEnd = active.startTime + fastMs;
+            if (now < fastEnd) {
+                const remaining = fastEnd - now;
+                const p = (now - active.startTime) / fastMs;
+                $("ring-phase").textContent = "🔥 صائم الآن";
+                $("ring-time").textContent = fmtDuration(remaining);
+                $("ring-sub").textContent = `تفتح نافذة الأكل ${new Date(fastEnd).toLocaleTimeString("ar-EG", { hour: "2-digit", minute: "2-digit" })}`;
+                setRing(p, "#f59e0b");
+            } else {
+                const eatEnd = fastEnd + eatMs;
+                if (now < eatEnd) {
+                    const remaining = eatEnd - now;
+                    $("ring-phase").textContent = "🍽️ نافذة الأكل";
+                    $("ring-time").textContent = fmtDuration(remaining);
+                    $("ring-sub").textContent = "أكملت صيامك! نافذة الأكل مفتوحة";
+                    setRing(1, "#4caf50");
+                } else {
+                    $("ring-phase").textContent = "✅ اكتملت الدورة";
+                    $("ring-time").textContent = "00:00:00";
+                    $("ring-sub").textContent = "اضغط إنهاء لحفظها أو ابدأ دورة جديدة";
+                    setRing(1, "#4caf50");
+                }
+            }
+        }
+
+        function beginTicking() {
+            $("btn-start").style.display = "none";
+            $("btn-end").style.display = "";
+            document.querySelectorAll(".proto-btn").forEach((b) => (b.style.opacity = "0.5"));
+            $("timer-note").textContent = "";
+            renderTick();
+            stopTicking();
+            ticking = setInterval(renderTick, 1000);
+        }
+        function stopTicking() { if (ticking) { clearInterval(ticking); ticking = null; } }
+
+        $("btn-start").addEventListener("click", startFast);
+        $("btn-end").addEventListener("click", () => { if (confirm("إنهاء الصيام الحالي وحفظه في السجل؟")) endFast(false); });
+
+        // ===== السجل (مودال) =====
+        $("btn-history").addEventListener("click", () => $("history-modal").classList.add("open"));
+        $("history-close").addEventListener("click", () => $("history-modal").classList.remove("open"));
+        $("history-modal").addEventListener("click", (e) => { if (e.target.id === "history-modal") $("history-modal").classList.remove("open"); });
+
+        async function loadHistory() {
+            const btn = $("btn-history");
+            if (!window.FITAuth.user) { btn.style.display = "none"; return; }
+            btn.style.display = "";
+            const rows = await window.FITData.getFastingHistory();
+            const box = $("fa-history");
+            if (!rows.length) { box.innerHTML = '<p class="empty">لا يوجد سجل بعد. ابدأ صيامك الأول!</p>'; return; }
+            let html = '<div style="overflow-x:auto;"><table class="fa-table"><thead><tr><th>البداية</th><th>النظام</th><th>أكملت (ساعة)</th><th>الهدف</th><th></th></tr></thead><tbody>';
+            rows.forEach((r) => {
+                const d = r.startTime ? new Date(r.startTime).toLocaleDateString("ar-EG", { month: "short", day: "numeric" }) : "—";
+                const reached = r.completedHours >= r.targetHours;
+                html += `<tr>
+                    <td>${d}</td>
+                    <td>${r.label || "—"}</td>
+                    <td style="color:${reached ? "#9be29e" : "#ddd"};font-weight:700;">${r.completedHours ?? "—"}</td>
+                    <td>${r.targetHours ?? "—"}</td>
+                    <td><button class="icon-del" data-id="${r.id}" title="حذف"><i class="fas fa-trash"></i></button></td>
+                </tr>`;
+            });
+            html += "</tbody></table></div>";
+            box.innerHTML = html;
+            box.querySelectorAll(".icon-del").forEach((b) =>
+                b.addEventListener("click", async () => {
+                    await window.FITData.deleteFastingSession(b.getAttribute("data-id"));
+                    loadHistory();
+                }));
+        }
+
+        // ===== عند حسم حالة الدخول =====
+        window.FITAuth.onUser(async (user) => {
+            if (user) {
+                try {
+                    const p = await window.FITData.getProfile();
+                    if (p) {
+                        if (p.weight && !$("fa-weight").value) $("fa-weight").value = p.weight;
+                        if (p.height && !$("fa-height").value) $("fa-height").value = p.height;
+                        if (p.goal) $("fa-goal").value = p.goal;
+                        if (p.activity) $("fa-activity").value = p.activity;
+                    }
+                } catch (e) { console.warn(e); }
+            }
+            const stored = await loadActive();
+            if (stored && typeof stored.startTime === "number" && typeof stored.fast === "number") {
+                active = stored;
+                selectProtocol(active.fast);
+                beginTicking();
+            }
+            loadHistory();
+        });
+    </script>
+</body>
+</html>

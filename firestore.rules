@@ -26,6 +26,11 @@ service cloud.firestore {
       match /weightLog/{docId} {
         allow read, write: if request.auth != null && request.auth.uid == uid;
       }
+
+      // سجل الصيام المتقطع: users/{uid}/fastingHistory/{docId}
+      match /fastingHistory/{docId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
     }
 
     // رفض كل ما عدا ذلك افتراضياً

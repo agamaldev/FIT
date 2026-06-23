@@ -421,6 +421,38 @@ window.FITData = {
   async clearPlan() {
     requireUser();
     await setDoc(userDoc(), { customPlan: [] }, { merge: true });
+  },
+
+  // --- الصيام المتقطع: الصيام النشط (حقل) + السجل (subcollection) ---
+  async getActiveFast() {
+    if (!uid()) return null;
+    const snap = await getDoc(userDoc());
+    return snap.exists() ? (snap.data().activeFast || null) : null;
+  },
+  async setActiveFast(obj) {
+    requireUser();
+    await setDoc(userDoc(), { activeFast: obj }, { merge: true });
+  },
+  async clearActiveFast() {
+    requireUser();
+    await setDoc(userDoc(), { activeFast: null }, { merge: true });
+  },
+  async saveFastingSession(session) {
+    requireUser();
+    return addDoc(collection(db, "users", uid(), "fastingHistory"), {
+      ...session,
+      createdAt: serverTimestamp()
+    });
+  },
+  async getFastingHistory() {
+    if (!uid()) return [];
+    const q = query(collection(db, "users", uid(), "fastingHistory"), orderBy("createdAt", "desc"));
+    const snap = await getDocs(q);
+    return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+  },
+  async deleteFastingSession(id) {
+    requireUser();
+    await deleteDoc(doc(db, "users", uid(), "fastingHistory", id));
   }
 };
 
@@ -455,8 +487,29 @@ function actuallyRenderNav(user) {
   // إزالة أي خانة سابقة لتفادي التكرار
   document.querySelectorAll(".fit-auth-slot").forEach((el) => el.remove());
 
+  injectFastingLink(desktop, mobile);
+
   if (desktop) desktop.appendChild(buildSlot(user, false));
   if (mobile)  mobile.appendChild(buildSlot(user, true));
+}
+
+// يضيف رابط "الصيام" إلى القائمة (مرة واحدة) بعد رابط حاسبة السعرات
+function injectFastingLink(desktop, mobile) {
+  const active = (location.pathname.split("/").pop() || "") === "fasting.html";
+  if (desktop && !desktop.querySelector('a[href="fasting.html"]')) {
+    const a = document.createElement("a");
+    a.href = "fasting.html"; a.className = "nav-link-item"; a.textContent = "الصيام";
+    a.style.cssText = `color:${active ? "#f59e0b" : "#ccc"};text-decoration:none;font-weight:500;font-size:1rem;padding:8px 12px;transition:color 0.3s;`;
+    const after = desktop.querySelector('a[href="calculator.html"]');
+    if (after) after.insertAdjacentElement("afterend", a); else desktop.appendChild(a);
+  }
+  if (mobile && !mobile.querySelector('a[href="fasting.html"]')) {
+    const a = document.createElement("a");
+    a.href = "fasting.html"; a.textContent = "الصيام";
+    a.style.cssText = `display:block;color:${active ? "#f59e0b" : "#ccc"};text-decoration:none;padding:10px 0;font-family:'Tajawal',sans-serif;`;
+    const after = mobile.querySelector('a[href="calculator.html"]');
+    if (after) after.insertAdjacentElement("afterend", a); else mobile.appendChild(a);
+  }
 }
 
 function buildSlot(user, isMobile) {
