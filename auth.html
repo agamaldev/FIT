@@ -116,12 +116,8 @@
 
                 <!-- أزرار الدخول السريع -->
                 <button type="button" class="social-btn" id="btn-google">
-                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                    <i class="fab fa-google" style="color:#ea4335;"></i>
                     <span>المتابعة بحساب Google</span>
-                </button>
-                <button type="button" class="social-btn ms" id="btn-microsoft">
-                    <i class="fab fa-microsoft" style="color:#00a4ef;"></i>
-                    <span>المتابعة بحساب Microsoft</span>
                 </button>
 
                 <div class="auth-divider">أو</div>
@@ -213,8 +209,6 @@
         // الدخول الاجتماعي
         $("btn-google").addEventListener("click", () =>
             run($("btn-google"), async () => { await window.FITAuth.signInGoogle(); goProfile(); }));
-        $("btn-microsoft").addEventListener("click", () =>
-            run($("btn-microsoft"), async () => { await window.FITAuth.signInMicrosoft(); goProfile(); }));
 
         // تسجيل الدخول بالبريد
         formLogin.addEventListener("submit", (e) => {

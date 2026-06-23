@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAKE ME FIT - تأكيد البريد الإلكتروني</title>
+    <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/media-query.css">
+    <style>
+        body,h1,h2,h3,h4,h5,h6,p,a,span,li,td,th,div,label,input,button{font-family:'Tajawal',sans-serif !important;}
+        body{background:#0d0d0d;}
+        .auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 16px;
+            background:linear-gradient(135deg,#1a0a00,#0a0a0a);}
+        .auth-card{width:100%;max-width:440px;background:#161616;border:1px solid #f59e0b33;border-radius:18px;
+            padding:40px 28px;box-shadow:0 20px 60px rgba(0,0,0,.6);text-align:center;}
+        .auth-card .brand{font-family:'Zen Dots',cursive !important;font-size:1.4rem;margin-bottom:24px;display:block;}
+        .auth-card .brand .c1{color:#f59e0b;}
+        .auth-card .brand .c2{color:#fff;}
+        .status-icon{font-size:3.4rem;margin-bottom:16px;display:block;}
+        .status-icon.ok{color:#4caf50;}
+        .status-icon.fail{color:#e94560;}
+        .auth-card h1{color:#fff;font-size:1.4rem;font-weight:800;margin-bottom:10px;}
+        .auth-card p{color:#aaa;font-size:0.98rem;margin-bottom:26px;line-height:1.7;}
+        .auth-link-btn{display:inline-block;background:#f59e0b;color:#111;border:none;border-radius:10px;
+            padding:13px 30px;font-weight:800;font-size:1rem;cursor:pointer;text-decoration:none;transition:background .25s;}
+        .auth-link-btn:hover{background:#d97706;color:#111;}
+    </style>
+</head>
+<body>
+    <main class="auth-wrap">
+        <div class="auth-card">
+            <span class="brand"><span class="c1">MAKE ME</span> <span class="c2">FIT</span></span>
+            <span class="status-icon" id="icon"></span>
+            <h1 id="title"></h1>
+            <p id="message"></p>
+            <a href="auth.html" class="auth-link-btn">الذهاب لتسجيل الدخول</a>
+        </div>
+    </main>
+
+    <script>
+        (function () {
+            var verified = new URLSearchParams(window.location.search).get("verified");
+            var ok = verified === "1";
+            var icon = document.getElementById("icon");
+            var title = document.getElementById("title");
+            var message = document.getElementById("message");
+            if (ok) {
+                icon.className = "status-icon ok";
+                icon.innerHTML = "&#10004;";
+                title.textContent = "تم تأكيد بريدك الإلكتروني!";
+                message.textContent = "تم تفعيل حسابك بنجاح. يمكنك الآن تسجيل الدخول والاستمتاع بكل المميزات.";
+            } else {
+                icon.className = "status-icon fail";
+                icon.innerHTML = "&#10006;";
+                title.textContent = "تعذّر تأكيد البريد الإلكتروني";
+                message.textContent = "رابط التأكيد غير صالح أو انتهت صلاحيته. يمكنك تسجيل الدخول ثم طلب إرسال رابط تأكيد جديد.";
+            }
+        })();
+    </script>
+</body>
+</html>
