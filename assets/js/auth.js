@@ -135,7 +135,7 @@ function errMessage(code) {
     "invalid-credential":   "البريد أو كلمة المرور غير صحيحة.",
     "invalid-token":        "رابط إعادة التعيين غير صالح أو منتهي الصلاحية.",
     "bad-avatar":           "يجب اختيار ملف صورة صالح أقل من ٢ ميجابايت.",
-    "bad-weight":           "الوزن غير صحيح (١٥–٥٠٠ كجم).",
+    "bad-weight":           "الوزن غير صحيح (١٠–٥٠٠ كجم).",
     "network":              "تعذّر الاتصال بالشبكة. تحقّق من اتصالك."
   };
   return map[code] || "حدث خطأ غير متوقع. حاول مرة أخرى.";
@@ -251,7 +251,11 @@ window.FITData = {
   async addWeightEntry(entry) {
     const { weight, waist, chest, arms, date } = entry || {};
     const w = Number(weight);
-    if (!w || w < 10 || w > 500) throw new Error("الوزن غير صحيح (١٠–٥٠٠ كجم)");
+    if (!w || w < 10 || w > 500) {
+      const err = new Error("الوزن غير صحيح (١٠–٥٠٠ كجم)");
+      err.code = "bad-weight";
+      throw err;
+    }
     return api("/api/weight-log", {
       method: "POST",
       body: {
