@@ -9,6 +9,8 @@ builder.Services.AddDbContext<FitApi.Data.AppDbContext>(o => o.UseNpgsql(builder
 builder.Services.AddIdentity<FitApi.Models.ApplicationUser, Microsoft.AspNetCore.Identity.IdentityRole>(options =>
 {
     options.Password.RequiredLength = 6;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
     options.SignIn.RequireConfirmedAccount = false;
 })
     .AddEntityFrameworkStores<FitApi.Data.AppDbContext>()
