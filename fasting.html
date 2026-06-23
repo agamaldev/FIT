@@ -441,6 +441,7 @@
         async function loadHistory() {
             const btn = $("btn-history");
             if (!window.FITAuth.user) { btn.style.display = "none"; return; }
+            if (typeof window.FITData.getFastingHistory !== "function") return;
             btn.style.display = "";
             const rows = await window.FITData.getFastingHistory();
             const box = $("fa-history");

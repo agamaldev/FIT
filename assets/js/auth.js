@@ -317,6 +317,31 @@ window.FITData = {
   },
   async clearPlan() {
     return api("/api/plan", { method: "DELETE" });
+  },
+
+  // يحسب السلسلة الحالية وأطول سلسلة والإجمالي من مصفوفة تواريخ "YYYY-MM-DD"
+  _getStreakStats(dates) {
+    const uniq = Array.from(new Set(dates || []));
+    const total = uniq.length;
+    if (!total) return { streak: 0, longestStreak: 0, total: 0 };
+    const toNum = (s) => { const p = String(s).split("-").map(Number); return Date.UTC(p[0], p[1] - 1, p[2]) / 86400000; };
+    const nums = uniq.map(toNum).sort((a, b) => a - b);
+    let longest = 1, run = 1;
+    for (let i = 1; i < nums.length; i++) {
+      if (nums[i] === nums[i - 1] + 1) { run++; longest = Math.max(longest, run); }
+      else { run = 1; }
+    }
+    const todayNum = toNum(new Date().toLocaleDateString("en-CA"));
+    const last = nums[nums.length - 1];
+    let current = 0;
+    if (last === todayNum || last === todayNum - 1) {
+      current = 1;
+      for (let i = nums.length - 1; i > 0; i--) {
+        if (nums[i] === nums[i - 1] + 1) current++;
+        else break;
+      }
+    }
+    return { streak: current, longestStreak: longest, total };
   }
 };
 

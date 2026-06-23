@@ -329,9 +329,9 @@
             } else {
                 av.textContent = (name.trim()[0] || "؟").toUpperCase();
             }
-            // شريط تأكيد البريد لمستخدمي البريد/كلمة المرور غير المؤكدين
-            const isPasswordUser = user.providerData.some((p) => p.providerId === "password");
-            if (isPasswordUser && !user.emailVerified) $("verify-banner").classList.add("show");
+            // شريط تأكيد البريد — يظهر فقط للمستخدمين غير المؤكدي البريد
+            // (مستخدمو Google لديهم emailVerified === true فلن يروه)
+            if (!user.emailVerified) $("verify-banner").classList.add("show");
         }
 
         $("btn-logout").addEventListener("click", () => window.FITAuth.logout());
@@ -679,6 +679,7 @@
 
         // --- حالة الصيام المتقطع (لمحة + رابط للمؤقّت الحيّ) ---
         async function loadFasting() {
+            if (typeof window.FITData.getActiveFast !== "function") return;
             const box = $("pf-fasting");
             const active = await window.FITData.getActiveFast();
             if (!active || typeof active.startTime !== "number" || typeof active.fast !== "number") {

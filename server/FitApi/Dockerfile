@@ -18,9 +18,7 @@ WORKDIR /app
 COPY --from=build /app/publish ./
 
 # Static frontend served from /app/wwwroot (Program.cs falls back to wwwroot when Frontend:WebRoot is unset)
-COPY index.html ./wwwroot/index.html
-COPY auth.html ./wwwroot/auth.html
-COPY profile.html ./wwwroot/profile.html
+COPY *.html ./wwwroot/
 COPY assets/ ./wwwroot/assets/
 COPY html/ ./wwwroot/html/
 
