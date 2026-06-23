@@ -1,0 +1,15 @@
+**/bin/
+**/obj/
+**/.vs/
+.git/
+.gitignore
+node_modules/
+.worktrees/
+.superpowers/
+.claude/
+docs/
+*.user
+*.suo
+TestResults/
+server/FitApi.Tests/
+**/*.received.*
