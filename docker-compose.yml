@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: fit
+      POSTGRES_PASSWORD: fit
+      POSTGRES_DB: fit
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fit -d fit"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "5432:5432"
+
+  api:
+    build:
+      context: .
+      dockerfile: server/FitApi/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__Default: "Host=db;Port=5432;Database=fit;Username=fit;Password=fit"
+      Smtp__Host: "mail"
+      Smtp__Port: "1025"
+      Smtp__From: "no-reply@makemefit.local"
+    ports:
+      - "8080:8080"
+
+  mail:
+    image: axllent/mailpit
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+
+volumes:
+  pgdata:
