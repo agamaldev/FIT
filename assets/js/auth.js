@@ -1,67 +1,72 @@
 // ============================================================================
-//  MAKE ME FIT — وحدة المصادقة والبيانات (Firebase)
+//  MAKE ME FIT — وحدة المصادقة والبيانات (API client)
 // ----------------------------------------------------------------------------
-//  ملف ES module واحد يحتوي كل تعامل مع Firebase. يُحمّل في كل صفحة عبر:
+//  ملف ES module واحد يتحدث مع واجهة ASP.NET Core على نفس الأصل عبر fetch.
+//  لا يستورد Firebase. يُحمّل في كل صفحة عبر:
 //    <script type="module" src="assets/js/auth.js"></script>
 //
 //  يكشف جسرَين عالميَّين للكود القديم (jQuery + inline onclick):
 //    window.FITAuth  — تسجيل الدخول/الخروج وحالة المستخدم
-//    window.FITData  — قراءة/كتابة بيانات المستخدم في Firestore
+//    window.FITData  — قراءة/كتابة بيانات المستخدم عبر REST API
 // ============================================================================
 
-import { firebaseConfig } from "./firebase-config.js";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-import {
-  getAuth, onAuthStateChanged, signOut,
-  GoogleAuthProvider, OAuthProvider, signInWithPopup,
-  createUserWithEmailAndPassword, signInWithEmailAndPassword,
-  sendEmailVerification, sendPasswordResetEmail, updateProfile
-} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-import {
-  getFirestore, doc, getDoc, setDoc, addDoc, deleteDoc,
-  collection, getDocs, query, orderBy, serverTimestamp
-} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
-import {
-  getStorage, ref, uploadBytes, getDownloadURL
-} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-storage.js";
-
 // ---------------------------------------------------------------------------
-//  تهيئة
+//  حالة الوحدة
 // ---------------------------------------------------------------------------
-const CONFIG_READY =
-  !!firebaseConfig.apiKey && !String(firebaseConfig.apiKey).includes("REPLACE");
-
-let app, auth, db, storage;
 let currentUser = null;     // كائن المستخدم الحالي أو null
 let authResolved = false;   // هل حُسمت حالة المصادقة الأولى؟
 const userListeners = [];   // مستمعو تغيّر المستخدم
 
-if (CONFIG_READY) {
-  app  = initializeApp(firebaseConfig);
-  auth = getAuth(app);
-  db   = getFirestore(app);
-  storage = getStorage(app);
+// ---------------------------------------------------------------------------
+//  مساعد fetch موحّد — يرسل الكوكي دائماً ويرفع Error.code من ProblemDetails
+// ---------------------------------------------------------------------------
+async function api(path, { method = "GET", body, raw } = {}) {
+  const opts = { method, credentials: "include", headers: {} };
+  if (raw !== undefined) {
+    opts.body = raw;                       // FormData أو ما شابه — لا نضبط Content-Type
+  } else if (body !== undefined) {
+    opts.headers["Content-Type"] = "application/json";
+    opts.body = JSON.stringify(body);
+  }
 
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      try { await ensureUserDoc(user); }
-      catch (e) { console.warn("[FIT] ensureUserDoc:", e); }
-    }
-    notify(user);
-  });
-} else {
-  console.warn(
-    "[FIT] لم يتم إعداد Firebase بعد. الرجاء ملء assets/js/firebase-config.js"
-  );
-  whenReady(() => notify(null));
+  let res;
+  try {
+    res = await fetch(path, opts);
+  } catch (e) {
+    const err = new Error("network");
+    err.code = "network";
+    throw err;
+  }
+
+  let data = null;
+  const text = await res.text();
+  if (text) { try { data = JSON.parse(text); } catch (_) { data = null; } }
+
+  if (!res.ok) {
+    const code = (data && (data.code || (data.extensions && data.extensions.code))) || String(res.status);
+    const err = new Error(code);
+    err.code = code;
+    err.status = res.status;
+    err.data = data;
+    throw err;
+  }
+  return data;
 }
 
-// تُستدعى عند حسم حالة المصادقة (أو عند غياب الإعداد)
-function notify(user) {
-  currentUser  = user || null;
-  authResolved = true;
-  renderNavAuthUI(currentUser);
-  userListeners.forEach((cb) => { try { cb(currentUser); } catch (e) { console.error(e); } });
+// ---------------------------------------------------------------------------
+//  تحويل UserDto القادم من الخادم إلى الشكل الذي تتوقعه الصفحات
+//  (يكشف uid و id معاً — uid() في FITData يقرأ currentUser.uid)
+// ---------------------------------------------------------------------------
+function mapUser(dto) {
+  if (!dto) return null;
+  return {
+    uid: dto.id,
+    id: dto.id,
+    displayName: dto.displayName || "",
+    email: dto.email || "",
+    photoURL: dto.photoUrl || null,
+    emailVerified: !!dto.emailConfirmed
+  };
 }
 
 function whenReady(fn) {
@@ -69,104 +74,77 @@ function whenReady(fn) {
   else document.addEventListener("DOMContentLoaded", fn);
 }
 
-// ينشئ مستند المستخدم عند أول دخول إن لم يكن موجوداً
-async function ensureUserDoc(user) {
-  const ref = doc(db, "users", user.uid);
-  const snap = await getDoc(ref);
-  if (!snap.exists()) {
-    await setDoc(ref, {
-      profile: {
-        displayName: user.displayName || "",
-        email:       user.email || "",
-        photoURL:    user.photoURL || null,
-        weight:      null,
-        height:      null,
-        goal:        null,
-        activity:    null,
-        updatedAt:   serverTimestamp()
-      }
-    });
-  }
+// تُستدعى عند حسم حالة المصادقة
+function notify(user) {
+  currentUser = user || null;
+  authResolved = true;
+  renderNavAuthUI(currentUser);
+  userListeners.forEach((cb) => { try { cb(currentUser); } catch (e) { console.error(e); } });
 }
+
+// ---------------------------------------------------------------------------
+//  تهيئة: اقرأ حالة الجلسة الحالية من الخادم (يحلّ محل onAuthStateChanged)
+// ---------------------------------------------------------------------------
+(async function bootstrap() {
+  try {
+    const dto = await api("/api/auth/me");
+    notify(mapUser(dto));
+  } catch (e) {
+    notify(null);   // 401 أو خطأ شبكة => لا يوجد مستخدم
+  }
+})();
 
 // ===========================================================================
 //  واجهة المصادقة  window.FITAuth
 // ===========================================================================
-function ensureReady() {
-  if (!CONFIG_READY) {
-    alert("لم يتم إعداد Firebase بعد.\nالرجاء ملء assets/js/firebase-config.js بمفاتيح مشروعك.");
-    throw new Error("Firebase config not set");
-  }
-}
-
 async function signInGoogle() {
-  ensureReady();
-  const provider = new GoogleAuthProvider();
-  return signInWithPopup(auth, provider);
-}
-
-async function signInMicrosoft() {
-  ensureReady();
-  const provider = new OAuthProvider("microsoft.com");
-  provider.addScope("User.Read");
-  return signInWithPopup(auth, provider);
+  location.href = "/api/auth/google";
 }
 
 async function registerEmail({ name, email, password }) {
-  ensureReady();
-  const cred = await createUserWithEmailAndPassword(auth, email, password);
-  if (name) await updateProfile(cred.user, { displayName: name });
-  try { await ensureUserDoc(cred.user); } catch (e) { console.warn(e); }
-  try { await sendEmailVerification(cred.user); } catch (e) { console.warn("[FIT] verify email:", e); }
-  return cred;
+  await api("/api/auth/register", { method: "POST", body: { name, email, password } });
+  // بعد التسجيل سجّل الدخول مباشرةً لتثبيت الجلسة (الكوكي)
+  return loginEmail({ email, password });
 }
 
 async function loginEmail({ email, password }) {
-  ensureReady();
-  return signInWithEmailAndPassword(auth, email, password);
+  const dto = await api("/api/auth/login", { method: "POST", body: { email, password } });
+  notify(mapUser(dto));
+  return currentUser;
 }
 
 async function resetPassword(email) {
-  ensureReady();
-  return sendPasswordResetEmail(auth, email);
+  return api("/api/auth/forgot-password", { method: "POST", body: { email } });
 }
 
 async function resendVerification() {
-  ensureReady();
-  if (auth.currentUser) return sendEmailVerification(auth.currentUser);
+  return api("/api/auth/resend-verification", { method: "POST" });
 }
 
 async function logout() {
-  if (auth) { try { await signOut(auth); } catch (e) { console.warn(e); } }
+  try { await api("/api/auth/logout", { method: "POST" }); }
+  catch (e) { console.warn("[FIT] logout:", e); }
+  notify(null);
   location.href = "index.html";
 }
 
-// يحوّل رموز أخطاء Firebase إلى رسائل عربية
+// يحوّل رموز أخطاء الـ API إلى رسائل عربية (نفس صياغة النسخة السابقة)
 function errMessage(code) {
   const map = {
-    "auth/invalid-email":          "البريد الإلكتروني غير صحيح.",
-    "auth/user-disabled":          "تم تعطيل هذا الحساب.",
-    "auth/user-not-found":         "لا يوجد حساب بهذا البريد.",
-    "auth/wrong-password":         "كلمة المرور غير صحيحة.",
-    "auth/invalid-credential":     "البريد أو كلمة المرور غير صحيحة.",
-    "auth/email-already-in-use":   "هذا البريد مسجّل بالفعل. جرّب تسجيل الدخول.",
-    "auth/weak-password":          "كلمة المرور ضعيفة (٦ أحرف على الأقل).",
-    "auth/popup-closed-by-user":   "تم إغلاق نافذة الدخول قبل الإكمال.",
-    "auth/popup-blocked":          "المتصفح منع النافذة المنبثقة. اسمح بها وحاول مجدداً.",
-    "auth/cancelled-popup-request":"تم إلغاء الطلب. حاول مرة أخرى.",
-    "auth/account-exists-with-different-credential":
-      "يوجد حساب بنفس البريد بطريقة دخول مختلفة.",
-    "auth/network-request-failed": "تعذّر الاتصال بالشبكة. تحقّق من اتصالك.",
-    "auth/operation-not-allowed":  "طريقة الدخول هذه غير مفعّلة في إعدادات Firebase."
+    "email-already-in-use": "هذا البريد مسجّل بالفعل. جرّب تسجيل الدخول.",
+    "invalid-credential":   "البريد أو كلمة المرور غير صحيحة.",
+    "invalid-token":        "رابط إعادة التعيين غير صالح أو منتهي الصلاحية.",
+    "bad-avatar":           "يجب اختيار ملف صورة صالح أقل من ٢ ميجابايت.",
+    "bad-weight":           "الوزن غير صحيح (١٥–٥٠٠ كجم).",
+    "network":              "تعذّر الاتصال بالشبكة. تحقّق من اتصالك."
   };
   return map[code] || "حدث خطأ غير متوقع. حاول مرة أخرى.";
 }
 
 window.FITAuth = {
   get user() { return currentUser; },
-  get ready() { return CONFIG_READY; },
+  get ready() { return true; },
   signInGoogle,
-  signInMicrosoft,
   registerEmail,
   loginEmail,
   resetPassword,
@@ -189,21 +167,20 @@ window.FITAuth = {
     });
   },
 
-  // رفع صورة المستخدم إلى Storage وتحديثها في الحساب وملف Firestore
+  // رفع صورة المستخدم عبر multipart إلى /api/profile/avatar ثم تحديث الواجهة
   async uploadAvatar(file) {
-    ensureReady();
-    const u = auth.currentUser;
-    if (!u) throw new Error("يجب تسجيل الدخول أولاً");
-    if (!file || !file.type || !file.type.startsWith("image/")) throw new Error("يجب اختيار ملف صورة");
-    if (file.size > 2 * 1024 * 1024) throw new Error("حجم الصورة يجب أن يكون أقل من ٢ ميجابايت");
-    const avatarRef = ref(storage, `avatars/${u.uid}`);
-    await uploadBytes(avatarRef, file);
-    const url = await getDownloadURL(avatarRef);
-    await updateProfile(u, { photoURL: url });
-    try {
-      await setDoc(doc(db, "users", u.uid),
-        { profile: { photoURL: url, updatedAt: serverTimestamp() } }, { merge: true });
-    } catch (e) { console.warn("[FIT] save photoURL:", e); }
+    if (!currentUser) throw new Error("يجب تسجيل الدخول أولاً");
+    if (!file || !file.type || !file.type.startsWith("image/")) {
+      const err = new Error("bad-avatar"); err.code = "bad-avatar"; throw err;
+    }
+    if (file.size > 2 * 1024 * 1024) {
+      const err = new Error("bad-avatar"); err.code = "bad-avatar"; throw err;
+    }
+    const fd = new FormData();
+    fd.append("file", file);
+    const data = await api("/api/profile/avatar", { method: "POST", raw: fd });
+    const url = data && data.photoURL;
+    currentUser = { ...currentUser, photoURL: url || null };
     renderNavAuthUI(currentUser);
     return url;
   },
@@ -213,246 +190,129 @@ window.FITAuth = {
 };
 
 // ===========================================================================
-//  طبقة البيانات  window.FITData  (Firestore)
+//  طبقة البيانات  window.FITData  (REST API)
 // ===========================================================================
 function uid() { return currentUser ? currentUser.uid : null; }
-function requireUser() {
-  if (!CONFIG_READY) { ensureReady(); }
-  if (!uid()) throw new Error("not signed in");
-  return uid();
-}
-function userDoc() { return doc(db, "users", uid()); }
 
 window.FITData = {
   // --- الملف الشخصي ---
   async getProfile() {
     if (!uid()) return null;
-    const snap = await getDoc(userDoc());
-    return snap.exists() ? (snap.data().profile || null) : null;
+    try { return await api("/api/profile"); }
+    catch (e) { return null; }
   },
   async saveProfile(partial) {
-    requireUser();
-    await setDoc(
-      userDoc(),
-      { profile: { ...partial, updatedAt: serverTimestamp() } },
-      { merge: true }
-    );
+    return api("/api/profile", { method: "PUT", body: partial || {} });
   },
 
-  // --- التمارين المفضلة (مصفوفة محدودة) ---
+  // --- التمارين المفضلة ---
   async getFavorites() {
     if (!uid()) return [];
-    const snap = await getDoc(userDoc());
-    return snap.exists() ? (snap.data().favorites || []) : [];
+    try { return await api("/api/favorites"); }
+    catch (e) { return []; }
   },
   // يضيف أو يزيل حسب وجود المعرّف؛ يعيد true إذا أصبح مفضّلاً
   async toggleFavorite(fav) {
-    requireUser();
-    const list = await this.getFavorites();
-    const idx = list.findIndex((f) => f.id === fav.id);
-    let favorited;
-    if (idx >= 0) { list.splice(idx, 1); favorited = false; }
-    else {
-      list.push({ ...fav, type: fav.type || "exercise", addedAt: new Date().toISOString() });
-      favorited = true;
-    }
-    await setDoc(userDoc(), { favorites: list }, { merge: true });
-    return favorited;
+    const res = await api("/api/favorites", { method: "POST", body: fav });
+    return !!(res && res.favorited);
   },
   async removeFavorite(id) {
-    requireUser();
-    const list = (await this.getFavorites()).filter((f) => f.id !== id);
-    await setDoc(userDoc(), { favorites: list }, { merge: true });
+    return api(`/api/favorites/${encodeURIComponent(id)}`, { method: "DELETE" });
   },
 
-  // --- سجل حاسبة السعرات (subcollection يكبر مع الوقت) ---
+  // --- سجل حاسبة السعرات ---
   async saveCalcResult(result) {
-    requireUser();
-    return addDoc(collection(db, "users", uid(), "calcHistory"), {
-      ...result,
-      createdAt: serverTimestamp()
-    });
+    return api("/api/calc-history", { method: "POST", body: result });
   },
   async getCalcHistory() {
     if (!uid()) return [];
-    const q = query(
-      collection(db, "users", uid(), "calcHistory"),
-      orderBy("createdAt", "desc")
-    );
-    const snap = await getDocs(q);
-    return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    try { return await api("/api/calc-history"); }
+    catch (e) { return []; }
   },
   async deleteCalcResult(id) {
-    requireUser();
-    await deleteDoc(doc(db, "users", uid(), "calcHistory", id));
+    return api(`/api/calc-history/${encodeURIComponent(id)}`, { method: "DELETE" });
   },
 
-  // --- خطط التغذية المحفوظة (مصفوفة محدودة) ---
+  // --- خطط التغذية المحفوظة ---
   async getNutritionPlans() {
     if (!uid()) return [];
-    const snap = await getDoc(userDoc());
-    return snap.exists() ? (snap.data().nutritionPlans || []) : [];
+    try { return await api("/api/nutrition-plans"); }
+    catch (e) { return []; }
   },
   async saveNutritionPlan(plan) {
-    requireUser();
-    const id = plan.id || `${plan.calId}-${plan.varId}`;
-    const list = await this.getNutritionPlans();
-    if (!list.some((p) => p.id === id)) {
-      list.push({ ...plan, id, savedAt: new Date().toISOString() });
-      await setDoc(userDoc(), { nutritionPlans: list }, { merge: true });
-      return true;
-    }
-    return false; // محفوظة مسبقاً
+    const res = await api("/api/nutrition-plans", { method: "POST", body: plan });
+    return !!(res && res.saved);
   },
   async removeNutritionPlan(id) {
-    requireUser();
-    const list = (await this.getNutritionPlans()).filter((p) => p.id !== id);
-    await setDoc(userDoc(), { nutritionPlans: list }, { merge: true });
+    return api(`/api/nutrition-plans/${encodeURIComponent(id)}`, { method: "DELETE" });
   },
 
-  // --- سجل الوزن والقياسات (subcollection يكبر مع الوقت) ---
+  // --- سجل الوزن والقياسات (نفس رسالة التحقق العربية قبل الإرسال) ---
   async addWeightEntry(entry) {
-    requireUser();
     const { weight, waist, chest, arms, date } = entry || {};
     const w = Number(weight);
     if (!w || w < 10 || w > 500) throw new Error("الوزن غير صحيح (١٠–٥٠٠ كجم)");
-    return addDoc(collection(db, "users", uid(), "weightLog"), {
-      date: date || new Date().toLocaleDateString("en-CA"),
-      weight: w,
-      waist: waist ? Number(waist) : null,
-      chest: chest ? Number(chest) : null,
-      arms:  arms  ? Number(arms)  : null,
-      createdAt: serverTimestamp()
+    return api("/api/weight-log", {
+      method: "POST",
+      body: {
+        weight: w,
+        waist: waist ? Number(waist) : null,
+        chest: chest ? Number(chest) : null,
+        arms:  arms  ? Number(arms)  : null,
+        date:  date || null
+      }
     });
   },
   async getWeightLog() {
     if (!uid()) return [];
-    const q = query(collection(db, "users", uid(), "weightLog"), orderBy("date", "desc"));
-    const snap = await getDocs(q);
-    return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    try { return await api("/api/weight-log"); }
+    catch (e) { return []; }
   },
   async deleteWeightEntry(id) {
-    requireUser();
-    await deleteDoc(doc(db, "users", uid(), "weightLog", id));
+    return api(`/api/weight-log/${encodeURIComponent(id)}`, { method: "DELETE" });
   },
 
   // --- متابعة إنجاز التمارين + السلسلة (streak) ---
   async getCompletedDates() {
     if (!uid()) return [];
-    const snap = await getDoc(userDoc());
-    return snap.exists() ? (snap.data().completedDates || []) : [];
+    try { return await api("/api/workouts/completed"); }
+    catch (e) { return []; }
   },
   async markWorkoutToday() {
-    requireUser();
-    const today = new Date().toLocaleDateString("en-CA");
-    const dates = await this.getCompletedDates();
-    if (!dates.includes(today)) {
-      dates.push(today);
-      await setDoc(userDoc(), { completedDates: dates }, { merge: true });
-    }
-    return this._getStreakStats(dates);
+    return api("/api/workouts/complete", { method: "POST" });
   },
   async unmarkWorkoutToday() {
-    requireUser();
-    const today = new Date().toLocaleDateString("en-CA");
-    const dates = (await this.getCompletedDates()).filter((d) => d !== today);
-    await setDoc(userDoc(), { completedDates: dates }, { merge: true });
-    return this._getStreakStats(dates);
-  },
-  // يحسب السلسلة الحالية وأطول سلسلة والإجمالي من مصفوفة تواريخ "YYYY-MM-DD"
-  _getStreakStats(dates) {
-    const uniq = Array.from(new Set(dates || []));
-    const total = uniq.length;
-    if (!total) return { streak: 0, longestStreak: 0, total: 0 };
-    const toNum = (s) => { const p = String(s).split("-").map(Number); return Date.UTC(p[0], p[1] - 1, p[2]) / 86400000; };
-    const nums = uniq.map(toNum).sort((a, b) => a - b);
-    let longest = 1, run = 1;
-    for (let i = 1; i < nums.length; i++) {
-      if (nums[i] === nums[i - 1] + 1) { run++; longest = Math.max(longest, run); }
-      else { run = 1; }
-    }
-    const todayNum = toNum(new Date().toLocaleDateString("en-CA"));
-    const last = nums[nums.length - 1];
-    let current = 0;
-    if (last === todayNum || last === todayNum - 1) {
-      current = 1;
-      for (let i = nums.length - 1; i > 0; i--) {
-        if (nums[i] === nums[i - 1] + 1) current++;
-        else break;
-      }
-    }
-    return { streak: current, longestStreak: longest, total };
+    return api("/api/workouts/complete", { method: "DELETE" });
   },
 
-  // --- خطتي المخصصة (مصفوفة محدودة) ---
+  // --- خطتي المخصصة ---
   async getPlan() {
     if (!uid()) return [];
-    const snap = await getDoc(userDoc());
-    return snap.exists() ? (snap.data().customPlan || []) : [];
+    try { return await api("/api/plan"); }
+    catch (e) { return []; }
   },
   async addToPlan(exercise) {
-    requireUser();
-    const list = await this.getPlan();
-    if (!list.some((e) => e.id === exercise.id)) {
-      list.push({
+    const res = await api("/api/plan", {
+      method: "POST",
+      body: {
         id: exercise.id,
         nameAr: exercise.nameAr || "",
         nameEn: exercise.nameEn || "",
         tab: exercise.tab || "",
-        sets: exercise.sets ?? 4,
-        reps: exercise.reps ?? 10,
-        order: list.length
-      });
-      await setDoc(userDoc(), { customPlan: list }, { merge: true });
-      return true;
-    }
-    return false; // موجود مسبقاً
+        sets: exercise.sets ?? null,
+        reps: exercise.reps ?? null
+      }
+    });
+    return !!(res && res.added);
   },
   async updatePlan(list) {
-    requireUser();
-    await setDoc(userDoc(), { customPlan: list }, { merge: true });
+    return api("/api/plan", { method: "PUT", body: list || [] });
   },
   async removeFromPlan(id) {
-    requireUser();
-    const list = (await this.getPlan()).filter((e) => e.id !== id);
-    list.forEach((e, i) => { e.order = i; });
-    await setDoc(userDoc(), { customPlan: list }, { merge: true });
+    return api(`/api/plan/${encodeURIComponent(id)}`, { method: "DELETE" });
   },
   async clearPlan() {
-    requireUser();
-    await setDoc(userDoc(), { customPlan: [] }, { merge: true });
-  },
-
-  // --- الصيام المتقطع: الصيام النشط (حقل) + السجل (subcollection) ---
-  async getActiveFast() {
-    if (!uid()) return null;
-    const snap = await getDoc(userDoc());
-    return snap.exists() ? (snap.data().activeFast || null) : null;
-  },
-  async setActiveFast(obj) {
-    requireUser();
-    await setDoc(userDoc(), { activeFast: obj }, { merge: true });
-  },
-  async clearActiveFast() {
-    requireUser();
-    await setDoc(userDoc(), { activeFast: null }, { merge: true });
-  },
-  async saveFastingSession(session) {
-    requireUser();
-    return addDoc(collection(db, "users", uid(), "fastingHistory"), {
-      ...session,
-      createdAt: serverTimestamp()
-    });
-  },
-  async getFastingHistory() {
-    if (!uid()) return [];
-    const q = query(collection(db, "users", uid(), "fastingHistory"), orderBy("createdAt", "desc"));
-    const snap = await getDocs(q);
-    return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-  },
-  async deleteFastingSession(id) {
-    requireUser();
-    await deleteDoc(doc(db, "users", uid(), "fastingHistory", id));
+    return api("/api/plan", { method: "DELETE" });
   }
 };
 
