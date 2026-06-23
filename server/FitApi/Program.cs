@@ -40,6 +40,7 @@ builder.Services.ConfigureApplicationCookie(options =>
         return Task.CompletedTask;
     };
 });
+builder.Services.AddScoped<FitApi.Services.IEmailSender, FitApi.Services.SmtpEmailSender>();
 // FIT:SERVICES-END
 
 var app = builder.Build();
