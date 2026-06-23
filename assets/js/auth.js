@@ -482,6 +482,7 @@ function renderProfileAvatar(user) {
 
 function actuallyRenderNav(user) {
   const desktop = document.querySelector("header nav .d-none.d-lg-flex");
+  const outer   = desktop ? desktop.parentElement : null; // صفّ القائمة الكامل (.d-flex)
   const mobile  = document.getElementById("mobileNav");
 
   // إزالة أي خانة سابقة لتفادي التكرار
@@ -489,8 +490,16 @@ function actuallyRenderNav(user) {
 
   injectFastingLink(desktop, mobile);
 
-  if (desktop) desktop.appendChild(buildSlot(user, false));
-  if (mobile)  mobile.appendChild(buildSlot(user, true));
+  // خانة المصادقة (سطح المكتب): مثبّتة في أقصى اليسار من شريط القائمة
+  if (outer) {
+    const slot = buildSlot(user, false);
+    slot.classList.add("d-none", "d-lg-flex");   // تظهر على الشاشات الكبيرة فقط
+    slot.style.marginInlineStart = "auto";        // RTL: تدفعها لأقصى اليسار
+    outer.appendChild(slot);
+  } else if (desktop) {
+    desktop.appendChild(buildSlot(user, false));
+  }
+  if (mobile) mobile.appendChild(buildSlot(user, true));
 }
 
 // يضيف رابط "الصيام" إلى القائمة (مرة واحدة) بعد رابط حاسبة السعرات
