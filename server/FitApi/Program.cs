@@ -49,6 +49,7 @@ builder.Services.AddAuthentication().AddGoogle(o =>
     o.ClientId = cfg["Authentication:Google:ClientId"] ?? "test-client-id";
     o.ClientSecret = cfg["Authentication:Google:ClientSecret"] ?? "test-client-secret";
 });
+builder.Services.AddScoped<FitApi.Services.IAvatarStorage, FitApi.Services.LocalAvatarStorage>();
 // FIT:SERVICES-END
 
 var app = builder.Build();
@@ -74,6 +75,16 @@ else
 }
 app.UseAuthentication();
 app.UseAuthorization();
+var avatarRoot = builder.Configuration["Storage:AvatarRoot"]
+    ?? Path.Combine(builder.Environment.ContentRootPath, "uploads", "avatars");
+Directory.CreateDirectory(avatarRoot);
+var uploadsRoot = Path.GetFullPath(Path.Combine(avatarRoot, ".."));
+Directory.CreateDirectory(uploadsRoot);
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(uploadsRoot),
+    RequestPath = "/uploads"
+});
 // FIT:MIDDLEWARE-END
 
 app.MapControllers();
