@@ -84,11 +84,11 @@ public class PlanController : ApiControllerBase
     {
         var toRemove = await _db.CustomPlanItems
             .FirstOrDefaultAsync(i => i.UserId == UserId && i.ItemId == itemId);
-        if (toRemove != null)
-        {
-            _db.CustomPlanItems.Remove(toRemove);
-            await _db.SaveChangesAsync();
-        }
+        if (toRemove == null)
+            return Ok(new { });
+
+        _db.CustomPlanItems.Remove(toRemove);
+        await _db.SaveChangesAsync();
 
         var remaining = await _db.CustomPlanItems
             .Where(i => i.UserId == UserId)

@@ -27,9 +27,7 @@ public class NutritionPlansController : ApiControllerBase
             .ToListAsync();
 
         // Each Data JsonDocument already contains id + savedAt; emit as a raw array.
-        var items = rows
-            .Select(d => JsonSerializer.Deserialize<JsonElement>(d.RootElement.GetRawText()))
-            .ToList();
+        var items = rows.Select(d => d.RootElement).ToList();
 
         return Ok(items);
     }
@@ -49,7 +47,8 @@ public class NutritionPlansController : ApiControllerBase
         // Build stored payload = {...plan, id: planId, savedAt: nowIso}.
         var obj = JsonNode.Parse(plan.GetRawText())!.AsObject();
         obj["id"] = planId;
-        obj["savedAt"] = DateTimeOffset.UtcNow.ToString("O");
+        var now = DateTimeOffset.UtcNow;
+        obj["savedAt"] = now.ToString("O");
 
         var entity = new NutritionPlan
         {
@@ -58,7 +57,7 @@ public class NutritionPlansController : ApiControllerBase
             CalId = ReadString(plan, "calId"),
             VarId = ReadString(plan, "varId"),
             Data = JsonDocument.Parse(obj.ToJsonString()),
-            SavedAt = DateTimeOffset.UtcNow
+            SavedAt = now
         };
 
         _db.NutritionPlans.Add(entity);

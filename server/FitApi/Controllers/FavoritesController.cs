@@ -77,7 +77,8 @@ public class FavoritesController : ApiControllerBase
             type = typeElement.GetString()!;
         }
         node["type"] = type;
-        node["addedAt"] = DateTimeOffset.UtcNow.ToString("O");
+        var now = DateTimeOffset.UtcNow;
+        node["addedAt"] = now.ToString("O");
 
         var data = JsonSerializer.SerializeToDocument(node);
 
@@ -87,7 +88,7 @@ public class FavoritesController : ApiControllerBase
             ItemId = itemId,
             Type = type,
             Data = data,
-            AddedAt = DateTimeOffset.UtcNow,
+            AddedAt = now,
         });
         await _db.SaveChangesAsync();
 
