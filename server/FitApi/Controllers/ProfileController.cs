@@ -40,7 +40,9 @@ public class ProfileController : ApiControllerBase
         if (req.Activity is not null) user.Activity = req.Activity;
         user.UpdatedAt = DateTimeOffset.UtcNow;
 
-        await _users.UpdateAsync(user);
+        var result = await _users.UpdateAsync(user);
+        if (!result.Succeeded)
+            return Problem(title: "update-failed", statusCode: 500);
         return Ok(ToDto(user));
     }
 
@@ -65,7 +67,9 @@ public class ProfileController : ApiControllerBase
 
         user.PhotoUrl = url;
         user.UpdatedAt = DateTimeOffset.UtcNow;
-        await _users.UpdateAsync(user);
+        var result = await _users.UpdateAsync(user);
+        if (!result.Succeeded)
+            return Problem(title: "update-failed", statusCode: 500);
 
         return Ok(new { photoURL = url });
     }

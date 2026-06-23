@@ -13,9 +13,6 @@ public class ProfileTests : IClassFixture<CustomWebApplicationFactory>
 
     public ProfileTests(CustomWebApplicationFactory factory) => _factory = factory;
 
-    private static readonly JsonSerializerOptions Json =
-        new(JsonSerializerDefaults.Web);
-
     // A tiny but VALID 1x1 PNG (decodable header + IEND), as raw bytes.
     private static byte[] TinyPng() => new byte[]
     {

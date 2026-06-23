@@ -24,14 +24,14 @@ public class LocalAvatarStorage : IAvatarStorage
 
         Directory.CreateDirectory(_root);
 
-        var fileName = userId + ext;
-        var fullPath = Path.Combine(_root, fileName);
+        var leafName = Path.GetFileName(userId + ext);
+        var fullPath = Path.Combine(_root, leafName);
 
         await using (var fs = new FileStream(fullPath, FileMode.Create, FileAccess.Write, FileShare.None))
         {
             await content.CopyToAsync(fs);
         }
 
-        return $"/uploads/avatars/{fileName}";
+        return $"/uploads/avatars/{leafName}";
     }
 }
