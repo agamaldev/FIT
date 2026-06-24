@@ -75,7 +75,10 @@ public class AuthController : ApiControllerBase
                 extensions: Code("register-failed"));
         }
 
-        await SendVerificationEmailAsync(user);
+        // Best-effort: account creation must succeed even if email can't be sent
+        // (e.g. local SQLite dev with no SMTP server). Matches the original behavior.
+        try { await SendVerificationEmailAsync(user); }
+        catch (Exception ex) { Console.Error.WriteLine($"[FIT] verification email failed: {ex.Message}"); }
         return Ok(new { });
     }
 

@@ -1,6 +1,8 @@
+using System.Text.Json;
 using FitApi.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FitApi.Data;
 
@@ -17,13 +19,22 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<CalcHistoryEntry> CalcHistory => Set<CalcHistoryEntry>();
     public DbSet<WeightEntry> WeightLog => Set<WeightEntry>();
 
+    // SQLite has no jsonb type and can't map JsonDocument natively — store the
+    // payload as TEXT and (de)serialize it. Postgres keeps the native jsonb mapping.
+    private static readonly ValueConverter<JsonDocument, string> JsonToText =
+        new(v => v.RootElement.GetRawText(),
+            v => JsonDocument.Parse(v, default));
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
 
+        var isSqlite = Database.IsSqlite();
+
         builder.Entity<Favorite>(e =>
         {
-            e.Property(x => x.Data).HasColumnType("jsonb");
+            if (isSqlite) e.Property(x => x.Data).HasConversion(JsonToText).HasColumnType("TEXT");
+            else e.Property(x => x.Data).HasColumnType("jsonb");
             e.HasIndex(x => new { x.UserId, x.ItemId }).IsUnique();
             e.HasOne(x => x.User)
                 .WithMany()
@@ -33,7 +44,8 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
 
         builder.Entity<NutritionPlan>(e =>
         {
-            e.Property(x => x.Data).HasColumnType("jsonb");
+            if (isSqlite) e.Property(x => x.Data).HasConversion(JsonToText).HasColumnType("TEXT");
+            else e.Property(x => x.Data).HasColumnType("jsonb");
             e.HasIndex(x => new { x.UserId, x.PlanId }).IsUnique();
             e.HasOne(x => x.User)
                 .WithMany()
@@ -61,7 +73,8 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
 
         builder.Entity<CalcHistoryEntry>(e =>
         {
-            e.Property(x => x.Data).HasColumnType("jsonb");
+            if (isSqlite) e.Property(x => x.Data).HasConversion(JsonToText).HasColumnType("TEXT");
+            else e.Property(x => x.Data).HasColumnType("jsonb");
             e.HasOne(x => x.User)
                 .WithMany()
                 .HasForeignKey(x => x.UserId)

@@ -19,3 +19,8 @@ server/FitApi/uploads/
 
 # Local-only compose override (host port remap + Google OAuth secrets)
 docker-compose.override.yml
+
+# SQLite local-dev database
+fit.db
+fit.db-shm
+fit.db-wal

@@ -5,7 +5,15 @@ using Microsoft.Extensions.FileProviders;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<FitApi.Data.AppDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
+var dbProvider = builder.Configuration["Database:Provider"] ?? "Postgres";
+var dbConn = builder.Configuration.GetConnectionString("Default");
+builder.Services.AddDbContext<FitApi.Data.AppDbContext>(o =>
+{
+    if (string.Equals(dbProvider, "Sqlite", StringComparison.OrdinalIgnoreCase))
+        o.UseSqlite(dbConn);
+    else
+        o.UseNpgsql(dbConn);
+});
 builder.Services.AddIdentity<FitApi.Models.ApplicationUser, Microsoft.AspNetCore.Identity.IdentityRole>(options =>
 {
     options.Password.RequiredLength = 6;
@@ -57,7 +65,11 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<FitApi.Data.AppDbContext>();
-    db.Database.Migrate();
+    // SQLite (local dev) builds the schema from the model; Postgres uses migrations.
+    if (db.Database.IsSqlite())
+        db.Database.EnsureCreated();
+    else
+        db.Database.Migrate();
 }
 // FIT:STARTUP-END
 

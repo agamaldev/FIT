@@ -43,6 +43,28 @@ docker compose up --build
 
 ---
 
+## بديل للتطوير: قاعدة SQLite محلية (بدون Docker)
+
+للتطوير السريع دون تشغيل Docker/PostgreSQL، يدعم التطبيق قاعدة **SQLite** (ملف واحد) **جنباً إلى جنب** مع PostgreSQL. يُختار المزوّد عبر الإعداد `Database:Provider`:
+
+- بيئة **التطوير** (Development) → الافتراضي **SQLite** (`server/FitApi/appsettings.Development.json`، وسلسلة الاتصال `Data Source=fit.db`).
+- **Docker/الإنتاج** → الافتراضي **PostgreSQL** (`appsettings.json` + `docker-compose.yml`).
+
+التشغيل محلياً (يتطلب **.NET 10 SDK** فقط — لا Docker ولا بريد):
+
+```bash
+cd "D:/Work/Templates/FIT/server/FitApi"
+dotnet run
+```
+
+- يُنشَأ ملف `fit.db` تلقائياً عبر `Database.EnsureCreated()` (يبني المخطط من النماذج مباشرةً — لا هجرات مع SQLite؛ أعمدة `jsonb` تُخزَّن كنص `TEXT`). الملف مُستثنى من Git.
+- لا يحتاج خادم بريد: إرسال رسالة التأكيد "أفضل-جهد"، فلا يفشل التسجيل إن غاب SMTP.
+- لإجبار مزوّد صراحةً (يتجاوز الافتراضي): `Database__Provider=Sqlite` أو `Database__Provider=Postgres` كمتغيّر بيئة.
+
+> ملاحظة: الاختبارات (`dotnet test`) تظل تعمل على PostgreSQL عبر Testcontainers بصرف النظر عن هذا الإعداد.
+
+---
+
 ## استخدم الموقع عبر http (وليس بالنقر المزدوج)
 
 ⚠️ افتح الموقع دائماً عبر **<http://localhost:8080>**. لم يعد فتح ملفات `.html` بالنقر المزدوج (`file://`) أسلوباً مدعوماً — والأهم أن **سبب الأعطال القديم اختفى بنيوياً**: لأن الـAPI نفسه هو من يخدم الصفحات الآن، تعمل وحدات الـJS (ES modules) ونداءات الـAPI وملفات الكوكيز كلها على نفس الأصل دون مشاكل CORS أو قيود `file://`.
@@ -92,7 +114,8 @@ services:
 
 | المفتاح (داخل التطبيق) | صيغة متغير البيئة | القيمة الافتراضية (تطوير) | الغرض |
 |---|---|---|---|
-| `ConnectionStrings:Default` | `ConnectionStrings__Default` | سلسلة اتصال خدمة `db` | الاتصال بـPostgreSQL |
+| `Database:Provider` | `Database__Provider` | `Sqlite` (تطوير) / `Postgres` (Docker) | اختيار مزوّد قاعدة البيانات: `Sqlite` أو `Postgres` |
+| `ConnectionStrings:Default` | `ConnectionStrings__Default` | SQLite: `Data Source=fit.db` — Docker: سلسلة اتصال خدمة `db` | سلسلة اتصال قاعدة البيانات (حسب المزوّد) |
 | `Authentication:Google:ClientId` | `Authentication__Google__ClientId` | — (يُضبط منك) | دخول Google |
 | `Authentication:Google:ClientSecret` | `Authentication__Google__ClientSecret` | — (يُضبط منك) | دخول Google |
 | `Smtp:Host` | `Smtp__Host` | `mail` | خادم البريد |
