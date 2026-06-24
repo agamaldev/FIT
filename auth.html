@@ -207,7 +207,7 @@
 
         // الدخول الاجتماعي
         $("btn-google").addEventListener("click", () =>
-            run($("btn-google"), async () => { await window.FITAuth.signInGoogle(); goProfile(); }));
+            run($("btn-google"), async () => { await window.FITAuth.signInGoogle(); }));
 
         // تسجيل الدخول بالبريد
         formLogin.addEventListener("submit", (e) => {

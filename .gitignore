@@ -16,3 +16,6 @@ TestResults/
 
 # Runtime/test upload artifacts (avatars are created at runtime/in tests)
 server/FitApi/uploads/
+
+# Local-only compose override (host port remap + Google OAuth secrets)
+docker-compose.override.yml

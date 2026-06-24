@@ -387,7 +387,7 @@
                     weight:   numOrNull($("pf-weight").value),
                     height:   numOrNull($("pf-height").value),
                     goal:     $("pf-goal").value || null,
-                    activity: $("pf-activity").value ? parseFloat($("pf-activity").value) : null
+                    activity: $("pf-activity").value || null
                 });
                 msg.textContent = "تم الحفظ ✓"; msg.style.color = "#9be29e";
             } catch (err) {
