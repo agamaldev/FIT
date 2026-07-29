@@ -249,6 +249,27 @@ Get-ChildItem C:\MMFit\actions-runner\_diag | Sort-Object LastWriteTime -Descend
 
 ## Troubleshooting
 
+**The runner can change the App Pool but cannot see it.** `appcmd` reads
+`redirection.config` / `applicationHost.config` under
+`%windir%\System32\inetsrv\config`, which only administrators can read, so as
+`MMFitRunner` every query returns *"Cannot read configuration file due to
+insufficient permissions"* and `Get-PoolState` reports `Unknown`. That is expected
+and not a fault. `Deploy-Site.ps1` therefore confirms a stop by **effect** —
+opening `FitApi.dll` for exclusive write, which is the exact property the deploy
+needs — and leaves "started" to the health check.
+
+This bit once: the original loop treated `Unknown` as "not yet in the desired
+state", timed out after 120 s even though the pool had stopped correctly, failed
+the rollback the same way, and left the site on `app_offline.htm` for 19 minutes.
+Hence `Restore-Service`, which force-starts the pool and clears `app_offline.htm`
+on every failure path. If you ever see the site stuck on the deploying page, that
+safety net did not run:
+
+```powershell
+& "$env:SystemRoot\System32\inetsrv\appcmd.exe" start apppool MMFitWeb
+Remove-Item C:\MMFit\sites\Web\app_offline.htm -Force
+```
+
 **A deploy failed its health check.** It already rolled itself back and the job
 failed loudly; the previous release is live. Check `C:\MMFit\sites\Web\logs\` —
 `Deploy-Site.ps1` forces `stdoutLogEnabled="true"` into web.config on every
