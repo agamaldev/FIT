@@ -146,10 +146,48 @@ function Test-IsAdministrator {
 }
 
 function Get-PoolState {
+    <#  Returns Started / Stopped / Stopping, or 'Unknown' when the state cannot
+        be read at all.
+
+        'Unknown' is the NORMAL case for the deploy runner. appcmd has to read
+        redirection.config and applicationHost.config under
+        %windir%\System32\inetsrv\config, which is readable only by
+        administrators, so as MMFitRunner this returns:
+
+            ERROR ( message:Configuration error
+            Filename: redirection.config
+            Description: Cannot read configuration file due to insufficient
+            permissions. )
+
+        The runner can still CHANGE the pool - that happens inside a SYSTEM
+        scheduled task - it just cannot OBSERVE the result. Callers must therefore
+        treat 'Unknown' as "no information", never as "not yet in the desired
+        state". See Set-PoolState. #>
     param([string]$Name)
     $out = & "$env:SystemRoot\System32\inetsrv\appcmd.exe" list apppool $Name 2>$null
     if ($out -match 'state:(\w+)') { return $Matches[1] }
     return 'Unknown'
+}
+
+function Test-AppFilesUnlocked {
+    <#  Effect-based proof that the worker process has actually released the app.
+
+        This is what "the pool is stopped" MEANS for a deploy: the whole reason to
+        stop it is that w3wp holds FitApi.dll and its dependencies open, so the
+        mirror step cannot overwrite them. Opening the file for exclusive write is
+        therefore a better check than the pool's reported state - it tests the
+        property we actually depend on - and, unlike appcmd, it needs no
+        administrative rights.
+
+        Returns $true if the file is absent (nothing to lock) or can be opened for
+        exclusive write. #>
+    param([string]$Path)
+    if (-not (Test-Path $Path)) { return $true }
+    try {
+        $fs = [IO.File]::Open($Path, [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
+        $fs.Close(); $fs.Dispose()
+        return $true
+    } catch { return $false }
 }
 
 function Set-PoolState {
@@ -162,8 +200,12 @@ function Set-PoolState {
     )
 
     $taskName = if ($Desired -eq 'Stopped') { $StopTask } else { $StartTask }
+    $lockProbe = Join-Path $SitePath 'FitApi.dll'
 
-    if ((Get-PoolState -Name $AppPool) -eq $Desired) {
+    $state = Get-PoolState -Name $AppPool
+    $canObserve = $state -ne 'Unknown'
+
+    if ($canObserve -and $state -eq $Desired) {
         Write-Info "App Pool '$AppPool' already $Desired"
         return
     }
@@ -171,6 +213,7 @@ function Set-PoolState {
     if ($null -ne (Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue)) {
         Write-Info "triggering scheduled task '$taskName'"
         & schtasks /run /tn $taskName | Out-Null
+        if ($LASTEXITCODE -ne 0) { throw "schtasks /run failed for '$taskName' (exit $LASTEXITCODE) - does $env:USERNAME have run rights on it?" }
     }
     elseif (Test-IsAdministrator) {
         Write-Warn "task '$taskName' not found; falling back to direct control (running as admin)"
@@ -181,6 +224,37 @@ function Set-PoolState {
         throw "Cannot set App Pool '$AppPool' to $Desired - scheduled task '$taskName' is missing and this account is not an administrator."
     }
 
+    # ---------------------------------------------------------------- confirm
+    if (-not $canObserve) {
+        # Non-admin runner: appcmd cannot read the pool state at all. Verify by
+        # EFFECT instead of by reported state.
+        #
+        # This is exactly what broke the first automated deploy: Get-PoolState
+        # returned 'Unknown' forever, the old loop compared 'Unknown' -ne 'Stopped'
+        # and timed out after 120s - even though the SYSTEM task had stopped the
+        # pool correctly a second later. The rollback then failed the same way and
+        # left the site serving app_offline.htm for 19 minutes.
+        if ($Desired -eq 'Stopped') {
+            $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+            while ((Get-Date) -lt $deadline) {
+                Start-Sleep -Milliseconds 700
+                if (Test-AppFilesUnlocked -Path $lockProbe) {
+                    Write-Ok "App Pool '$AppPool' stopped (app files released)"
+                    return
+                }
+            }
+            throw "Timed out after ${TimeoutSeconds}s: the worker still holds $lockProbe open, so the pool did not stop."
+        }
+
+        # 'Started' cannot be observed without admin. The health check that follows
+        # is the real gate - if the pool did not come up, it fails and triggers the
+        # rollback - so a short settle is enough here.
+        Start-Sleep -Seconds 3
+        Write-Info "start task triggered for '$AppPool' (state not observable as $env:USERNAME; the health check is the gate)"
+        return
+    }
+
+    # Admin path: poll the real state.
     $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
     while ((Get-Date) -lt $deadline) {
         Start-Sleep -Milliseconds 700
@@ -202,6 +276,26 @@ function Set-PoolState {
     }
 
     throw "Timed out after ${TimeoutSeconds}s waiting for App Pool '$AppPool' to reach '$Desired' (currently '$state')."
+}
+
+function Restore-Service {
+    <#  Last-resort safety net: whatever went wrong, do not leave the site dark.
+
+        The first automated deploy failed mid-swap, its rollback failed too, and
+        because nothing forced the site back up afterwards it served 503 until a
+        human intervened. Every failure path now ends here, and every action is
+        best-effort: an exception raised while recovering must not mask the real
+        error. #>
+    Write-Warn 'safety net: forcing the site back online'
+    try {
+        if ($null -ne (Get-ScheduledTask -TaskName $StartTask -ErrorAction SilentlyContinue)) {
+            & schtasks /run /tn $StartTask 2>&1 | Out-Null
+        } elseif (Test-IsAdministrator) {
+            & "$env:SystemRoot\System32\inetsrv\appcmd.exe" start apppool $AppPool 2>&1 | Out-Null
+        }
+    } catch { Write-Warn "could not start the App Pool: $($_.Exception.Message)" }
+    try { Remove-Item $Offline -Force -ErrorAction SilentlyContinue } catch { }
+    Write-Info 'app_offline.htm removed and start requested'
 }
 
 function Get-RobocopyArgs {
@@ -424,11 +518,12 @@ try {
     Write-Ok 'app_offline.htm removed'
 }
 catch {
-    # Never leave the site offline because the swap threw. Put it back up on the
-    # previous release if we can, then rethrow.
+    # Never leave the site offline because the swap threw. Try to put the previous
+    # release back, then unconditionally force the site online - Restore-Backup can
+    # itself fail, and when it did, the site stayed dark until a human intervened.
     Write-Warn "deploy step failed: $($_.Exception.Message)"
     if ($backupPath) { try { Restore-Backup -From $backupPath } catch { Write-Warn "rollback also failed: $($_.Exception.Message)" } }
-    else { Set-PoolState -Desired 'Started'; Remove-Item $Offline -Force -ErrorAction SilentlyContinue }
+    Restore-Service
     throw
 }
 
@@ -452,9 +547,11 @@ if (-not $backupPath) {
     throw "Site is unhealthy and there is no backup to roll back to (this was the first deploy). Left as-is for inspection at $SitePath"
 }
 
-Restore-Backup -From $backupPath
+try { Restore-Backup -From $backupPath }
+catch { Write-Warn "rollback failed: $($_.Exception.Message)"; Restore-Service; throw }
 
 if (Test-SiteHealth -Attempts $HealthAttempts -DelaySeconds $HealthDelaySeconds -TimeoutSeconds $HealthTimeoutSeconds) {
     throw "Deploy failed its health check and was ROLLED BACK to $stamp. The site is healthy again on the previous release. NOTE: any EF migration this release applied is still applied - check the database."
 }
+Restore-Service
 throw "Deploy failed its health check AND the rollback to $stamp is also unhealthy - manual intervention required."
