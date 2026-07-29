@@ -1,0 +1,92 @@
+// TEMPLATE ONLY - PLACEHOLDERS, NO REAL SECRETS.
+//
+// Copy to C:\MMFit\sites\Web\appsettings.Production.json on the server and fill
+// in the real values. That file:
+//   - is NEVER committed (it holds the database password and the Google secret)
+//   - is NEVER deployed (Deploy-Site.ps1 excludes it from robocopy /MIR)
+//   - is read by the app because the site sets ASPNETCORE_ENVIRONMENT=Production
+//
+// Strip these comments when you copy it: ASP.NET Core's JSON provider does
+// tolerate // comments, but nothing else in the toolchain is guaranteed to.
+{
+  // ----------------------------------------------------------------- database
+  // Provider MUST stay Postgres in production. The Sqlite path in Program.cs
+  // calls EnsureCreated() instead of Migrate(), which builds the schema from the
+  // model and applies no migrations - fine for local dev, wrong for a database
+  // that has to survive schema changes.
+  //
+  // The real connection string, with the generated password, is in
+  // C:\MMFit\secrets\postgres-credentials.txt (Administrators only).
+  "Database": {
+    "Provider": "Postgres"
+  },
+  "ConnectionStrings": {
+    "Default": "Host=127.0.0.1;Port=5432;Database=fit;Username=fit;Password=REPLACE_ME"
+  },
+
+  // ------------------------------------------------------------ google oauth
+  // From Google Cloud Console -> APIs & Services -> Credentials -> OAuth 2.0
+  // Client ID (type: Web application).
+  //
+  // The Authorised redirect URI must be EXACTLY:
+  //     https://mmfit.space/signin-google
+  // That path is the ASP.NET Core Google handler's default callback; it is not
+  // something the app declares, so it will not appear anywhere in the source.
+  //
+  // Program.cs falls back to "test-client-id"/"test-client-secret" when these are
+  // absent, so the app still BOOTS without them - Google sign-in just fails at
+  // the point a user clicks it.
+  "Authentication": {
+    "Google": {
+      "ClientId": "REPLACE_ME.apps.googleusercontent.com",
+      "ClientSecret": "REPLACE_ME"
+    }
+  },
+
+  // ------------------------------------------------------------------- email
+  // WARNING - READ BEFORE FILLING THIS IN.
+  //
+  // Services/SmtpEmailSender.cs connects with SecureSocketOptions.None and never
+  // calls AuthenticateAsync. It reads ONLY Host, Port and From - there is no
+  // username or password setting, and no TLS.
+  //
+  // That is fine for the Mailpit container it was written against
+  // (docker-compose: mail:1025), but it means this app CANNOT send through
+  // Gmail, SendGrid, Mailgun, Office 365 or any other real provider, all of
+  // which require STARTTLS and authentication. Putting credentials here would
+  // have no effect - nothing reads them.
+  //
+  // Until SmtpEmailSender is changed, email confirmation and password reset will
+  // not deliver. Two ways forward:
+  //   1. Add TLS + auth support to SmtpEmailSender (small, contained change), then
+  //      add Smtp:User / Smtp:Password here.
+  //   2. Run a local relay on the VPS that listens unauthenticated on 127.0.0.1
+  //      and forwards upstream with credentials; point Smtp:Host at 127.0.0.1.
+  "Smtp": {
+    "Host": "127.0.0.1",
+    "Port": "25",
+    "From": "no-reply@mmfit.space"
+  },
+
+  // ------------------------------------------------------------------ storage
+  // Where uploaded profile avatars are written. Defaults to
+  // <ContentRoot>\uploads\avatars if omitted. Set explicitly so it is obvious
+  // which directory must never be deleted by a deploy - Deploy-Site.ps1 excludes
+  // anything named "uploads" from robocopy /MIR.
+  "Storage": {
+    "AvatarRoot": "C:\\MMFit\\sites\\Web\\uploads\\avatars"
+  },
+
+  // Leave empty: the API then serves the frontend from <ContentRoot>\wwwroot,
+  // which is where the deploy stages the pages and assets.
+  "Frontend": {
+    "WebRoot": ""
+  },
+
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  }
+}
